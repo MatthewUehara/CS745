@@ -2,3 +2,5 @@
 Oct 24, 2012
 Clafer Access policy 
 */
+
+Clafer instance generator -> AlloyModel Analyzer
