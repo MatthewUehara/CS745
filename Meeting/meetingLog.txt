@@ -4,3 +4,6 @@ Clafer Access policy
 */
 
 Clafer instance generator -> AlloyModel Analyzer
+
+
+HTML Template Files for UI.
