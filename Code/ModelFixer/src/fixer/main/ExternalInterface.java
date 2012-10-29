@@ -48,8 +48,13 @@ public class ExternalInterface {
     Process p;
     boolean closed = false;
     PrintWriter writer;
+
+    Thread outThread;
+    Thread errThread;    
     
-	
+//    public PrintStream inputStreamFromProcess;
+//    public PrintStream errorStreamFromProcess;
+    
     private static boolean isWindows() {
     	String os = System.getProperty("os.name");
     	if (os == null) {
@@ -77,7 +82,7 @@ public class ExternalInterface {
     }
 
      
-    ExternalInterface(List<String> commandList) {
+    ExternalInterface(List<String> commandList, PrintStream inputStreamFromProcess, PrintStream errorStreamFromProcess) {
 //    	String[] cmdArray = (String[])commandList.toArray();
         pb = new ProcessBuilder(commandList);
         try {
@@ -86,14 +91,17 @@ public class ExternalInterface {
             throw new RuntimeException("Cannot execute PowerShell.exe", ex);
         }
         writer = new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(p.getOutputStream())), true);
-        Gobbler outGobbler = new Gobbler(p.getInputStream(), System.out);
-        Gobbler errGobbler = new Gobbler(p.getErrorStream(), System.out);
-        Thread outThread = new Thread(outGobbler);
-        Thread errThread = new Thread(errGobbler);
+//        this.inputStreamFromProcess = p.getInputStream();
+//        this.errorStreamFromProcess = p.getErrorStream();
+        
+        Gobbler outGobbler = new Gobbler(p.getInputStream(), inputStreamFromProcess);
+        Gobbler errGobbler = new Gobbler(p.getErrorStream(), errorStreamFromProcess);
+        outThread = new Thread(outGobbler);
+        errThread = new Thread(errGobbler);
         outThread.start();
         errThread.start();
     }
- 
+     
     public void execute(String command) {
         if (!closed) {
             writer.println(command.length());
@@ -106,8 +114,10 @@ public class ExternalInterface {
  
     public void close() {
         try {
-            execute("exit");
+            execute("quit");
             p.waitFor();
+            outThread.join();
+            errThread.join();
         } catch (InterruptedException ex) {
         }
     }
