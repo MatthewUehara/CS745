@@ -72,6 +72,35 @@ public class Main {
         }
     }    
 
+    private static ArrayList<String> readFileAsStringArray(String pathname) throws IOException {    
+  	  ArrayList<String> result = new ArrayList<String>();
+
+  	  try{
+    	  
+    	  // Open the file that is the first 
+    	  // command line parameter
+    	  FileInputStream fstream = new FileInputStream(pathname);
+    	  // Get the object of DataInputStream
+    	  DataInputStream in = new DataInputStream(fstream);
+    	  BufferedReader br = new BufferedReader(new InputStreamReader(in));
+    	  String strLine;
+    	  //Read File Line By Line
+    	  while ((strLine = br.readLine()) != null)   {
+    	  // Print the content on the console
+    		  result.add (strLine);
+    	  }
+    	  //Close the input stream
+    	  in.close();
+    	}
+	    catch (Exception e){//Catch exception if any
+	    	  
+	    	System.err.println("Error: " + e.getMessage());
+	    }
+
+    	return result;
+
+	}
+
     private static ArrayList<String> readLibraryOutputAsStringArray(String pathname) throws IOException {
 
     	char[] buf = new char[1024];
@@ -122,12 +151,13 @@ public class Main {
     		List<String> cmdarray = new ArrayList<String>();
         	
     		String dir = "C:\\ClaferIE\\CS745\\Code\\ModelFixer\\bin\\";
+    		String tempResultFileName = "result.txt";
     		
     		cmdarray.add(ExternalInterface.getJreExecutable().toString());
     		cmdarray.add("-jar");
     		cmdarray.add(dir + "AlloyIGEx.jar");    	
 
-    		PrintStream out = new PrintStream(new File("result.txt"));
+    		PrintStream out = new PrintStream(new File(tempResultFileName));
     		
     		ExternalInterface pc = new ExternalInterface(cmdarray, out, System.out);
             String fileName = dir + "test.als";
@@ -157,7 +187,7 @@ public class Main {
             
             pc.close();
             
-            ArrayList<String> sl = readLibraryOutputAsStringArray("result.txt");
+            ArrayList<String> sl = readLibraryOutputAsStringArray(tempResultFileName);
             
             int pos = 0;
             int sigCount = Integer.parseInt(sl.get(pos++));
@@ -181,6 +211,7 @@ public class Main {
             String sConsistent = sl.get(pos++);
             if (sConsistent.compareTo("True") == 0) // if the model is consistent, return
             {
+                System.out.println("The model is consistent within the scope. Nothing to do...");
             	return;
             }
             
@@ -189,13 +220,42 @@ public class Main {
             int unsatCoreSize = Integer.parseInt(sl.get(pos++));
             System.out.println("Number of UNSAT cores: " + unsatCoreSize);
             
-            System.out.println("UNSAT CORE Markers (1 line per core): ");
+            System.out.println("UNSAT CORE Markers (2 lines per core): ");
+
+            // NOW Display the constaints:
+            
+            ArrayList<String> alsFile = readFileAsStringArray(fileName);
+            
             
             for (int i = 0; i < unsatCoreSize; i++)
             {
-            	System.out.println(sl.get(pos++) + " " + sl.get(pos++) + " " + sl.get(pos++) + " " + sl.get(pos++));            
+            	int y1 = Integer.parseInt(sl.get(pos++)) - 1;
+            	int x1 = Integer.parseInt(sl.get(pos++)) - 1;
+            	int y2 = Integer.parseInt(sl.get(pos++)) - 1;
+            	int x2 = Integer.parseInt(sl.get(pos++));
+            	
+            	String constraint = "";
+                String lineSeparator = System.getProperty("line.separator");
+                
+            	if (y2 > y1) // single lines
+            	{
+            		constraint = alsFile.get(y1).substring(x1);
+            		for (int j = y1 + 1; j < y2; j++)
+            		{
+            			constraint += alsFile.get(j);
+            		}
+            		
+            		constraint += alsFile.get(y2).substring(0, x2);
+            	}
+            	else // y2 == y1
+            	{
+            		constraint = alsFile.get(y1).substring(x1, x2);            		
+            	}
+                                
+            	System.out.println(y1 + " " + x1 + " " + y2 + " " + x2); // line char line char            
+            	System.out.println(constraint);            
             }
-            
+      
     		System.out.println("OK");		
 
     	} catch (IOException e) {
