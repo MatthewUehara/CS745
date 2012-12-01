@@ -23,6 +23,8 @@ import edu.mit.csail.sdg.alloy4compiler.ast.Sig;
 
 public class Main {
 	
+	public static int MAX_BUF_SIZE = 40000; // CAREFUL!!! THE SIZE OF XML FILE MAY EXCEED THIS LIMIT
+	
     public static int launch(List<String> cmdarray) throws IOException,
     		InterruptedException {
     	byte[] buffer = new byte[1024];
@@ -103,7 +105,7 @@ public class Main {
 
     private static ArrayList<String> readLibraryOutputAsStringArray(String pathname) throws IOException {
 
-    	char[] buf = new char[1024];
+    	char[] buf = new char[MAX_BUF_SIZE];
     	ArrayList<String> result = new ArrayList<String>();
     	
     	try{
@@ -112,7 +114,7 @@ public class Main {
     		  FileInputStream fstream = new FileInputStream(pathname);
     		  // Get the object of DataInputStream
     		  DataInputStream in = new DataInputStream(fstream);
-    		  BufferedReader br = new BufferedReader(new InputStreamReader(in));
+    		  BufferedReader br = new BufferedReader(new InputStreamReader(in), MAX_BUF_SIZE);
     		  String strLine;
     		  
     		  //Read File Line By Line
@@ -129,8 +131,9 @@ public class Main {
     			  }
     			  else
     			  {
-    				br.read(buf, 0, len);
-    			  
+    				int read = br.read(buf, 0, len);
+    			    System.out.println(read);
+    				
     			  	String realData = String.copyValueOf(buf,  0, len);
     			  	result.add(realData);
     			  }
@@ -147,7 +150,7 @@ public class Main {
     public static void main(String[] args) {
     	try {
 //    		Runtime.getRuntime().exec("c:/");
-
+    		
     		List<String> cmdarray = new ArrayList<String>();
         	
     		String dir = "C:\\ClaferIE\\CS745\\Code\\ModelFixer\\bin\\";
@@ -192,7 +195,7 @@ public class Main {
             int pos = 0;
             int sigCount = Integer.parseInt(sl.get(pos++));
             
-            System.out.println(sigCount);
+            System.out.println("Sig count: " + sigCount);
             
             // just skip first records;
             
@@ -211,54 +214,63 @@ public class Main {
             String sConsistent = sl.get(pos++);
             if (sConsistent.compareTo("True") == 0) // if the model is consistent, return
             {
-                System.out.println("The model is consistent within the scope. Nothing to do...");
-            	return;
-            }
-            
-            boolean bConsistent = false;
-            
-            int unsatCoreSize = Integer.parseInt(sl.get(pos++));
-            System.out.println("Number of UNSAT cores: " + unsatCoreSize);
-            
-            System.out.println("UNSAT CORE Markers (2 lines per core): ");
-
-            // NOW Display the constaints:
-            
-            ArrayList<String> alsFile = readFileAsStringArray(fileName);
-            
-            
-            for (int i = 0; i < unsatCoreSize; i++)
-            {
-            	int y1 = Integer.parseInt(sl.get(pos++)) - 1;
-            	int x1 = Integer.parseInt(sl.get(pos++)) - 1;
-            	int y2 = Integer.parseInt(sl.get(pos++)) - 1;
-            	int x2 = Integer.parseInt(sl.get(pos++));
-            	
-            	String constraint = "";
-                String lineSeparator = System.getProperty("line.separator");
-                
-            	if (y2 > y1) // single lines
-            	{
-            		constraint = alsFile.get(y1).substring(x1);
-            		for (int j = y1 + 1; j < y2; j++)
-            		{
-            			constraint += alsFile.get(j);
-            		}
-            		
-            		constraint += alsFile.get(y2).substring(0, x2);
-            	}
-            	else // y2 == y1
-            	{
-            		constraint = alsFile.get(y1).substring(x1, x2);            		
-            	}
+                System.out.println("Intance found...");
+                String sXML = sl.get(pos++);                
+                System.out.println(sXML); // GETTING INSTANCE XML!!!
                                 
-            	System.out.println(y1 + " " + x1 + " " + y2 + " " + x2); // line char line char            
-            	System.out.println(constraint);            
+                pos++; // misc stuff, I don't know, we don't need
+                
             }
-      
-    		System.out.println("OK");		
-
-    	} catch (IOException e) {
+            else // printing UNSAT CORE
+            {
+            
+	            boolean bConsistent = false;
+	            
+	            int unsatCoreSize = Integer.parseInt(sl.get(pos++));
+	            System.out.println("Number of UNSAT cores: " + unsatCoreSize);
+	            
+	            System.out.println("UNSAT CORE Markers (2 lines per core): ");
+	            
+	            // NOW Display the constaints:
+	            
+	            ArrayList<String> alsFile = readFileAsStringArray(fileName);
+	            
+	            
+	            for (int i = 0; i < unsatCoreSize; i++)
+	            {
+	            	int y1 = Integer.parseInt(sl.get(pos++)) - 1;
+	            	int x1 = Integer.parseInt(sl.get(pos++)) - 1;
+	            	int y2 = Integer.parseInt(sl.get(pos++)) - 1;
+	            	int x2 = Integer.parseInt(sl.get(pos++));
+	            	
+	            	String constraint = "";
+	                String lineSeparator = System.getProperty("line.separator");
+	                
+	            	if (y2 > y1) // single lines
+	            	{
+	            		constraint = alsFile.get(y1).substring(x1);
+	            		for (int j = y1 + 1; j < y2; j++)
+	            		{
+	            			constraint += alsFile.get(j);
+	            		}
+	            		
+	            		constraint += alsFile.get(y2).substring(0, x2);
+	            	}
+	            	else // y2 == y1
+	            	{
+	            		constraint = alsFile.get(y1).substring(x1, x2);            		
+	            	}
+	                                
+	            	System.out.println(y1 + " " + x1 + " " + y2 + " " + x2); // line char line char            
+	            	System.out.println(constraint);            
+	            }
+	      
+	    		System.out.println("OK");		
+            }
+            
+    	} 
+    	catch (IOException e) 
+    	{
     		e.printStackTrace();
     	}
     }

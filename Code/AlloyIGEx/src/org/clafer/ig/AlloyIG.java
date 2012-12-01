@@ -254,7 +254,7 @@ public final class AlloyIG {
     private static String toXml(A4Solution ans) throws Err, IOException {
         StringWriter xml = new StringWriter();
         ans.writeXML(new PrintWriter(xml), null, null);
-        return xml.toString();
+        return xml.toString().replaceAll("\n", "").replaceAll("\r", "");
     }
 
     private static String multiplicity(Sig sig) {

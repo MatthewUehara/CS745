@@ -137,6 +137,7 @@ public class Util {
     }
 
     public static void writeMessage(String message) throws IOException {
+    	
         output.println(message.length());
         output.print(message);
     }
