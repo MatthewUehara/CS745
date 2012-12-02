@@ -67,7 +67,9 @@ abstract sig PolicyCombiningAlgo {}
 one sig PermitOverrides, DenyOverrides extends RuleCombiningAlgo {}
 one sig P_PermitOverrides, P_DenyOverrides, P_OnlyOneApplicable extends PolicyCombiningAlgo {}
 
+//==================================
 // PREDICATES
+//==================================
 
 pred targetMatch [t : Target, q : Request] {
   some s: t.subjects | elementMatch[q.subject, s]
@@ -89,53 +91,52 @@ fun ruleResponse (r : Rule, q : Request) : Effect {
   else NotApplicable
 }
 
-pred existsDeny[p : Policy, q : Request] {
+/* POLICIES */
+
+fun policyResponse (p : Policy, req : Request) : Effect {
+  (p.combiningAlgo = PermitOverrides) => policyPermitOverrides[p, req]
+  else (p.combiningAlgo = DenyOverrides) => policyDenyOverrides[p, req]
+  else NotApplicable    
+}
+
+pred policyExistsRuleDeny[p : Policy, q : Request] {
   some r : p.rules | ruleResponse[r, q] = Deny
 }
 
-pred existsPermit[p : Policy, q : Request] {
+pred policyExistsRulePermit[p : Policy, q : Request] {
   some r : p.rules | ruleResponse[r, q] = Permit
 }
 
 // rules have only 2 combining algorithms: PermitOverrides and DenyOverrides
 
-fun rulePermitOverrides ( p : Policy, q : Request) : Effect {
-  existsPermit[p,q] => Permit
-  else existsDeny[p,q] => Deny
+fun policyPermitOverrides ( p : Policy, q : Request) : Effect {
+  policyExistsRulePermit[p,q] => Permit
+  else policyExistsRuleDeny[p,q] => Deny
   else NotApplicable
 }
 
-fun ruleDenyOverrides ( p : Policy, req : Request) : Effect {
-  existsDeny[p,req]=> Deny
-  else existsPermit[p,req] =>Permit
+fun policyDenyOverrides ( p : Policy, req : Request) : Effect {
+  policyExistsRuleDeny[p,req]=> Deny
+  else policyExistsRulePermit[p,req] =>Permit
   else NotApplicable
 }
 
-/* POLICIES */
-
-pred policyExistsDeny[ps : PolicySet, q : Request] {
-  some p : ps.policies | policyResponse[p, q] = Deny
-}
-
-pred policyExistsPermit[ps : PolicySet, q : Request] {
-  some p : ps.policies | policyResponse[p, q] = Permit
-}
-
-// rules have only several combining algorithms: we consider OnlyOneApplicable
-
-fun policyResponse (p : Policy, req : Request) : Effect {
-  (p.combiningAlgo = PermitOverrides) => rulePermitOverrides[p, req]
-  else (p.combiningAlgo = DenyOverrides) => ruleDenyOverrides[p, req]
-  else NotApplicable    
-}
 
 
 /* POLICY SETS */
 
+pred policySetExistsPolicyDeny[ps : PolicySet, q : Request] {
+  some p : ps.policies | policyResponse[p, q] = Deny
+}
+
+pred policySetExistsPolicyPermit[ps : PolicySet, q : Request] {
+  some p : ps.policies | policyResponse[p, q] = Permit
+}
+
 fun policySetOnlyOneApplicable( ps : PolicySet, req : Request) : Effect {
-  (policyExistsDeny[ps,req] && policyExistsPermit[ps,req]) => Indeterminate
-  else policyExistsPermit[ps,req] =>Permit
-  else policyExistsDeny[ps,req] =>Deny
+  (policySetExistsPolicyDeny[ps,req] && policySetExistsPolicyPermit[ps,req]) => Indeterminate
+  else policySetExistsPolicyPermit[ps,req] =>Permit
+  else policySetExistsPolicyDeny[ps,req] =>Deny
   else NotApplicable
 }
 
@@ -256,19 +257,19 @@ one sig Rule_Professor_ReadModify_Deny extends Rule {}{
 // policies
 
 
-one sig Policy1 extends Policy {}{
+one sig Policy3 extends Policy {}{
   policyTarget = T0
-  rules = Rule_Student_Read_Permit + /* <fault1> */Rule_Professor_ReadModify_Permit /* </fault1> */
+  rules = Rule_Student_Read_Permit /* <fault1> */+ Rule_Professor_ReadModify_Permit /* </fault1> */
   combiningAlgo = DenyOverrides
 }
 
 one sig Policy2 extends Policy {}{
   policyTarget = T0
-  rules = /* <fault1> */ Rule_Professor_ReadModify_Deny /* </fault1> */  + Rule_Student_Read_Permit
+  rules = /* <fault1> */ Rule_Professor_ReadModify_Deny + /* </fault1> */  Rule_Student_Read_Permit
   combiningAlgo = DenyOverrides
 }
 
-one sig Policy3 extends Policy {}{
+one sig Policy1 extends Policy {}{
   policyTarget = T0
   rules = Rule_Student_ReadModify_Deny + Rule_Student_Read_Permit
   combiningAlgo = PermitOverrides
