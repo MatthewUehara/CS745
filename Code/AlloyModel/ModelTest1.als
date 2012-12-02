@@ -24,12 +24,6 @@ sig Request {
   action : one Action
 }
 
-//INC1 FIX:
-//fact
-//{
-//	#Request.subject.attributes = 1
-//}
-
 /** Signature Target **/
 
 abstract sig Target {
@@ -49,12 +43,11 @@ abstract sig Rule {
   ruleEffect : one Effect
 }
 
-
 /** Signature Policy controled access**/
 abstract sig Policy {
   policyTarget : one Target,
   rules : set Rule,
-  combiningAlgo : one PolicyCombiningAlgo
+  combiningAlgo : one RuleCombiningAlgo
 } 
 
 /** Signature policy set controled access **/
@@ -67,11 +60,11 @@ abstract sig PolicySet {
 
 /** Signatures of Types of combining algorithm **/
 
-abstract sig CombiningAlgo {}
+abstract sig RuleCombiningAlgo {}
 abstract sig PolicyCombiningAlgo {}
 
 /** Types of combining algorithm **/
-one sig PermitOverrides, DenyOverrides extends CombiningAlgo {}
+one sig PermitOverrides, DenyOverrides extends RuleCombiningAlgo {}
 one sig P_PermitOverrides, P_DenyOverrides, P_OnlyOneApplicable extends PolicyCombiningAlgo {}
 
 // PREDICATES
@@ -88,6 +81,9 @@ pred elementMatch[e1: Element, e2 : Element]{
        { a1=a2 and a2.(e2.attributes) in a1.(e1.attributes) }}
 }
 
+
+/* RULES */
+
 fun ruleResponse (r : Rule, q : Request) : Effect {
   targetMatch[r.ruleTarget, q] => r.ruleEffect
   else NotApplicable
@@ -101,39 +97,58 @@ pred existsPermit[p : Policy, q : Request] {
   some r : p.rules | ruleResponse[r, q] = Permit
 }
 
-// for permit-overrides
+// rules have only 2 combining algorithms: PermitOverrides and DenyOverrides
+
 fun rulePermitOverrides ( p : Policy, q : Request) : Effect {
   existsPermit[p,q] => Permit
   else existsDeny[p,q] => Deny
   else NotApplicable
 }
 
-// for deny-overrides
 fun ruleDenyOverrides ( p : Policy, req : Request) : Effect {
   existsDeny[p,req]=> Deny
   else existsPermit[p,req] =>Permit
   else NotApplicable
 }
 
-// for only-one-applicable
-fun ruleOnlyOneApplicable( p : Policy, req : Request) : Effect {
-  (existsDeny[p,req] && existsPermit[p,req]) => Indeterminate
-  else existsPermit[p,req] =>Permit
-  else existsDeny[p,req] =>Deny
-  else NotApplicable
+/* POLICIES */
+
+pred policyExistsDeny[ps : PolicySet, q : Request] {
+  some p : ps.policies | policyResponse[p, q] = Deny
 }
 
+pred policyExistsPermit[ps : PolicySet, q : Request] {
+  some p : ps.policies | policyResponse[p, q] = Permit
+}
+
+// rules have only several combining algorithms: we consider OnlyOneApplicable
+
 fun policyResponse (p : Policy, req : Request) : Effect {
-  (p.combiningAlgo = P_PermitOverrides) => rulePermitOverrides[p, req]
-  else (p.combiningAlgo = P_DenyOverrides) => ruleDenyOverrides[p, req]
-  else (p.combiningAlgo = P_OnlyOneApplicable) => ruleOnlyOneApplicable[p, req]
+  (p.combiningAlgo = PermitOverrides) => rulePermitOverrides[p, req]
+  else (p.combiningAlgo = DenyOverrides) => ruleDenyOverrides[p, req]
   else NotApplicable    
 }
 
 
+/* POLICY SETS */
+
+fun policySetOnlyOneApplicable( ps : PolicySet, req : Request) : Effect {
+  (policyExistsDeny[ps,req] && policyExistsPermit[ps,req]) => Indeterminate
+  else policyExistsPermit[ps,req] =>Permit
+  else policyExistsDeny[ps,req] =>Deny
+  else NotApplicable
+}
+
+fun policySetResponse (ps : PolicySet, req : Request) : Effect {
+// we support only OnlyOneApplicable
+  (ps.combiningAlgo = P_OnlyOneApplicable) => policySetOnlyOneApplicable[ps, req]
+  else NotApplicable    
+}
+
 // CONCRETE MODEL
 
 
+//sigs
 
 one sig Read, Modify extends Value {}
 
@@ -159,123 +174,156 @@ fact{
   Action.attributes.Value = ActionName
 }
 
-one sig S1 extends Subject{}{
+// subjects
+
+one sig SProfessor extends Subject{}{
   attributes = Role -> Professor
 }
-one sig S2 extends Subject{}{
+one sig SStudent extends Subject{}{
   attributes = Role -> Student
 }
 
-/*
-one sig S3 extends Subject{}{
-  attributes = Role -> (Student + Professor)
-}*/
+// resources
 
-one sig R1 extends Resource{}{
+one sig RMarks extends Resource{}{
   attributes = ResourceName ->  MarksFile
 }
 
-one sig A1 extends Action{}{
+// actions
+
+one sig ARead extends Action{}{
   attributes = ActionName -> Read
 }
 
-one sig A2 extends Action{}{
+one sig AModify extends Action{}{
   attributes = ActionName -> Modify
 }
 
+// targets
+
 one sig T0 extends Target {}{
-  subjects = S1 + S2
-  resources = R1
-  actions = A1 + A2
+  subjects = SProfessor + SStudent
+  resources = RMarks
+  actions = ARead + AModify
 }
 
-one sig T1 extends Target {}{
-  subjects = S1
-  resources = R1
-  actions = A1 + A2
+one sig T_Professor_ReadModify extends Target {}{
+  subjects = SProfessor
+  resources = RMarks
+  actions = ARead + AModify
 }
 
-one sig T2 extends Target {}{
-  subjects = S2
-  resources = R1
-  actions = A1
+one sig T_Student_Read extends Target {}{
+  subjects = SStudent
+  resources = RMarks
+  actions = ARead
 }
 
-one sig T3 extends Target {}{
-  subjects = S2
-  resources = R1
-  actions = A2
+one sig T_Student_Modify extends Target {}{
+  subjects = SStudent
+  resources = RMarks
+  actions = AModify
 }
 
-one sig T4 extends Target {}{
-  subjects = S1
-  resources = R1
-  actions = A1 + A2
+one sig T_Student_ReadModify extends Target {}{
+  subjects = SStudent
+  resources = RMarks
+  actions = ARead
 }
 
-one sig Rule1 extends Rule {}{
-  ruleTarget = T1
-  ruleEffect = Permit
-}
+// rules
 
-one sig Rule2 extends Rule {}{
-  ruleTarget = T2
-  ruleEffect = Permit
-}
-
-one sig Rule3 extends Rule {}{
-  ruleTarget = T3
+one sig Rule_Student_ReadModify_Deny extends Rule {}{
+  ruleTarget = T_Student_ReadModify
   ruleEffect = Deny
 }
 
-one sig Rule4 extends Rule {}{
-  ruleTarget = T4
-  ruleEffect = Deny
+one sig Rule_Student_Read_Permit extends Rule {}{
+  ruleTarget = T_Student_Read
+  ruleEffect = Permit
 }
 
-one sig P3 extends Policy {}{
-  policyTarget = T0
-  rules = Rule1 + Rule3 + Rule4
-  combiningAlgo = P_OnlyOneApplicable
+one sig Rule_Professor_ReadModify_Permit extends Rule {}{
+  ruleTarget = T_Professor_ReadModify
+  ruleEffect = Permit // // inconsistent: Permit
 }
 
-one sig P2 extends Policy {}{
-  policyTarget = T0
-  rules = Rule2
-  combiningAlgo = P_OnlyOneApplicable
+one sig Rule_Professor_ReadModify_Deny extends Rule {}{
+  ruleTarget = T_Professor_ReadModify
+  ruleEffect = Deny // // inconsistent: Deny for the same target
 }
+
+// policies
+
+
+one sig Policy1 extends Policy {}{
+  policyTarget = T0
+  rules = Rule_Student_Read_Permit + /* <fault1> */Rule_Professor_ReadModify_Permit /* </fault1> */
+  combiningAlgo = DenyOverrides
+}
+
+one sig Policy2 extends Policy {}{
+  policyTarget = T0
+  rules = /* <fault1> */ Rule_Professor_ReadModify_Deny /* </fault1> */  + Rule_Student_Read_Permit
+  combiningAlgo = DenyOverrides
+}
+
+one sig Policy3 extends Policy {}{
+  policyTarget = T0
+  rules = Rule_Student_ReadModify_Deny + Rule_Student_Read_Permit
+  combiningAlgo = PermitOverrides
+}
+
+one sig Policy4 extends Policy {}{
+  policyTarget = T0
+  rules = Rule_Student_Read_Permit
+  combiningAlgo = DenyOverrides
+}
+
+
+// policy set
 
 one sig PS extends PolicySet{}{
   policySetTarget = T0
-  combiningAlgo = P_DenyOverrides
-  policies = P3 + P2
+  combiningAlgo = P_OnlyOneApplicable
+  policies = Policy1 + Policy2 + Policy3 + Policy4
 }
 
 fact {
   one Request.subject.attributes
 }
 
+//==================================
 // PREDICATES FOR RUNNING
+//==================================
 
-//pred InconsistentPolicyRules [req : Request]{
-//	some r : P3.rules | ruleResponse[r, req] = Permit
-//	some r : P3.rules | ruleResponse[r, req] = Deny
-//}
 
-//pred InconsistentPolicySet [ps : PolicySet, req : Request]{
-//	some p : ps.policies | policyResponse[p, req] = Indeterminate
-//}
-
-pred InconsistentPolicySet [ps : PolicySet, req : Request, r1: Rule, r2: Rule]{
-	some p : ps.policies | 
-		r1 in p.rules and r2 in p.rules 
-		and p.combiningAlgo = P_OnlyOneApplicable 
-		and ruleResponse[r1, req] = Deny
-		and ruleResponse[r2, req] = Permit
+pred InconsistentPolicySet [ps : PolicySet, req : Request, p1: Policy, p2: Policy]{
+	ps.combiningAlgo = P_OnlyOneApplicable 
+	p1 in ps.policies
+	p2 in ps.policies
+	p1 != p2
+	policyResponse[p1, req] = Permit
+	policyResponse[p2, req] = Deny
 }
 
-// PolicySet checking
 run InconsistentPolicySet
 
-// Policy checking
-//run InconsistentPolicyRules for 8 but 8 Request
+
+// For testing model:
+/*
+one sig testReq extends Request{}
+{
+	subject = SProfessor
+	resource = RMarks
+	action = ARead
+}
+
+pred test{
+	policyResponse[Policy1, testReq] = Permit
+}
+*/
+
+//run test
+
+
