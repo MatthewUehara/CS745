@@ -257,7 +257,7 @@ one sig Rule_Professor_ReadModify_Deny extends Rule {}{
 // policies
 
 
-one sig Policy3 extends Policy {}{
+one sig Policy1 extends Policy {}{
   policyTarget = T0
   rules = Rule_Student_Read_Permit /* <fault1> */+ Rule_Professor_ReadModify_Permit /* </fault1> */
   combiningAlgo = DenyOverrides
@@ -269,7 +269,7 @@ one sig Policy2 extends Policy {}{
   combiningAlgo = DenyOverrides
 }
 
-one sig Policy1 extends Policy {}{
+one sig Policy3 extends Policy {}{
   policyTarget = T0
   rules = Rule_Student_ReadModify_Deny + Rule_Student_Read_Permit
   combiningAlgo = PermitOverrides
