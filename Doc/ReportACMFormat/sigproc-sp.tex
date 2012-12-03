@@ -9,19 +9,18 @@
 
 \begin{document}
 
-\title{Web-Based GUI for Pareto Front Visualization and Analysis}
+\title{Access Control Policy Verification and Repairing in Alloy}
 
 \numberofauthors{1}
 
 \author{
-\alignauthor
-Alexandr Murashkin \\
-      \affaddr{University of Waterloo}   \\
-      \affaddr{Wateroo, Ontario } \\
-       \email{amurashk@uwaterloo.ca}
+\alignauthor Alexandr Murashkin, Matthew Ma \\
+       \affaddr{The David R. Cheriton School of Computer Science}\\
+       \affaddr{University of Waterloo}\\
+       \affaddr{Waterloo, ON, Canada}\\
+       \email{m22ma, amurashk@uwaterloo.ca}
 }
-
-\date{18 November 2012}
+\date{2 December 2012}
 \maketitle
 
 \begin{abstract}
@@ -36,6 +35,30 @@ In product line development, there is a problem of discovering product configura
 \keywords{Visualization, GUI, bubble chart, user experiment} % NOT required for Proceedings
 
 \section{Introduction}
+
+
+
+
+\section{Related work}
+
+Regarding access control policy verification, there are several various related approaches.
+\cite{Hughes:2008:AVA:1459278.1459282} proposes encoding XACML access control policies  ordering relations and then translation of them into SAT solver for verification. \cite{4258517} describes inconsistency checking in role-based access control policies (RBAC).  \cite{Fisler:2005:VCA:1062455.1062502} proposes Margrave - a great tool for access control policies (XACML and other formats) verification and change-impact analysis. \cite{Jackson:2000:AFR:357474.355063} proposes Alloy Analyzer as first-order logic verification tool (there is a corresponding book \cite{jackson:alloy}).
+
+For Access control policy verification in Alloy: 
+1) http://www.cs.ucsb.edu/~bultan/publications/tech-report04.pdf
+2 - WE USE IT!! ) http://w3.uqo.ca/notere05/documents/logrippo.pdf, need a citation.
+
+Regarding repairing XACML access control policies, it does not seem to be a lot of prior related work. Rather than that, \cite{Zhang:2004:SVA:1029133.1029141} offers access control policies verification in the language called RW and then synthesize verified specifications in XACML. \cite{Bravo:2007:RIX:1783534.1783545} considers another type of access control policies - XML write access control policies - offers repairs in case of that some actions can be simulated by multiple another actions. 
+
+Regarding model repairing in general, \cite{Xiong:2009:SAM:1595696.1595757} proposed .... for i don't know what, need to read :) . \cite{Reder:2012:CRT:2351676.2351707} proposes repair trees for inconsistency solving in design models.
+
+The proposed technique of repairing inconsistencies - sketching - was described in the thesis http://people.csail.mit.edu/asolar/papers/thesis.pdf .
+
+Need to look at this - probably needed - http://people.csail.mit.edu/eskang/talks/mit-security-seminar-nov2012.pdf .
+
+The specification of XACML:
+http://docs.oasis-open.org/xacml/2.0/access_control-xacml-2.0-core-spec-os.pdf
+
 
 \subsection{Background}
 
@@ -193,15 +216,7 @@ Two participants brought some interesting point: in task T8 they could make the 
 
 There were other minor usability problems. Selection and unselection of bubbles was not clear, since users were not asked to pay attention on dealing with selections properly assuming this is easy. One user experienced problems while finding bubbles with certain label on the graph. Anyway, the problems mentioned in this section are specific to use cases and we can easily resolve them in the future.
 
-\section{Related work}
 
-Regarding Pareto Front Visualization, there are several various approaches. \cite{Tusar:2011:VAS:2001576.2001677} shows an approach of visualization of 4-dimensional solution space by projection into 3-dimensional space and usage of 3D scatter plots. Our approach is to visualize 4-dimensional solution space on the plane and use bubble charts. Bubble charts are more informative than simple scatter charts (since each bubble has a label), and various in perception ways (bubbles differ by position, size and opacity). However,  bubble charts are less suitable for visualization of big data (see limitations in the evaluation section) compared to scatter plots. The reason of our usage of bubble charts and avoidance of classical three-dimensional graphs is that it is straight-forward to select multiple bubbles on the plane (no rotations and additional projections are needed if the number of metrics is 4 or less) for further analysis. Visualization of big data with our approach can be done if clustering is implemented, and this is our future work direction.
-
-Bubble charts were also used in \cite{springerlink:10.1007/978-3-540-70928-2_48}, but for other purposes: the first and second metrics (bubble position) represent the two quality attributes, third and forth (bubble color and size) represent standard deviations of the two quality attributes for robustness analysis results. 
-
-Other papers presented Pareto front visualization techniques were considered, for instance, Level Diagrams \cite{Blasco:2008:NGV:1401271.1401526}, heatmaps \cite{springerlink:10.1007/978-3-540-70928-2_29}, self-organized maps \cite{springerlink:10.1007/3-540-36970-8_56}. In contrast to our approach, the papers above did not make an effort to connect the metric visualization with the design decisions and they did not support interactive exploration of the Pareto front.
-
-Regarding user interfaces dealing with multi-objective optimization problems, there is a related work \cite{Rayside:2009:SUI:1723028.1723037}. The tool presented in the paper is general-purpose and designed for the entire process: from problem specification to result visualization, focusing more on inputs.  In contrast, the our tool is designed to deal with solution results (the outputs) and focus on product-line related use cases. It is worth to notice that our tool fulfills a future work statement (incorporation of appropriate visualizations) and shares a goal (to make the tool accessible to business people) of the latter paper. There is another work in progress where multiple users are driven by particular decisions and understanding their trade-offs, whereas our approach assumes one user who cares more about total values and bottom-up exploration.
 
 \section{Future work}
 
