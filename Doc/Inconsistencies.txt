@@ -1,2 +1,0 @@
-1) There is a rule which returns both Deny-Allow for the subject with multiple roles
-2) 
