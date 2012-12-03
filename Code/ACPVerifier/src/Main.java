@@ -1,5 +1,10 @@
 import java.io.IOException;
 import java.io.InputStream;
+import org.w3c.dom.*;
+import javax.xml.xpath.*;
+import javax.xml.parsers.*;
+import java.io.IOException;
+import org.xml.sax.SAXException;
 
 
 public class Main {
@@ -7,6 +12,27 @@ public class Main {
 	/**
 	 * @param args
 	 */
+	
+	  public static void xpath(String query)
+			   throws ParserConfigurationException, SAXException,IOException, XPathExpressionException {
+
+					DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
+					domFactory.setNamespaceAware(true); 
+						
+					DocumentBuilder builder = domFactory.newDocumentBuilder();
+					Document doc = builder.parse("");
+			    
+					XPath xpath = XPathFactory.newInstance().newXPath();
+					// XPath Query for showing all nodes value
+					XPathExpression expr = xpath.compile(query);
+
+					Object result = expr.evaluate(doc, XPathConstants.NODESET);
+					NodeList nodes = (NodeList) result;
+					for (int i = 0; i < nodes.getLength(); i++) {
+						System.out.println(nodes.item(i).getNodeValue()); 
+					}
+			  
+				}	
 	
     private static String execute( String command ) throws IOException  { 
         Process p = Runtime.getRuntime().exec( "cmd /c " + command );
