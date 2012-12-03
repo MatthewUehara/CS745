@@ -1,0 +1,1 @@
+AlloyRunner.jar "C:\ClaferIE\CS745\Code\ModelFixer\ModelTestA.als" "C:\ClaferIE\CS745\Code\ModelFixer"

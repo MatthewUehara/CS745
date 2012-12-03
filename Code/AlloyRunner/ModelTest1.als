@@ -150,14 +150,14 @@ fun policySetResponse (ps : PolicySet, req : Request) : Effect {
 
 //sigs
 
-one sig Modify, Read extends Value {}
+one sig Read, Modify extends Value {}
 
 one sig MarksFile extends Value {}
 
 one sig Student, Professor extends Value {}
 
 one sig ActionName extends Attribute {}{
-  values = Modify + Read
+  values = Read + Modify
 }
 
 one sig Role extends Attribute {}{
@@ -213,12 +213,6 @@ one sig T_Professor_ReadModify extends Target {}{
   actions = ARead + AModify
 }
 
-one sig T_Professor_Read extends Target {}{
-  subjects = SProfessor
-  resources = RMarks
-  actions = ARead
-}
-
 one sig T_Student_Read extends Target {}{
   subjects = SStudent
   resources = RMarks
@@ -227,12 +221,6 @@ one sig T_Student_Read extends Target {}{
 
 one sig T_Student_Modify extends Target {}{
   subjects = SStudent
-  resources = RMarks
-  actions = AModify
-}
-
-one sig T_Professor_Modify extends Target {}{
-  subjects = SProfessor
   resources = RMarks
   actions = AModify
 }
@@ -255,19 +243,9 @@ one sig Rule_Student_Read_Permit extends Rule {}{
   ruleEffect = Permit
 }
 
-one sig Rule_Professor_Read_Permit extends Rule {}{
-  ruleTarget = T_Professor_Read
-  ruleEffect = Permit
-}
-
 one sig Rule_Professor_ReadModify_Permit extends Rule {}{
   ruleTarget = T_Professor_ReadModify
   ruleEffect = Permit // // inconsistent: Permit
-}
-
-one sig Rule_Professor_Modify_Permit extends Rule {}{
-  ruleTarget = T_Professor_Modify
-  ruleEffect = Permit
 }
 
 one sig Rule_Professor_ReadModify_Deny extends Rule {}{
@@ -280,28 +258,35 @@ one sig Rule_Professor_ReadModify_Deny extends Rule {}{
 
 one sig Policy1 extends Policy {}{
   policyTarget = T0
-  rules = Rule_Student_Read_Permit /* <fault1> */+ Rule_Professor_ReadModify_Permit /* </fault1> */ // + Rule_Professor_Read_Permit
+  rules = Rule_Student_Read_Permit /* <fault1> */+ Rule_Professor_ReadModify_Permit /* </fault1> */
   combiningAlgo = DenyOverrides
 }
 
 one sig Policy2 extends Policy {}{
   policyTarget = T0
-  rules = Rule_Student_ReadModify_Deny + Rule_Student_Read_Permit
+  rules = /* <fault1> */ Rule_Professor_ReadModify_Deny + /* </fault1> */  Rule_Student_Read_Permit
   combiningAlgo = PermitOverrides
 }
 
 one sig Policy3 extends Policy {}{
   policyTarget = T0
-  rules = /* <fault1> */ Rule_Professor_ReadModify_Deny + /* </fault1> */  Rule_Professor_Modify_Permit + Rule_Professor_Read_Permit  + Rule_Student_Read_Permit
+  rules = Rule_Student_ReadModify_Deny + Rule_Student_Read_Permit
+  combiningAlgo = PermitOverrides
+}
+
+one sig Policy4 extends Policy {}{
+  policyTarget = T0
+  rules = Rule_Student_Read_Permit
   combiningAlgo = DenyOverrides
 }
+
 
 // policy set
 
 one sig PS extends PolicySet{}{
   policySetTarget = T0
   combiningAlgo = P_OnlyOneApplicable
-  policies = Policy1 + Policy2 + Policy3
+  policies = Policy1 + Policy2 + Policy3 + Policy4
 }
 
 fact {
@@ -344,40 +329,6 @@ pred InconsistentPolicySet [ps : PolicySet, req : Request, p1: Policy, p2: Polic
 	)
 
 }
-
-/*
-pred FindRepairs [ps : PolicySet, req : Request, p1: Policy, p2: Policy, r1: Rule, r2: Rule, rep_remove_rule1, repair_remove_r]{
-	ps.combiningAlgo = P_OnlyOneApplicable 
-	p1 in ps.policies
-	p2 in ps.policies
-	p1 != p2
-	r1 in p1.rules
-	r2 in p2.rules
-	policyResponse[p1, req] = Permit
-	(
-		p1.combiningAlgo = DenyOverrides and
-		(no r1':Rule | r1' in p1.rules and ruleResponse[r1', req] = Deny)
-		and ruleResponse[r1, req] = Permit
-	)
-	or
-	(
-		p1.combiningAlgo = PermitOverrides
-		and ruleResponse[r1, req] = Permit
-	)
-	policyResponse[p2, req] = Deny
-	(
-		p2.combiningAlgo = PermitOverrides and
-		(no r2':Rule | r2' in p2.rules and ruleResponse[r2', req] = Permit)
-		and ruleResponse[r2, req] = Deny
-	)
-	or
-	(
-		p2.combiningAlgo = DenyOverrides
-		and ruleResponse[r2, req] = Deny
-	)
-
-}
-*/
 
 run InconsistentPolicySet
 

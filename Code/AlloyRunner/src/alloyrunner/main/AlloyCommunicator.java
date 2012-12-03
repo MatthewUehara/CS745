@@ -1,4 +1,4 @@
-package fixer.main;
+package alloyrunner.main;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
