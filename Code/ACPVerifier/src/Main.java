@@ -19,10 +19,27 @@ public class Main {
         return sb.toString();
     }	
 	
+    public static void ProcessResult(String sXmlResult)
+    {
+    	if (sXmlResult.startsWith("<alloy></alloy>"))
+    	{	
+    		System.out.println("The model is consistent");
+    		return;
+    	}
+
+    	System.out.println("The model is inconsistent");
+    	System.out.println(sXmlResult);
+    	
+    	
+    }
+    
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		String result = execute("java -jar C:/ClaferIE/CS745/Code/ACPVerifier/AlloyRunner.jar C:/ClaferIE/CS745/Code/ACPVerifier/ModelVerificationTest.als C:/ClaferIE/CS745/Code/ACPVerifier");
-		System.out.println(result);
+		
+		ProcessResult(result);
+		
+//		System.out.println(result);
 	}
 
 }
