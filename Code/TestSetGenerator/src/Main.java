@@ -28,14 +28,17 @@ public class Main {
 		}
 		
 		try {
-			convertFile(fileName, "metamodel.als", "predicate.als");
+			String result;
+			result = convertFile(fileName, "metamodel.als", "predicate.als");
+			System.out.println(result);
+			Utilities.writeStringToFile(fileName.replaceAll(".csv", ".als"), result);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	private static void convertFile(String fileName, String metaModelFileName,
+	private static String convertFile(String fileName, String metaModelFileName,
 			String predicateFileName) throws IOException {
 
 		Set<String> allActions = new HashSet<String>();
@@ -58,7 +61,10 @@ public class Main {
 			policyCount = components.length - 1;
 			
 			if (policyCount < 1)
-				return;
+			{
+				System.out.println("Policy count < 1");
+				return "";
+			}
 			
 			if (allPolicies.size() == 0)
 			{
@@ -99,6 +105,7 @@ public class Main {
 						continue;
 					}
 					
+					rule.title = component;
 					rule.subjects = Utilities.createSet(Utilities.splitByCaps(ruleParts[1]));
 					allSubjects.addAll(rule.subjects);
 
@@ -134,8 +141,110 @@ public class Main {
 			}
 		}
 		
-		System.out.println("done");
+		System.out.println("Extraction done. Now conveting...");
 		
+		String result = "\n\n";
+		
+		String subjects = Utilities.combineSet(allSubjects, ", ", "");
+		String resources = Utilities.combineSet(allResources, ", ", "");
+		String actions = Utilities.combineSet(allActions, ", ", "");
+		
+		result += String.format("one sig %s extends Value {}\n", subjects);
+		result += String.format("one sig %s extends Value {}\n", resources);
+		result += String.format("one sig %s extends Value {}\n", actions);
+
+		result += "fact{ \n values = \n";
+		
+		HashSet<String> tuples = new HashSet<String>();
+
+		// general sigs
+		
+		for (String s: allActions)
+		{
+			tuples.add(String.format("(%s -> %s)", "ActionName", s));
+		}
+		
+		for (String s: allSubjects)
+		{
+			tuples.add(String.format("(%s -> %s)", "Role", s));
+		}
+
+		for (String s: allResources)
+		{
+			tuples.add(String.format("(%s -> %s)", "ResourceName", s));
+		}
+		
+		result += Utilities.combineSet(tuples, "\n +", "") + "}\n\n";
+
+		// actions
+
+		for (String s: allSubjects)
+		{
+			result += String.format("one sig S%s extends Subject{}{\n attributes = Role -> %s \n}\n\n", s, s);
+		}
+		
+		for (String s: allResources)
+		{
+			result += String.format("one sig R%s extends Resource{}{\n attributes = ResourceName -> %s \n}\n\n", s, s);
+		}
+
+		for (String s: allActions)
+		{
+			result += String.format("one sig A%s extends Action{}{\n attributes = ActionName -> %s \n}\n\n", s, s);
+		}
+		
+		result += String.format("one sig T0 extends Target {}{\n subjects = %s \n resources = %s \n actions = %s }\n\n", 
+
+				Utilities.combineSet(allSubjects, " + ", "S"), Utilities.combineSet(allResources, " + ", "R"), Utilities.combineSet(allActions, " + ", "A")
+		);
+
+		HashSet<Rule> allRules = new HashSet<Rule>();
+		HashSet<String> allRulesTitles = new HashSet<String>();
+		
+		for (Policy p: allPolicies)
+		{
+			result += String.format("one sig %s extends Policy {}{\n" + 
+				  "policyTarget = T0\n" +
+				  "rules = %s\n" +
+				  "combiningAlgo = %s\n}\n\n", p.name, Rule.combineTitles(p.rules), p.combiningAlgo);
+			
+			for (Rule r: p.rules)
+			{
+				if (!allRulesTitles.contains(r.title))
+				{
+					allRules.add(r);
+					allRulesTitles.add(r.title);
+				}
+			}
+		}
+		
+		for (Rule r: allRules)
+		{		
+			result += String.format("one sig %s extends Rule {}{\n" + 
+			"ruleTarget = %s\n" +
+			"ruleEffect = %s\n}\n\n", r.title, r.getTarget(), r.effect);
+			
+			
+			result += String.format("one sig %s extends Target {}{\n" + 
+			"subjects = %s\n" +
+			"resources = %s\n" +
+			"actions = %s\n}\n\n", r.getTarget(), Utilities.combineSet(r.subjects, " + ", "S"), Utilities.combineSet(r.resources, " + ", "R"), Utilities.combineSet(r.actions, " + ", "A"));
+
+		}		
+
+		// policy set
+		result += String.format(
+		"one sig PS extends PolicySet{}{\n" +
+		  "policySetTarget = T0\n" +
+		  "combiningAlgo = %s\n" +
+		  "policies = %s\n}\n\n", policyCombiningAlgo, Policy.combineTitles(allPolicies));
+		
+		String metamodel = Utilities.getFileContentsAsString(metaModelFileName);
+		String predicate = Utilities.getFileContentsAsString(predicateFileName);
+		
+		result = metamodel + result + predicate;
+		
+		return result;
 	}
 	
 }

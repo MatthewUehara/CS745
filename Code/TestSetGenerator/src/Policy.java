@@ -14,5 +14,16 @@ public class Policy {
 		rules = new HashSet<Rule>();
 	}
 
+	public static String combineTitles(ArrayList<Policy> policies)
+	{
+		HashSet<String> titles = new HashSet<String>();
+		for (Policy p: policies)
+		{
+			titles.add(p.name);
+		}
+		
+		return Utilities.combineSet(titles, " + ", "");
+	}
+
 	
 }

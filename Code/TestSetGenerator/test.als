@@ -160,3 +160,159 @@ fact{
 }
 
 // CONCRETE MODEL
+
+
+one sig Student, Professor extends Value {}
+one sig Marks extends Value {}
+one sig Read, Modify extends Value {}
+fact{ 
+ values = 
+(ActionName -> Read)
+ +(Role -> Professor)
+ +(ActionName -> Modify)
+ +(Role -> Student)
+ +(ResourceName -> Marks)}
+
+one sig SStudent extends Subject{}{
+ attributes = Role -> Student 
+}
+
+one sig SProfessor extends Subject{}{
+ attributes = Role -> Professor 
+}
+
+one sig RMarks extends Resource{}{
+ attributes = ResourceName -> Marks 
+}
+
+one sig ARead extends Action{}{
+ attributes = ActionName -> Read 
+}
+
+one sig AModify extends Action{}{
+ attributes = ActionName -> Modify 
+}
+
+one sig T0 extends Target {}{
+ subjects = SStudent + SProfessor 
+ resources = RMarks 
+ actions = ARead + AModify }
+
+one sig Policy1 extends Policy {}{
+policyTarget = T0
+rules = Rule_Student_Read_Marks_Permit + Rule_Professor_ReadModify_Marks_Permit
+combiningAlgo = DenyOverrides
+}
+
+one sig Policy2 extends Policy {}{
+policyTarget = T0
+rules = Rule_Professor_ReadModify_Marks_Deny + Rule_Student_Read_Marks_Permit
+combiningAlgo = PermitOverrides
+}
+
+one sig Policy3 extends Policy {}{
+policyTarget = T0
+rules = Rule_Professor_Modify_Marks_Permit + Rule_Professor_Read_Marks_Permit + Rule_Professor_ReadModify_Marks_Deny + Rule_Student_Read_Marks_Permit
+combiningAlgo = DenyOverrides
+}
+
+one sig Rule_Professor_ReadModify_Marks_Permit extends Rule {}{
+ruleTarget = Target_Professor_ReadModify_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Target_Professor_ReadModify_Marks_Permit extends Target {}{
+subjects = SProfessor
+resources = RMarks
+actions = ARead + AModify
+}
+
+one sig Rule_Professor_ReadModify_Marks_Deny extends Rule {}{
+ruleTarget = Target_Professor_ReadModify_Marks_Deny
+ruleEffect = Deny
+}
+
+one sig Target_Professor_ReadModify_Marks_Deny extends Target {}{
+subjects = SProfessor
+resources = RMarks
+actions = ARead + AModify
+}
+
+one sig Rule_Professor_Read_Marks_Permit extends Rule {}{
+ruleTarget = Target_Professor_Read_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Target_Professor_Read_Marks_Permit extends Target {}{
+subjects = SProfessor
+resources = RMarks
+actions = ARead
+}
+
+one sig Rule_Student_Read_Marks_Permit extends Rule {}{
+ruleTarget = Target_Student_Read_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Target_Student_Read_Marks_Permit extends Target {}{
+subjects = SStudent
+resources = RMarks
+actions = ARead
+}
+
+one sig Rule_Professor_Modify_Marks_Permit extends Rule {}{
+ruleTarget = Target_Professor_Modify_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Target_Professor_Modify_Marks_Permit extends Target {}{
+subjects = SProfessor
+resources = RMarks
+actions = AModify
+}
+
+one sig PS extends PolicySet{}{
+policySetTarget = T0
+combiningAlgo = P_OnlyOneApplicable
+policies = Policy1 + Policy2 + Policy3
+}
+
+
+//==================================
+// PREDICATES FOR RUNNING
+//==================================
+
+
+pred InconsistentPolicySet [ps : PolicySet, req : Request, p1: Policy, p2: Policy, r1: Rule, r2: Rule]{
+	ps.combiningAlgo = P_OnlyOneApplicable 
+	p1 in ps.policies
+	p2 in ps.policies
+	p1 != p2
+	r1 in p1.rules
+	r2 in p2.rules
+	policyResponse[p1, req] = Permit
+	(
+		p1.combiningAlgo = DenyOverrides and
+		(no r1':Rule | r1' in p1.rules and ruleResponse[r1', req] = Deny)
+		and ruleResponse[r1, req] = Permit
+	)
+	or
+	(
+		p1.combiningAlgo = PermitOverrides
+		and ruleResponse[r1, req] = Permit
+	)
+	policyResponse[p2, req] = Deny
+	(
+		p2.combiningAlgo = PermitOverrides and
+		(no r2':Rule | r2' in p2.rules and ruleResponse[r2', req] = Permit)
+		and ruleResponse[r2, req] = Deny
+	)
+	or
+	(
+		p2.combiningAlgo = DenyOverrides
+		and ruleResponse[r2, req] = Deny
+	)
+
+}
+
+run InconsistentPolicySet

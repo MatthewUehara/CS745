@@ -101,6 +101,21 @@ public class Utilities {
 		
 		return result;
 	}
-    
+
+	
+	public static String combineSet(Set<String> set, String sep, String prefix) {
+		String result = "";
+		
+		for(String s : set)
+		{
+		    result += sep + prefix + s;
+		}
+		
+		if (result.length() > 0)
+			result = result.substring(sep.length());
+		
+		return result;
+	}
+	
 
 }
