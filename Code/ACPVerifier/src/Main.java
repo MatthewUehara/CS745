@@ -61,7 +61,7 @@ public class Main {
     
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		String result = execute("java -jar C:/ClaferIE/CS745/Code/ACPVerifier/AlloyRunner.jar C:/ClaferIE/CS745/Code/ACPVerifier/ModelVerificationTest.als C:/ClaferIE/CS745/Code/ACPVerifier");
+		String result = execute("java -jar C:/ClaferIE/CS745/Code/ACPVerifier/AlloyRunner.jar C:/ClaferIE/CS745/Code/ACPVerifier/ModelVerificationTest_RED.als C:/ClaferIE/CS745/Code/ACPVerifier");
 		
 		ProcessResult(result);
 		

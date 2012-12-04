@@ -145,23 +145,6 @@ fun policySetResponse (ps : PolicySet, req : Request) : Effect {
   else NotApplicable    
 }
 
-
-one sig ActionName extends Attribute {}{
-}
-
-one sig Role extends Attribute {}{
-}
-
-one sig ResourceName extends Attribute {}{
-}
-
-fact{
-  Subject.attributes.Value = Role
-  Resource.attributes.Value = ResourceName
-  Action.attributes.Value = ActionName
-}
-
-
 // CONCRETE MODEL
 
 
@@ -173,15 +156,22 @@ one sig MarksFile extends Value {}
 
 one sig Student, Professor extends Value {}
 
+one sig ActionName extends Attribute {}{
+  values = Modify + Read
+}
+
+one sig Role extends Attribute {}{
+  values = Student + Professor
+}
+
+one sig ResourceName extends Attribute {}{
+  values = MarksFile
+}
+
 fact{
-	values = 
-		(ActionName -> Modify) + 
-		(ActionName -> Read) +
-
-		(Role -> Professor) +
-		(Role -> Student) +
-
-		(ResourceName -> MarksFile)
+  Subject.attributes.Value = Role
+  Resource.attributes.Value = ResourceName
+  Action.attributes.Value = ActionName
 }
 
 // subjects
@@ -290,7 +280,7 @@ one sig Rule_Professor_ReadModify_Deny extends Rule {}{
 
 one sig Policy1 extends Policy {}{
   policyTarget = T0
-  rules = Rule_Student_Read_Permit /* <fault1> */+ Rule_Professor_ReadModify_Permit /* </fault1> */ // + Rule_Professor_Read_Permit
+  rules = Rule_Student_Read_Permit /* <fault1> */ + Rule_Professor_ReadModify_Permit + Rule_Professor_Read_Permit  /* </fault1> */
   combiningAlgo = DenyOverrides
 }
 
@@ -313,3 +303,64 @@ one sig PS extends PolicySet{}{
   combiningAlgo = P_OnlyOneApplicable
   policies = Policy1 + Policy2 + Policy3
 }
+
+fact {
+  one Request.subject.attributes
+}
+
+//==================================
+// PREDICATES FOR RUNNING
+//==================================
+
+
+pred InconsistentPolicySet [ps : PolicySet, req : Request, p1: Policy, p2: Policy, r1: Rule, r2: Rule]{
+	ps.combiningAlgo = P_OnlyOneApplicable 
+	p1 in ps.policies
+	p2 in ps.policies
+	p1 != p2
+	r1 in p1.rules
+	r2 in p2.rules
+	policyResponse[p1, req] = Permit
+	(
+		p1.combiningAlgo = DenyOverrides and
+		(no r1':Rule | r1' in p1.rules and ruleResponse[r1', req] = Deny)
+		and ruleResponse[r1, req] = Permit
+	)
+	or
+	(
+		p1.combiningAlgo = PermitOverrides
+		and ruleResponse[r1, req] = Permit
+	)
+	policyResponse[p2, req] = Deny
+	(
+		p2.combiningAlgo = PermitOverrides and
+		(no r2':Rule | r2' in p2.rules and ruleResponse[r2', req] = Permit)
+		and ruleResponse[r2, req] = Deny
+	)
+	or
+	(
+		p2.combiningAlgo = DenyOverrides
+		and ruleResponse[r2, req] = Deny
+	)
+
+}
+
+run InconsistentPolicySet
+
+
+// For testing model:
+
+one sig testReq extends Request{}
+{
+	subject = SProfessor
+	resource = RMarks
+	action = AModify
+}
+
+pred test{
+	policyResponse[Policy2, testReq] = Deny
+}
+
+//run test
+
+
