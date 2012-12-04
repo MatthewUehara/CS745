@@ -16,19 +16,19 @@ public class Rule {
 		resources = new HashSet<String>();		
 	}
 	
-	public static String combineTitles(Set<Rule> rules)
+	public static String combineTitles(Set<Rule> rules, String prefix)
 	{
 		HashSet<String> titles = new HashSet<String>();
 		for (Rule r: rules)
 		{
 			titles.add(r.title);
 		}
-		
-		return Utilities.combineSet(titles, " + ", "");
+				
+		return Utilities.combineSet(titles, " + ", prefix);
 	}
 
-	public String getTarget()
+	public String getTarget(String prefix)
 	{
-		return this.title.replace("Rule_", "Target_");
+		return prefix + this.title.replace("Rule_", "Target_");
 	}
 }

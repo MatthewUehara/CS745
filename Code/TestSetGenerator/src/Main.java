@@ -10,6 +10,18 @@ public class Main {
 	/**
 	 * @param args
 	 */
+	
+	public static Set<String> allActions = new HashSet<String>();
+	public static Set<String> allSubjects = new HashSet<String>();
+	public static Set<String> allResources = new HashSet<String>();		
+	public static ArrayList<Policy> allPolicies = new ArrayList<Policy>();
+	public static String policyCombiningAlgo = "";
+	public static Set<String> failingRequests = new HashSet<String>();
+	public static Set<String> conflictingRules = new HashSet<String>();
+	
+	
+	
+	
 	public static void main(String[] args) {
 		
 		String fileName = "";
@@ -29,7 +41,7 @@ public class Main {
 		
 		try {
 			String result;
-			result = convertFile(fileName, "metamodel.als", "predicate.als");
+			result = convertFile(fileName, "metamodel.als", "predicate.als", false);
 			System.out.println(result);
 			Utilities.writeStringToFile(fileName.replaceAll(".csv", ".als"), result);
 		} catch (IOException e) {
@@ -39,16 +51,8 @@ public class Main {
 	}
 	
 	private static String convertFile(String fileName, String metaModelFileName,
-			String predicateFileName) throws IOException {
+			String predicateFileName, boolean allowCrossReferencingRules) throws IOException {
 
-		Set<String> allActions = new HashSet<String>();
-		Set<String> allSubjects = new HashSet<String>();
-		Set<String> allResources = new HashSet<String>();		
-		ArrayList<Policy> allPolicies = new ArrayList<Policy>();
-		String policyCombiningAlgo = "";
-		Set<String> failingRequests = new HashSet<String>();
-		Set<String> conflictingRules = new HashSet<String>();
-		
 		ArrayList<String> lines = Utilities.readFileAsStringArray(fileName);
 		
 		int policyCount = 0;
@@ -142,7 +146,19 @@ public class Main {
 		}
 		
 		System.out.println("Extraction done. Now conveting...");
+
+		String result = getAlsModel(allowCrossReferencingRules);
 		
+		String metamodel = Utilities.getFileContentsAsString(metaModelFileName);
+		String predicate = Utilities.getFileContentsAsString(predicateFileName);
+		
+		result = metamodel + result + predicate;
+		
+		return result;
+	}
+
+	private static String getAlsModel(boolean crossReferencingRules) {
+
 		String result = "\n\n";
 		
 		String subjects = Utilities.combineSet(allSubjects, ", ", "");
@@ -156,6 +172,7 @@ public class Main {
 		result += "fact{ \n values = \n";
 		
 		HashSet<String> tuples = new HashSet<String>();
+		
 
 		// general sigs
 		
@@ -201,36 +218,66 @@ public class Main {
 		HashSet<Rule> allRules = new HashSet<Rule>();
 		HashSet<String> allRulesTitles = new HashSet<String>();
 		
+		String prefix = "";
+		
 		for (Policy p: allPolicies)
 		{
+			if (!crossReferencingRules)
+			{
+				prefix = p.name + "_";
+			}
+			
 			result += String.format("one sig %s extends Policy {}{\n" + 
 				  "policyTarget = T0\n" +
 				  "rules = %s\n" +
-				  "combiningAlgo = %s\n}\n\n", p.name, Rule.combineTitles(p.rules), p.combiningAlgo);
+				  "combiningAlgo = %s\n}\n\n", p.name, Rule.combineTitles(p.rules, prefix), p.combiningAlgo);
 			
-			for (Rule r: p.rules)
-			{
-				if (!allRulesTitles.contains(r.title))
+			if (crossReferencingRules)
+			{			
+				for (Rule r: p.rules)
 				{
-					allRules.add(r);
-					allRulesTitles.add(r.title);
+					if (!allRulesTitles.contains(r.title))
+					{
+						allRules.add(r);
+						allRulesTitles.add(r.title);
+					}
 				}
+			}
+			else
+			{
+				for (Rule r: p.rules)
+				{		
+					result += String.format("one sig %s extends Rule {}{\n" + 
+					"ruleTarget = %s\n" +
+					"ruleEffect = %s\n}\n\n", prefix + r.title, r.getTarget(prefix), r.effect);
+					
+					
+					result += String.format("one sig %s extends Target {}{\n" + 
+					"subjects = %s\n" +
+					"resources = %s\n" +
+					"actions = %s\n}\n\n", r.getTarget(prefix), Utilities.combineSet(r.subjects, " + ", "S"), Utilities.combineSet(r.resources, " + ", "R"), Utilities.combineSet(r.actions, " + ", "A"));
+		
+				}		
+				
 			}
 		}
 		
-		for (Rule r: allRules)
-		{		
-			result += String.format("one sig %s extends Rule {}{\n" + 
-			"ruleTarget = %s\n" +
-			"ruleEffect = %s\n}\n\n", r.title, r.getTarget(), r.effect);
-			
-			
-			result += String.format("one sig %s extends Target {}{\n" + 
-			"subjects = %s\n" +
-			"resources = %s\n" +
-			"actions = %s\n}\n\n", r.getTarget(), Utilities.combineSet(r.subjects, " + ", "S"), Utilities.combineSet(r.resources, " + ", "R"), Utilities.combineSet(r.actions, " + ", "A"));
-
-		}		
+		if (crossReferencingRules)
+		{
+			for (Rule r: allRules)
+			{		
+				result += String.format("one sig %s extends Rule {}{\n" + 
+				"ruleTarget = %s\n" +
+				"ruleEffect = %s\n}\n\n", r.title, r.getTarget(""), r.effect);
+				
+				
+				result += String.format("one sig %s extends Target {}{\n" + 
+				"subjects = %s\n" +
+				"resources = %s\n" +
+				"actions = %s\n}\n\n", r.getTarget(""), Utilities.combineSet(r.subjects, " + ", "S"), Utilities.combineSet(r.resources, " + ", "R"), Utilities.combineSet(r.actions, " + ", "A"));
+	
+			}		
+		}
 
 		// policy set
 		result += String.format(
@@ -238,11 +285,6 @@ public class Main {
 		  "policySetTarget = T0\n" +
 		  "combiningAlgo = %s\n" +
 		  "policies = %s\n}\n\n", policyCombiningAlgo, Policy.combineTitles(allPolicies));
-		
-		String metamodel = Utilities.getFileContentsAsString(metaModelFileName);
-		String predicate = Utilities.getFileContentsAsString(predicateFileName);
-		
-		result = metamodel + result + predicate;
 		
 		return result;
 	}
