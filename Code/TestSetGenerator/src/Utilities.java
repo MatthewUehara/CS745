@@ -65,9 +65,9 @@ public class Utilities {
     }    
     
 	/* write the whole text to file */
-    public static void writeStringToFile(String pathname, String text) throws IOException 
-    {
-    	PrintStream out = null;
+	public static void writeStringToFile(String pathname, String text) throws IOException 
+	{
+		PrintStream out = null;
 	    try {
 	        out = new PrintStream(new FileOutputStream(pathname));
 	        out.print(text);
@@ -75,7 +75,7 @@ public class Utilities {
 	    finally {
 	        if (out != null) out.close();
 	    }
-    }
+	}
     
 
 	public static String[] splitByCaps(String str)

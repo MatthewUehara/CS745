@@ -49,11 +49,11 @@ public class Main {
     {
     	if (sXmlResult.startsWith("<alloy></alloy>"))
     	{	
-    		System.out.println("The model is consistent");
+//    		System.out.println("The model is consistent");
     		return;
     	}
 
-    	System.out.println("The model is inconsistent");
+//    	System.out.println("The model is inconsistent");
     	System.out.println(sXmlResult);
     	
     	
