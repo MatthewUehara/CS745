@@ -94,7 +94,7 @@ public class Main {
 		try {
 			String result;
 			result = convertFile(fileName, "metamodel.als", "predicate.als", false);
-			//System.out.println(result);
+			System.out.println(result);
 			Utilities.writeStringToFile(fileName.replaceAll(".csv", ".als"), result);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -211,7 +211,7 @@ public class Main {
 		return result;
 	}
 
-	private static String getAlsModel(boolean crossReferencingRules) {
+	private static String getAlsModel(boolean crossReferencingRules) throws IOException {
 
 		String result = "\n\n";
 		
@@ -276,6 +276,8 @@ public class Main {
 		
 		//Interferencing the original structure for testing
 		//!for (Policy p: allPolicies)
+		FileWriter fstream = new FileWriter("OutPut.txt");
+		BufferedWriter fout = new BufferedWriter(fstream);
 		for (int i= 0; i<allPolicies.size();i++)
 		{
 			//!
@@ -287,14 +289,102 @@ public class Main {
 				prefix = p.name + "_";
 			}
 			
+//////
+			
+			//===start of comparision
+			
+	        //System.out.println("Original HashSet");
+	        
+	        ArrayList<String> myRuleTitles = new ArrayList<String>();
+	        ArrayList<String> redundantRule = new ArrayList<String>();
+	        Iterator<Rule>it = p.rules.iterator();
+	        while (it.hasNext()) {
+	        	myRuleTitles.add(it.next().title);
+	            //System.out.println(it.next().title);
+	        }
+	        
+	        Iterator it1 = myRuleTitles.iterator();
+	        //System.out.println("===Stored Rule HashSet===");
+	        fout.write("===Stored Rule HashSet===\n");
+
+	        /*
+	        while (it1.hasNext()) {
+	            System.out.println(it1.next());		            
+	        }
+	        */		        
+	        
+	        //System.out.println("\nTesting\n"); pass!
+	        for(int index1= 0; index1<myRuleTitles.size();index1++){
+        		fout.write(myRuleTitles.get(index1)+"\n");
+	        	String s1= myRuleTitles.get(index1);		  
+	        	//System.out.println("In S1 \n"+s1+"\n");
+	        	for(int index2=0; index2<myRuleTitles.size();index2++){
+	        		String s2= myRuleTitles.get(index2);
+	        		if(index1!=index2){
+		        		//System.out.println("In S2 \n"+s2+"\n");
+	        			RuleCompare c= new RuleCompare();
+	        			int res =c.compare(s1, s2);
+	        			//System.out.println(res+"\n");
+	        			
+	        			if (res==1){
+	        				redundantRule.add(myRuleTitles.get(index1));
+	        				myRuleTitles.remove(index1);
+	        				//System.out.println("Removing "+s1);
+	        			}
+	        		}		        		
+	        	}		        	
+	        }
+	        //System.out.println("\nThe Updated Rules");
+	        //System.out.println(myRuleTitles.toString());
+	        System.out.println("\nRemoved Rules");
+	        System.out.println(redundantRule.toString());
+	        
+	       // ArrayList<String>myRuleTitles;
+	        /*
+	        //updating rules
+	        System.out.println("Updated Rules: \n"+myRuleTitles.toString()+"\n");
+	        p.rules.clear();
+	        for (int l1= 0; l1<myRuleTitles.size();l1++){
+		        Rule r= new Rule();
+		        r.title=myRuleTitles.get(l1);
+	        	p.rules.add(r);		        	
+	        }
+			*/
+	        
+//	        //testing
+//	    	System.out.println("\nOutputting Original Rules in P\n");
+//	        Iterator<Rule>itNew = p.rules.iterator();
+//	        while(itNew.hasNext()){
+//	        	System.out.println(itNew.next().title);
+//	        	
+//	        }
+	        System.out.println("Filtered Rules:");
+			HashSet<Rule> finalRules = new HashSet<>();
+	        
+	        for (Rule r: p.rules)
+			{	
+				
+				int check=0;
+				for (String sNew : redundantRule){
+					if(r.title.equalsIgnoreCase(sNew)){
+						check =1; //this check tells person to not edit it in Alloy
+					}
+				}
+				if(check==1){continue;}
+				
+				finalRules.add(r);
+			}
+			
+			//////
+			
 			result += String.format("one sig %s extends Policy {}{\n" + 
 				  "policyTarget = T0\n" +
 				  "rules = %s\n" +
-				  "combiningAlgo = %s\n}\n\n", p.name, Rule.combineTitles(p.rules, prefix), p.combiningAlgo);
+				  "combiningAlgo = %s\n}\n\n", p.name, Rule.combineTitles(finalRules, prefix), p.combiningAlgo);
 			
 			if (crossReferencingRules)
 			{			
-				for (Rule r: p.rules)
+				for (Rule r: finalRules)
 				{
 					if (!allRulesTitles.contains(r.title))
 					{
@@ -305,80 +395,8 @@ public class Main {
 			}
 			else
 			{
-				//===start of comparision
-				
-		        //System.out.println("Original HashSet");
-		        
-		        ArrayList<String> myRuleTitles = new ArrayList<String>();
-		        ArrayList<String> redundantRule = new ArrayList<String>();
-		        Iterator<Rule>it = p.rules.iterator();
-		        while (it.hasNext()) {
-		        	myRuleTitles.add(it.next().title);
-		            //System.out.println(it.next().title);
-		        }
-		        
-		        Iterator it1 = myRuleTitles.iterator();
-		        System.out.println("===Stored Rule HashSet===");
-		        while (it1.hasNext()) {
-		            System.out.println(it1.next());
-		        }		        
-		        
-		        //System.out.println("\nTesting\n"); pass!
-		        for(int index1= 0; index1<myRuleTitles.size();index1++){
-	        		
-		        	String s1= myRuleTitles.get(index1);		  
-		        	//System.out.println("In S1 \n"+s1+"\n");
-		        	for(int index2=0; index2<myRuleTitles.size();index2++){
-		        		String s2= myRuleTitles.get(index2);
-		        		if(index1!=index2){
-			        		//System.out.println("In S2 \n"+s2+"\n");
-		        			RuleCompare c= new RuleCompare();
-		        			int res =c.compare(s1, s2);
-		        			//System.out.println(res+"\n");
-		        			
-		        			if (res==1){
-		        				redundantRule.add(myRuleTitles.get(index1));
-		        				myRuleTitles.remove(index1);
-		        				//System.out.println("Removing "+s1);
-		        			}
-		        		}		        		
-		        	}		        	
-		        }
-		        //System.out.println("\nThe Updated Rules");
-		        //System.out.println(myRuleTitles.toString());
-		        System.out.println("\nRemoved Rules");
-		        System.out.println(redundantRule.toString());
-		        
-		       // ArrayList<String>myRuleTitles;
-		        /*
-		        //updating rules
-		        System.out.println("Updated Rules: \n"+myRuleTitles.toString()+"\n");
-		        p.rules.clear();
-		        for (int l1= 0; l1<myRuleTitles.size();l1++){
-			        Rule r= new Rule();
-			        r.title=myRuleTitles.get(l1);
-		        	p.rules.add(r);		        	
-		        }
-				*/
-		        
-//		        //testing
-//		    	System.out.println("\nOutputting Original Rules in P\n");
-//		        Iterator<Rule>itNew = p.rules.iterator();
-//		        while(itNew.hasNext()){
-//		        	System.out.println(itNew.next().title);
-//		        	
-//		        }
-		        System.out.println("Filtered Rules:");
-				for (Rule r: p.rules)
+				for (Rule r: finalRules)
 				{	
-					
-					int check=0;
-					for (String sNew : redundantRule){
-						if(r.title.equalsIgnoreCase(sNew)){
-							check =1; //this check tells person to not edit it in Alloy
-						}
-					}
-					if(check==1){continue;}
 					
 					//testing if the check is successful->pass
 					System.out.println(r.title);
@@ -397,6 +415,7 @@ public class Main {
 				
 			}
 		}
+		fout.close();
 		
 		if (crossReferencingRules)
 		{

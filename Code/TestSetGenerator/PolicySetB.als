@@ -200,7 +200,7 @@ one sig T0 extends Target {}{
 
 one sig Policy1 extends Policy {}{
 policyTarget = T0
-rules = Policy1_Rule_Professor_Read_Marks_Permit + Policy1_Rule_Student_Read_Marks_Permit + Policy1_Rule_Professor_ReadModify_Marks_Permit
+rules = Policy1_Rule_Student_Read_Marks_Permit + Policy1_Rule_Professor_ReadModify_Marks_Permit
 combiningAlgo = DenyOverrides
 }
 
@@ -232,17 +232,6 @@ rules = Policy2_Rule_Professor_ReadModify_Marks_Deny + Policy2_Rule_Student_Read
 combiningAlgo = PermitOverrides
 }
 
-one sig Policy2_Rule_Student_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy2_Target_Student_Read_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy2_Target_Student_Read_Marks_Permit extends Target {}{
-subjects = SStudent
-resources = RMarks
-actions = ARead
-}
-
 one sig Policy2_Rule_Professor_ReadModify_Marks_Deny extends Rule {}{
 ruleTarget = Policy2_Target_Professor_ReadModify_Marks_Deny
 ruleEffect = Deny
@@ -254,10 +243,43 @@ resources = RMarks
 actions = ARead + AModify
 }
 
+one sig Policy2_Rule_Student_Read_Marks_Permit extends Rule {}{
+ruleTarget = Policy2_Target_Student_Read_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Policy2_Target_Student_Read_Marks_Permit extends Target {}{
+subjects = SStudent
+resources = RMarks
+actions = ARead
+}
+
 one sig Policy3 extends Policy {}{
 policyTarget = T0
 rules = Policy3_Rule_Professor_Modify_Marks_Permit + Policy3_Rule_Professor_Read_Marks_Permit + Policy3_Rule_Professor_ReadModify_Marks_Deny + Policy3_Rule_Student_Read_Marks_Permit
 combiningAlgo = DenyOverrides
+}
+
+one sig Policy3_Rule_Professor_Read_Marks_Permit extends Rule {}{
+ruleTarget = Policy3_Target_Professor_Read_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Policy3_Target_Professor_Read_Marks_Permit extends Target {}{
+subjects = SProfessor
+resources = RMarks
+actions = ARead
+}
+
+one sig Policy3_Rule_Student_Read_Marks_Permit extends Rule {}{
+ruleTarget = Policy3_Target_Student_Read_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Policy3_Target_Student_Read_Marks_Permit extends Target {}{
+subjects = SStudent
+resources = RMarks
+actions = ARead
 }
 
 one sig Policy3_Rule_Professor_ReadModify_Marks_Deny extends Rule {}{
@@ -280,28 +302,6 @@ one sig Policy3_Target_Professor_Modify_Marks_Permit extends Target {}{
 subjects = SProfessor
 resources = RMarks
 actions = AModify
-}
-
-one sig Policy3_Rule_Student_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy3_Target_Student_Read_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy3_Target_Student_Read_Marks_Permit extends Target {}{
-subjects = SStudent
-resources = RMarks
-actions = ARead
-}
-
-one sig Policy3_Rule_Professor_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy3_Target_Professor_Read_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy3_Target_Professor_Read_Marks_Permit extends Target {}{
-subjects = SProfessor
-resources = RMarks
-actions = ARead
 }
 
 one sig PS extends PolicySet{}{
