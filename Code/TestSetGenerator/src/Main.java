@@ -342,6 +342,9 @@ public class Main {
 		        		}		        		
 		        	}		        	
 		        }
+		        
+		       // ArrayList<String>myRuleTitles;
+		        /*
 		        //updating rules
 		        System.out.println("Updated Rules: \n"+myRuleTitles.toString()+"\n");
 		        p.rules.clear();
@@ -350,13 +353,16 @@ public class Main {
 			        r.title=myRuleTitles.get(l1);
 		        	p.rules.add(r);		        	
 		        }
-
+				*/
+		        
 		        //testing
+		    	System.out.println("\nOutputting Original Rules in P\n");
 		        Iterator<Rule>itNew = p.rules.iterator();
 		        while(itNew.hasNext()){
 		        	System.out.println(itNew.next().title);
 		        	
 		        }
+		       
 		        
 		        
 				for (Rule r: p.rules)

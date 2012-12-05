@@ -204,26 +204,37 @@ rules = Policy1_Rule_Professor_Read_Marks_Permit + Policy1_Rule_Student_Read_Mar
 combiningAlgo = DenyOverrides
 }
 
-one sig Policy1_Rule_Professor_ReadModify_Marks_Permit extends Rule {}{
-ruleTarget = Policy1_Target_Professor_ReadModify_Marks_Permit
-ruleEffect = null
-}
-
-one sig Policy1_Target_Professor_ReadModify_Marks_Permit extends Target {}{
-subjects = 
-resources = 
-actions = 
-}
-
 one sig Policy1_Rule_Student_Read_Marks_Permit extends Rule {}{
 ruleTarget = Policy1_Target_Student_Read_Marks_Permit
-ruleEffect = null
+ruleEffect = Permit
 }
 
 one sig Policy1_Target_Student_Read_Marks_Permit extends Target {}{
-subjects = 
-resources = 
-actions = 
+subjects = SStudent
+resources = RMarks
+actions = ARead
+}
+
+one sig Policy1_Rule_Professor_Read_Marks_Permit extends Rule {}{
+ruleTarget = Policy1_Target_Professor_Read_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Policy1_Target_Professor_Read_Marks_Permit extends Target {}{
+subjects = SProfessor
+resources = RMarks
+actions = ARead
+}
+
+one sig Policy1_Rule_Professor_ReadModify_Marks_Permit extends Rule {}{
+ruleTarget = Policy1_Target_Professor_ReadModify_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Policy1_Target_Professor_ReadModify_Marks_Permit extends Target {}{
+subjects = SProfessor
+resources = RMarks
+actions = ARead + AModify
 }
 
 one sig PS extends PolicySet{}{

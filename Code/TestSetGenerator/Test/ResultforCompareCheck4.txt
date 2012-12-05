@@ -1,0 +1,76 @@
+Extraction done. Now converting...
+Original HashSet
+===Stored Rule HashSet===
+Rule_Professor_ReadModify_Marks_Permit
+Rule_Student_Read_Marks_Permit
+Rule_Professor_Read_Marks_Permit
+Creating RuleCompare Engine...
+[Rule, Professor, ReadModify, Marks, Permit]
+[Rule, Student, Read, Marks, Permit]
+Student
+Professor
+find(): false
+
+Creating RuleCompare Engine...
+[Rule, Professor, ReadModify, Marks, Permit]
+[Rule, Professor, Read, Marks, Permit]
+Professor
+Professor
+find(): true
+
+Read
+ReadModify
+find(): true
+
+Marks
+Marks
+find(): true
+
+Permit
+Permit
+find(): true
+
+Creating RuleCompare Engine...
+[Rule, Student, Read, Marks, Permit]
+[Rule, Professor, ReadModify, Marks, Permit]
+Student
+Professor
+find(): false
+
+Creating RuleCompare Engine...
+[Rule, Student, Read, Marks, Permit]
+[Rule, Professor, Read, Marks, Permit]
+Student
+Professor
+find(): false
+
+Creating RuleCompare Engine...
+[Rule, Professor, Read, Marks, Permit]
+[Rule, Professor, ReadModify, Marks, Permit]
+Professor
+Professor
+find(): true
+
+Read
+ReadModify
+find(): true
+
+Marks
+Marks
+find(): true
+
+Permit
+Permit
+find(): true
+
+Removing Rule_Professor_Read_Marks_Permit
+Creating RuleCompare Engine...
+[Rule, Professor, Read, Marks, Permit]
+[Rule, Student, Read, Marks, Permit]
+Student
+Professor
+find(): false
+
+Updated Rules: 
+[Rule_Professor_ReadModify_Marks_Permit, Rule_Student_Read_Marks_Permit]
+
