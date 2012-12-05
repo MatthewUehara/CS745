@@ -307,11 +307,10 @@ public class Main {
 			{
 				//===start of comparision
 				
-		        Iterator<Rule>it = p.rules.iterator();
 		        System.out.println("Original HashSet");
 		        
 		        ArrayList<String> myRuleTitles = new ArrayList<String>();
-		        
+		        Iterator<Rule>it = p.rules.iterator();
 		        while (it.hasNext()) {
 		        	myRuleTitles.add(it.next().title);
 		            //System.out.println(it.next().title);
@@ -343,13 +342,22 @@ public class Main {
 		        		}		        		
 		        	}		        	
 		        }
-		        //checking
+		        //updating rules
 		        System.out.println("Updated Rules: \n"+myRuleTitles.toString()+"\n");
-		        
-		        
-		        //Set<Rule> updatedRules= 
-		        
+		        p.rules.clear();
+		        for (int l1= 0; l1<myRuleTitles.size();l1++){
+			        Rule r= new Rule();
+			        r.title=myRuleTitles.get(l1);
+		        	p.rules.add(r);		        	
+		        }
 
+		        //testing
+		        Iterator<Rule>itNew = p.rules.iterator();
+		        while(itNew.hasNext()){
+		        	System.out.println(itNew.next().title);
+		        	
+		        }
+		        
 		        
 				for (Rule r: p.rules)
 				{		

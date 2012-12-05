@@ -25,11 +25,5 @@ public class Policy {
 		return Utilities.combineSet(titles, " + ", "");
 	}
 
-	public Set<Rule> Choose(){
-		
-		
-		
-		return this.rules;
-	}
 	
 }
