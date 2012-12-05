@@ -1,0 +1,1 @@
+java -jar AlloyRunner.jar "test.als" "C:/ClaferIE/CS745/Code/Fixer"

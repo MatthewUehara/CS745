@@ -161,13 +161,33 @@ public class Main {
     		
     		/* Preliminary settings. Probably need to pass them using command line  */
     		
-    		File fDirectory = new File(alloyFileName).getParentFile();
-    		String sDirectory = fDirectory.getAbsolutePath() + "/";
-
+    		String sDirectory = "";
+    		
+    		try
+    		{
+    			File fDirectory = new File(alloyFileName).getParentFile();
+    			sDirectory = fDirectory.getAbsolutePath() + "/";
+    		}
+    		catch(Exception e)
+    		{
+    			sDirectory = "";
+    		}
+    		
     		String sInputFileName = alloyFileName;
     		String sTempResultFileName = sDirectory + "output_all.txt";
     		String sXMLResultFileName = sDirectory + "output_instance.xml";
-    		String sToolPath = libRoot + "/";// sDirectory + "/tools/";
+    		
+    		String sToolPath = "";
+    		
+    		if (libRoot.equals(""))
+    		{
+    			sToolPath = "";
+    		}
+    		else 
+    		{
+    			sToolPath = libRoot + "/";
+    		}
+    		
     		String sLibrary = "AlloyIGEx.jar";
     		
     		/* run java -jar AlloyIGEx.jar */ 
