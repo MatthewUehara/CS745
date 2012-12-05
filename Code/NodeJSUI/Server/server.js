@@ -150,6 +150,8 @@ function upload_complete(res, contents, id) {
     {
         arg = "-fix_" + id;
     }
+    
+    sys.debug("Execute: " + tool_path + tool_file_name);
 
 	var util  = require('util'),
 		spawn = require('child_process').spawn,
@@ -184,6 +186,8 @@ function upload_complete(res, contents, id) {
 			result = 'Error, return code: ' + code + '\n' + error_result;
 		}
 	  
+      
+        sys.debug("Exec result: " + result);
 	  
 		res.end(result);
 	  	  

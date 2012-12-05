@@ -15,6 +15,12 @@ function Verification(host)
 
 Verification.method("onDataLoaded", function(data){
 
+    if (data.error) // error
+    {
+        this.content = data.error;
+        return;
+    }
+    
     if (data.verificationResult == "consistent")
     {
         this.content = "The model is consistent, no repairs.";

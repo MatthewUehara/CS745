@@ -17,6 +17,17 @@ $(document).ready(function()
     host = new Host(modules);
 });
 
+function getModelValue()
+{
+    var model = $("#model").val();
+
+    model = model.replace(/\n\r?/g, "<br>"); 
+    model = encodeURIComponent(model);
+    
+//    alert(model);
+    return model;
+}
+
 function Host(modules)
 {
     this.modules = new Array();

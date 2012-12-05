@@ -17,16 +17,29 @@ Input.method("onDataLoaded", function(data){
 
 Input.method("onInitRendered", function()
 {
-    var options = new Object();
-    options.beforeSubmit = this.beginQuery.bind(this);
-    options.success = this.showResponse.bind(this);
- 
-    $('#myform').ajaxForm(options); 
-//	$('#myform').submit();
+    $('#propose').click(function(){        
+        var surl = "/upload";
+        
+        var sData = "model=" + getModelValue();
+        
+        host.findModule("mdInput").beginQuery();
+        
+        $.ajax({
+            type: "POST",
+            url: surl,
+            cache: false,
+            data: sData,
+            success: function(data){
+                host.findModule("mdInput").processToolResult(data);    
+                host.findModule("mdInput").endQuery();
+            }
+        });        
+                
+    }); 
 });
 
 Input.method("beginQuery", function(formData, jqForm, options) { 
-	$("#load_area #myform").hide();
+	$("#model_container").hide();
 	$("#load_area").append('<div id="preloader"><img id="preloader_img" src="/Client/images/preloader.gif" alt="Loading..."/><span>Loading and processing...</span></div>');	
     return true; 
 });
@@ -34,15 +47,9 @@ Input.method("beginQuery", function(formData, jqForm, options) {
 // post-submit callback 
 Input.method("endQuery", function()  { 
 	$("#preloader").remove();
-	$("#load_area #myform").show();
+	$("#model_container").show();
 	
 	return true;
-});
-
-// pre-submit callback 
-Input.method("showRequest", function(formData, jqForm, options) {  
-    var queryString = $.param(formData); 
-    return true; 
 });
  
 // post-submit callback 
@@ -55,18 +62,29 @@ Input.method("processToolResult", function(result)
 {
 	if (!result) return;
     
-    var data = eval('(' + result + ')');
-            
+//    alert(result);
+    
+    var data;
+    
+    try{
+    
+        data = eval('(' + result + ')');
+
+    }
+    catch(e)
+    {
+        data = new Object();
+        data.error = "Error evaluating result";
+    }
+           
     this.host.updateData(data);
 });
 
 Input.method("getInitContent", function()
 {
-	var result = '<div id="load_area" style="width:100%;height:100%"><form  style="width:100%;height:100%" id="myform" action="' + this.serverAction + '" method="post">' + '<input type="submit" value="Propose">';
+	var result = '<div id="load_area" style="width:100%;height:100%"><button id="propose">Propose</button>';
     
-    result += '<div style="width:96%;height:90%"><textarea id="model" name="model" style="width:100%;height:100%"   ></textarea></div>';
-
-    result += '</form></div>';
+    result += '<div id="model_container" style="width:96%;height:90%"><textarea spellcheck="false" id="model" name="model"  wrap="off" style="width:100%;height:100%"   ></textarea></div></div>';
     
     return result;
 });

@@ -1,1 +1,1 @@
-java -jar AlloyRunner.jar "test.als" "C:/ClaferIE/CS745/Code/Fixer"
+java -jar AlloyRunner.jar "C:/ClaferIE/CS745/Code/Fixer/current_file.als" "C:/ClaferIE/CS745/Code/Fixer"
