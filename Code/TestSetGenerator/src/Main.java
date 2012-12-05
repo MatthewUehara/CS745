@@ -1,15 +1,72 @@
-import java.io.IOException;
-import java.util.AbstractSet;
+import java.io.*;
+import java.lang.*;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.Iterator;
+import java.util.List;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Main {
 
-	/**
-	 * @param args
-	 */
+	public static void main(String [] args) throws IOException{
+		System.out.println("===========This is a test for string comparision============\n");
+		long startTime = System.currentTimeMillis();		
+		
+		//Rule_Subject1Subject2_Action1Action2_Resource1Resource2
+		String s1="Rule_Student_Read_Marks_Permit";
+		String s2="Rule_ProfessorStudent_ReadWrite_Marks_Permit";
+		String s3="Rule_Professor_Modify_Marks_Permit";
+
+		HashSet<String> set = new HashSet<String>();
+        set.add(s1);
+        set.add(s2);
+        set.add(s3);
+        Iterator it = set.iterator();
+        System.out.println("Original HashSet");
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+        System.out.println("\n");
+		
+        RuleCompare a= new RuleCompare();
+		int result=a.compare(s1,s2);
+		
+		switch (result){
+		case 0: System.out.println("Recommendation: No deletion\n");
+			break;
+		case 1: System.out.println("Recommendation: Delete First argument\n");
+			break;
+		case 2: System.out.println("Recommendation: Delete Second Argument\n");
+			break;
+		default: System.out.println("Error: Rule component is inconcsistant, please check the rule format\n");
+			break;
+		}
+        
+		ChooseToCompare c= new ChooseToCompare();
+		c.Choose();
+		
+		
+		
+		long stopTime = System.currentTimeMillis();
+		long elapsedTime = stopTime - startTime;
+		System.out.println("\nTime Elapsed: "+elapsedTime+" miliseconds");
+	}
+/*
+
+import java.io.IOException;
+import java.util.AbstractSet;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+
+
 	
 	public static Set<String> allActions = new HashSet<String>();
 	public static Set<String> allSubjects = new HashSet<String>();
@@ -245,6 +302,9 @@ public class Main {
 			}
 			else
 			{
+				
+				
+				
 				for (Rule r: p.rules)
 				{		
 					result += String.format("one sig %s extends Rule {}{\n" + 
@@ -287,6 +347,8 @@ public class Main {
 		  "policies = %s\n}\n\n", policyCombiningAlgo, Policy.combineTitles(allPolicies));
 		
 		return result;
+		
+		
 	}
-	
+*/	
 }
