@@ -338,13 +338,15 @@ public class Main {
 		        			
 		        			if (res==1){
 		        				myRuleTitles.remove(index1);
-		        				System.out.println("Removing "+s1+"\n");
+		        				System.out.println("Removing "+s1);
 		        			}
 		        		}		        		
 		        	}		        	
 		        }
 		        //checking
-		        System.out.println(myRuleTitles.toString());
+		        System.out.println("Updated Rules: \n"+myRuleTitles.toString()+"\n");
+		        
+		        
 		        //Set<Rule> updatedRules= 
 		        
 
