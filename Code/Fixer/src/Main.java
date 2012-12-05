@@ -48,6 +48,8 @@ public class Main {
 	 	{
 	 		ArrayList<Fix> fixes = (new Fixer()).propose(verificationResult);
 	 		
+	 		int numFixes = fixes.size();
+	 		
 			String myFix = "Remove rule 1 from P1";
 			String myEst = "1";
 			
