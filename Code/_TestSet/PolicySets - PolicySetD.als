@@ -250,7 +250,7 @@ actions = AModify
 
 one sig Policy2_Rule_Assistant_Read_Marks_Permit extends Rule {}{
 ruleTarget = Policy2_Target_Assistant_Read_Marks_Permit
-ruleEffect = Permit
+ruleEffect = Deny// Change to Deny
 }
 
 one sig Policy2_Target_Assistant_Read_Marks_Permit extends Target {}{

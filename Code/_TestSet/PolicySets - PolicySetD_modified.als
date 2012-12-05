@@ -234,7 +234,7 @@ actions = ARead
 one sig Policy2 extends Policy {}{
 policyTarget = T0
 rules = Policy2_Rule_Assistant_Modify_Marks_Permit + Policy2_Rule_Student_Read_Marks_Permit + Policy2_Rule_Assistant_Read_Marks_Permit
-combiningAlgo = PermitOverrides
+combiningAlgo = PermitOverrides // Change to DenyOverrides -> no effect
 }
 
 one sig Policy2_Rule_Assistant_Modify_Marks_Permit extends Rule {}{
@@ -250,7 +250,7 @@ actions = AModify
 
 one sig Policy2_Rule_Assistant_Read_Marks_Permit extends Rule {}{
 ruleTarget = Policy2_Target_Assistant_Read_Marks_Permit
-ruleEffect = Permit
+ruleEffect = Deny// Change to Deny -> more fixes
 }
 
 one sig Policy2_Target_Assistant_Read_Marks_Permit extends Target {}{
@@ -345,7 +345,7 @@ actions = ARead
 one sig Policy4 extends Policy {}{
 policyTarget = T0
 rules = Policy4_Rule_Assistant_Modify_Marks_Permit + Policy4_Rule_Assistant_Read_Marks_Permit + Policy4_Rule_Assistant_Read_Marks_Deny
-combiningAlgo = DenyOverrides
+combiningAlgo = DenyOverrides // Change to permitOverrides
 }
 
 one sig Policy4_Rule_Assistant_Read_Marks_Permit extends Rule {}{
@@ -361,7 +361,7 @@ actions = ARead
 
 one sig Policy4_Rule_Assistant_Read_Marks_Deny extends Rule {}{
 ruleTarget = Policy4_Target_Assistant_Read_Marks_Deny
-ruleEffect = Deny
+ruleEffect = Deny // Change to Permit
 }
 
 one sig Policy4_Target_Assistant_Read_Marks_Deny extends Target {}{

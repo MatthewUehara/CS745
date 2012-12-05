@@ -27,22 +27,6 @@ public class SafetyOnlyOneApplicable {
 	 	}
 	 	else
 	 	{
-	 		ArrayList<Fix> fixes = (new Fixer()).propose(verificationResult);
-	 		
-	 		result += "\"fixes\" : [";
-	 		
-	 		String fixList = "";
-	 		
-	 		for (Fix f : fixes)
-	 		{
-	 			fixList += String.format(",{\"id\":\"%s\", \"statement\":\"%s\",\"est\":\"%s\"}", f.id, f.statement, f.est);
-	 		}
-	 		
-	 		if (fixList.length() > 0)
-	 			fixList = fixList.substring(1);
-	 		
-	 		result +=  fixList + "]";
-
 	 		String verificationText = verificationResult.getOutput();
 			String verificationDecision;
 			
@@ -50,8 +34,28 @@ public class SafetyOnlyOneApplicable {
 				verificationDecision = "consistent";
 			else verificationDecision = "inconsistent";
 			
-			result += ",\"verificationText\" : \"" + verificationText + "\"";
+			result += "\"verificationText\" : \"" + verificationText + "\"";
 			result += ",\"verificationResult\" : \"" + verificationDecision + "\"";
+			
+		 	if (!verificationResult.isConsisent)
+		 	{
+
+		 		ArrayList<Fix> fixes = (new Fixer()).propose(verificationResult);
+		 		
+		 		result += ",\"fixes\" : [";
+		 		
+		 		String fixList = "";
+		 		
+		 		for (Fix f : fixes)
+		 		{
+		 			fixList += String.format(",{\"id\":\"%s\", \"statement\":\"%s\",\"est\":\"%s\"}", f.id, f.statement, f.est);
+		 		}
+		 		
+		 		if (fixList.length() > 0)
+		 			fixList = fixList.substring(1);
+		 		
+		 		result +=  fixList + "]";
+		 	}			
 			
 			result = "{" + result + "}";
 	 	}
