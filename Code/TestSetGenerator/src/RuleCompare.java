@@ -5,17 +5,15 @@ import java.util.regex.Pattern;
 
 public class RuleCompare {
 	
-	public RuleCompare(){
-		System.out.print("Creating RuleCompare Engine...\n");
-	}
+	public RuleCompare(){}
 	/*
 	 * returns 1 if we need to delete first, 2 for second, 0 for nothing
 	 */
 	public int compare(String s1, String s2){
 		String [] temp1= s1.split("_");
-		System.out.println(Arrays.toString(temp1));   //easy way to print test array
+		//System.out.println(Arrays.toString(temp1));   //easy way to print test array
 		String [] temp2= s2.split("_");	
-		System.out.println(Arrays.toString(temp2));
+		//System.out.println(Arrays.toString(temp2));
 		
 		//rule format checking
 		if(temp1.length!=temp2.length){return 3;}
@@ -40,12 +38,12 @@ public class RuleCompare {
 			}
 
 			
-			System.out.println(regex);
-			System.out.println(compare);
+			//System.out.println(regex);
+			//System.out.println(compare);
 			
 		    Pattern pattern = Pattern.compile(regex);
 		    Matcher matcher = pattern.matcher(compare);
-		    System.out.println("find(): "+matcher.find()+"\n");
+		    //System.out.println("find(): "+matcher.find()+"\n");
 		    //System.out.println("Flag Value: "+flag+"\n");
 		    
 		    //check if they are subset relation, if not, no deletion
