@@ -25,7 +25,8 @@ Table.method("onDataLoaded", function(data){
 
     for (var i = 0; i < data.fixes.length; i++)
     {
-        var resolveLink = '<a href="/fix/' + data.fixes[i].id +'" class="resolve" id="resolve_"' + data.fixes[i].id + '>Resolve</a>';       
+//        var resolveLink = '<a href="#" class="resolve" id="resolve_"' + data.fixes[i].id + '>Resolve</a>';       
+        var resolveLink = '<a href="#" class="resolve" id="resolve_' + data.fixes[i].id + '">Resolve</a>';       
         renderedData += '<tr><td>' + data.fixes[i].fix + '</td><td>' + data.fixes[i].est + '</td><td>' + resolveLink + '</td></tr>';
     }
     
@@ -38,6 +39,25 @@ Table.method("onDataLoaded", function(data){
 
 Table.method("onRendered", function()
 {
+    $(".resolve").click(function()
+    {
+//        alert(this.id);
+        var sid = this.id.split("_")[1];
+//        alert(sid);
+        var surl = "/fix?id=" + sid;
+        
+        $.ajax({
+            type: "POST",
+            url: surl,
+            cache: false,
+            data: {model: $('#model').val(), id: sid},
+            success: function(data){
+                alert(data);
+            }
+        });        
+        
+    }
+    );
 });
 
 Table.method("getContent", function()

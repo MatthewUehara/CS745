@@ -18,9 +18,16 @@ var cacheFileName = "cache.txt";
 
 var server = http.createServer(function(req, res) {
     // Simple path-based request dispatcher
+    
     switch (url.parse(req.url).pathname) {
         case '/':
             display_page(req, res);
+            break;
+        case '/fix':
+            var query = url.parse(req.url,true).query;
+            var id = query.id;
+            upload_file(req, res, id);
+            
             break;
         case '/upload':
 
@@ -31,7 +38,7 @@ var server = http.createServer(function(req, res) {
 				var contents = fs.readFileSync(cacheFileName);
 				res.end(contents);
 			}
-			else upload_file(req, res);
+			else upload_file(req, res, 0);
 
             break;
         default:
@@ -88,7 +95,7 @@ function basename(str)
    return base;
 }
  
-function upload_file(req, res) {
+function upload_file(req, res, id) {
     // Request body is binary
     req.setBodyEncoding("binary");
     
@@ -102,9 +109,9 @@ function upload_file(req, res) {
             var POST = qs.parse(body);
             // use POST
             
-            sys.debug(POST.model);
+            sys.debug("model" + POST.model);
             
-            upload_complete(res, POST.model);
+            upload_complete(res, POST.model, id);
             return;
 
 
@@ -130,14 +137,23 @@ function changeFileExt(name, ext, newExt)
 	return name;
 }
 
-function upload_complete(res, contents) {
+function upload_complete(res, contents, id) {
     sys.debug("Request complete");
 	
 	res.writeHead(200, { "Content-Type": "text/html" });
 
+    if (id == 0)
+    {
+        arg = "-propose";
+    }
+    else
+    {
+        arg = "-fix_" + id;
+    }
+
 	var util  = require('util'),
 		spawn = require('child_process').spawn,
-		tool  = spawn(host, ["-jar", tool_path + tool_file_name]);
+		tool  = spawn(host, ["-jar", tool_path + tool_file_name, arg]);
 	
 	var error_result = "";
 	var data_result = "";

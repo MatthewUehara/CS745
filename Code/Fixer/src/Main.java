@@ -40,7 +40,7 @@ public class Main {
 		String verificationText = "Policy P1, rule R1, Policy P2, rule R1";
 		String verificationResult = "inconsistent";
 		
-		result += ",\"verificationText\" : \"" + verificationText + "\"";
+		result += ",\"verificationText\" : \"" + verificationText + input + args[0] + "\"";
 		result += ",\"verificationResult\" : \"" + verificationResult + "\"";
 		
 		result = "{" + result + "}";
