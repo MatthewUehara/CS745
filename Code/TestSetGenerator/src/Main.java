@@ -1,3 +1,9 @@
+import java.io.IOException;
+import java.util.AbstractSet;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import java.io.*;
 import java.lang.*;
 import java.util.ArrayList;
@@ -12,7 +18,7 @@ import java.util.regex.Pattern;
 
 
 public class Main {
-
+/*
 	public static void main(String [] args) throws IOException{
 		System.out.println("===========This is a test for string comparision============\n");
 		long startTime = System.currentTimeMillis();		
@@ -56,18 +62,7 @@ public class Main {
 		long elapsedTime = stopTime - startTime;
 		System.out.println("\nTime Elapsed: "+elapsedTime+" miliseconds");
 	}
-/*
-
-import java.io.IOException;
-import java.util.AbstractSet;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
-
-
-	
+*/
 	public static Set<String> allActions = new HashSet<String>();
 	public static Set<String> allSubjects = new HashSet<String>();
 	public static Set<String> allResources = new HashSet<String>();		
@@ -99,7 +94,7 @@ import java.util.Set;
 		try {
 			String result;
 			result = convertFile(fileName, "metamodel.als", "predicate.als", false);
-			System.out.println(result);
+			//System.out.println(result);
 			Utilities.writeStringToFile(fileName.replaceAll(".csv", ".als"), result);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -202,7 +197,9 @@ import java.util.Set;
 			}
 		}
 		
-		System.out.println("Extraction done. Now conveting...");
+		System.out.println("Extraction done. Now converting...");
+		
+		
 
 		String result = getAlsModel(allowCrossReferencingRules);
 		
@@ -302,11 +299,27 @@ import java.util.Set;
 			}
 			else
 			{
+				//
 				
 				
+		        Iterator<Rule>it = p.rules.iterator();
+		        System.out.println("Original HashSet");
+		        
+		        ArrayList<String> myRuleTitles = new ArrayList<String>();
+		        
+		        while (it.hasNext()) {
+		        	String s = it.next().title;
+		        	myRuleTitles.add(s);
+		            System.out.println(s);
+		        }				
+		        
+		        // myRuleTitles is list 
 				
+				//
 				for (Rule r: p.rules)
 				{		
+					//if (r.title is redundant){continue;}
+					
 					result += String.format("one sig %s extends Rule {}{\n" + 
 					"ruleTarget = %s\n" +
 					"ruleEffect = %s\n}\n\n", prefix + r.title, r.getTarget(prefix), r.effect);
@@ -350,5 +363,5 @@ import java.util.Set;
 		
 		
 	}
-*/	
+
 }
