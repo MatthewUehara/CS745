@@ -1,0 +1,37 @@
+===========This is a test for string comparision============
+
+Original HashSet
+Rule_Professor_Modify_Marks_Permit
+Rule_ProfessorStudent_ReadWrite_Marks_Permit
+Rule_Student_Read_Marks_Permit
+
+
+Creating RuleCompare Engine...
+[Rule, Student, Read, Marks, Permit]
+[Rule, ProfessorStudent, ReadWrite, Marks, Permit]
+Student
+ProfessorStudent
+find(): true
+
+Read
+ReadWrite
+find(): true
+
+Marks
+Marks
+find(): true
+
+Permit
+Permit
+find(): true
+
+Recommendation: Delete First argument
+
+
+Choosing the combination...
+===Rule HashSet===
+Policy1
+Policy2
+Policy3
+
+Time Elapsed: 15 miliseconds

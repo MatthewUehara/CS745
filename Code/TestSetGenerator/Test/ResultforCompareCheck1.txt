@@ -1,0 +1,102 @@
+Extraction done. Now converting...
+Original HashSet
+===Stored Rule HashSet===
+Rule_Professor_ReadModify_Marks_Permit
+Rule_Student_Read_Marks_Permit
+Rule_Professor_Read_Marks_Permit
+In S1 
+Rule_Professor_ReadModify_Marks_Permit
+
+In S2 
+Rule_Student_Read_Marks_Permit
+
+Creating RuleCompare Engine...
+[Rule, Professor, ReadModify, Marks, Permit]
+[Rule, Student, Read, Marks, Permit]
+Student
+Professor
+find(): false
+
+0
+
+In S2 
+Rule_Professor_Read_Marks_Permit
+
+Creating RuleCompare Engine...
+[Rule, Professor, ReadModify, Marks, Permit]
+[Rule, Professor, Read, Marks, Permit]
+Professor
+Professor
+find(): true
+
+ReadModify
+Read
+find(): false
+
+0
+
+In S1 
+Rule_Student_Read_Marks_Permit
+
+In S2 
+Rule_Professor_ReadModify_Marks_Permit
+
+Creating RuleCompare Engine...
+[Rule, Student, Read, Marks, Permit]
+[Rule, Professor, ReadModify, Marks, Permit]
+Student
+Professor
+find(): false
+
+0
+
+In S2 
+Rule_Professor_Read_Marks_Permit
+
+Creating RuleCompare Engine...
+[Rule, Student, Read, Marks, Permit]
+[Rule, Professor, Read, Marks, Permit]
+Student
+Professor
+find(): false
+
+0
+
+In S1 
+Rule_Professor_Read_Marks_Permit
+
+In S2 
+Rule_Professor_ReadModify_Marks_Permit
+
+Creating RuleCompare Engine...
+[Rule, Professor, Read, Marks, Permit]
+[Rule, Professor, ReadModify, Marks, Permit]
+Professor
+Professor
+find(): true
+
+Read
+ReadModify
+find(): true
+
+Marks
+Marks
+find(): true
+
+Permit
+Permit
+find(): true
+
+1
+
+In S2 
+Rule_Student_Read_Marks_Permit
+
+Creating RuleCompare Engine...
+[Rule, Professor, Read, Marks, Permit]
+[Rule, Student, Read, Marks, Permit]
+Student
+Professor
+find(): false
+
+0
