@@ -274,8 +274,14 @@ public class Main {
 		
 		String prefix = "";
 		
-		for (Policy p: allPolicies)
+		//Interferencing the original structure for testing
+		//!for (Policy p: allPolicies)
+		for (int i= 0; i<allPolicies.size()-2;i++)
 		{
+			//!
+			Policy p= allPolicies.get(i);
+			//
+			
 			if (!crossReferencingRules)
 			{
 				prefix = p.name + "_";
@@ -299,23 +305,28 @@ public class Main {
 			}
 			else
 			{
-				//
-				
+				//===start of comparision
 				
 		        Iterator<Rule>it = p.rules.iterator();
 		        System.out.println("Original HashSet");
 		        
-		        ArrayList<String> myRuleTitles = new ArrayList<String>();
+		        HashSet<String> myRuleTitles = new HashSet<String>();
 		        
 		        while (it.hasNext()) {
-		        	String s = it.next().title;
-		        	myRuleTitles.add(s);
-		            System.out.println(s);
-		        }				
+		        	myRuleTitles.add(it.next().title);
+		            //System.out.println(it.next().title);
+		        }
+		        Iterator it1 = myRuleTitles.iterator();
 		        
-		        // myRuleTitles is list 
-				
-				//
+		        System.out.println("===Stored Rule HashSet===");
+		        while (it1.hasNext()) {
+		            System.out.println(it1.next());
+		        }		        
+		        
+		        //Set<Rule> updatedRules= 
+		        
+
+		        
 				for (Rule r: p.rules)
 				{		
 					//if (r.title is redundant){continue;}
