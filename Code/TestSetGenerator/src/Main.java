@@ -276,7 +276,7 @@ public class Main {
 		
 		//Interferencing the original structure for testing
 		//!for (Policy p: allPolicies)
-		for (int i= 0; i<allPolicies.size()-2;i++)
+		for (int i= 0; i<allPolicies.size();i++)
 		{
 			//!
 			Policy p= allPolicies.get(i);
@@ -307,9 +307,10 @@ public class Main {
 			{
 				//===start of comparision
 				
-		        System.out.println("Original HashSet");
+		        //System.out.println("Original HashSet");
 		        
 		        ArrayList<String> myRuleTitles = new ArrayList<String>();
+		        ArrayList<String> redundantRule = new ArrayList<String>();
 		        Iterator<Rule>it = p.rules.iterator();
 		        while (it.hasNext()) {
 		        	myRuleTitles.add(it.next().title);
@@ -336,12 +337,17 @@ public class Main {
 		        			//System.out.println(res+"\n");
 		        			
 		        			if (res==1){
+		        				redundantRule.add(myRuleTitles.get(index1));
 		        				myRuleTitles.remove(index1);
-		        				System.out.println("Removing "+s1);
+		        				//System.out.println("Removing "+s1);
 		        			}
 		        		}		        		
 		        	}		        	
 		        }
+		        //System.out.println("\nThe Updated Rules");
+		        //System.out.println(myRuleTitles.toString());
+		        System.out.println("\nRemoved Rules");
+		        System.out.println(redundantRule.toString());
 		        
 		       // ArrayList<String>myRuleTitles;
 		        /*
@@ -355,19 +361,27 @@ public class Main {
 		        }
 				*/
 		        
-		        //testing
-		    	System.out.println("\nOutputting Original Rules in P\n");
-		        Iterator<Rule>itNew = p.rules.iterator();
-		        while(itNew.hasNext()){
-		        	System.out.println(itNew.next().title);
-		        	
-		        }
-		       
-		        
-		        
+//		        //testing
+//		    	System.out.println("\nOutputting Original Rules in P\n");
+//		        Iterator<Rule>itNew = p.rules.iterator();
+//		        while(itNew.hasNext()){
+//		        	System.out.println(itNew.next().title);
+//		        	
+//		        }
+		        System.out.println("Filtered Rules:");
 				for (Rule r: p.rules)
-				{		
-					//if (r.title is redundant){continue;}
+				{	
+					
+					int check=0;
+					for (String sNew : redundantRule){
+						if(r.title.equalsIgnoreCase(sNew)){
+							check =1; //this check tells person to not edit it in Alloy
+						}
+					}
+					if(check==1){continue;}
+					
+					//testing if the check is successful->pass
+					System.out.println(r.title);
 					
 					result += String.format("one sig %s extends Rule {}{\n" + 
 					"ruleTarget = %s\n" +
