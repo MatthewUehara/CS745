@@ -79,7 +79,7 @@ public class Fixer {
 
 	private String replaceRuleEffect(String source, String rule1, String rule1Effect) {
 		// TODO Auto-generated method stub
-		String s = source; // replace rule effect
+		String s = source + "OK"; // replace rule effect
 		
 		return s; /// TMP
 /*
