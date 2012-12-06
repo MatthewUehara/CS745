@@ -1,0 +1,10 @@
+one sig Policy1_Rule_Student_Read_Marks_Permit extends Rule {}{
+ruleTarget = Policy1_Target_Student_Read_Marks_Permit
+ruleEffect = Permit//////
+}
+
+one sig Policy1_Target_Student_Read_Marks_Permit extends Target {}{
+subjects = SStudent
+resources = RMarks
+actions = ARead
+}NEW
