@@ -58,4 +58,11 @@ public class Fixer {
 		return result;
 	}
 
+	
+	public String fix(String inputFileContents, VerificationResult ver, String fixId) {
+
+		return inputFileContents + "OK!";
+	}
+	
+	
 }

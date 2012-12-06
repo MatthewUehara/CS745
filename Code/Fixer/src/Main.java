@@ -18,7 +18,11 @@ public class Main {
 		
 		String result = "";
 		
-				String input = "";
+		String arg = "";
+		if (args.length > 0)
+			arg = args[0];
+		
+		String input = "";
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -43,8 +47,13 @@ public class Main {
 		}
 	
 		SafetyOnlyOneApplicable safetyProperty = new SafetyOnlyOneApplicable("current_file.als", "C:/ClaferIE/CS745/Code/Fixer");
-
-		result = safetyProperty.verify();
+		
+		if (arg.startsWith("-fix"))
+		{
+			result = safetyProperty.fix(arg);
+		}
+		else
+			result = safetyProperty.verify();
 		
 		System.out.println(result);
 	}

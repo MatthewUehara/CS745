@@ -200,7 +200,7 @@ one sig T0 extends Target {}{
 
 one sig Policy1 extends Policy {}{
 policyTarget = T0
-rules = Policy1_Rule_Professor_Read_Marks_Permit + Policy1_Rule_Student_Read_Marks_Permit + Policy1_Rule_Professor_ReadModify_Marks_Permit
+rules = Policy1_Rule_Student_Read_Marks_Permit + Policy1_Rule_Professor_ReadModify_Marks_Permit
 combiningAlgo = DenyOverrides
 }
 
@@ -222,17 +222,6 @@ ruleEffect = Permit
 
 one sig Policy1_Target_Student_Read_Marks_Permit extends Target {}{
 subjects = SStudent
-resources = RMarks
-actions = ARead
-}
-
-one sig Policy1_Rule_Professor_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy1_Target_Professor_Read_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy1_Target_Professor_Read_Marks_Permit extends Target {}{
-subjects = SProfessor
 resources = RMarks
 actions = ARead
 }
@@ -293,17 +282,6 @@ resources = RMarks
 actions = AModify
 }
 
-one sig Policy3_Rule_Student_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy3_Target_Student_Read_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy3_Target_Student_Read_Marks_Permit extends Target {}{
-subjects = SStudent
-resources = RMarks
-actions = ARead
-}
-
 one sig Policy3_Rule_Professor_Read_Marks_Permit extends Rule {}{
 ruleTarget = Policy3_Target_Professor_Read_Marks_Permit
 ruleEffect = Permit
@@ -315,48 +293,20 @@ resources = RMarks
 actions = ARead
 }
 
+one sig Policy3_Rule_Student_Read_Marks_Permit extends Rule {}{
+ruleTarget = Policy3_Target_Student_Read_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Policy3_Target_Student_Read_Marks_Permit extends Target {}{
+subjects = SStudent
+resources = RMarks
+actions = ARead
+}
+
 one sig PS extends PolicySet{}{
 policySetTarget = T0
 combiningAlgo = P_OnlyOneApplicable
 policies = Policy1 + Policy2 + Policy3
 }
 
-
-//==================================
-// PREDICATES FOR RUNNING
-//==================================
-
-
-pred InconsistentPolicySet [ps : PolicySet, req : Request, p1: Policy, p2: Policy, r1: Rule, r2: Rule]{
-	ps.combiningAlgo = P_OnlyOneApplicable 
-	p1 in ps.policies
-	p2 in ps.policies
-	p1 != p2
-	r1 in p1.rules
-	r2 in p2.rules
-	policyResponse[p1, req] = Permit
-	(
-		p1.combiningAlgo = DenyOverrides and
-		(no r1':Rule | r1' in p1.rules and ruleResponse[r1', req] = Deny)
-		and ruleResponse[r1, req] = Permit
-	)
-	or
-	(
-		p1.combiningAlgo = PermitOverrides
-		and ruleResponse[r1, req] = Permit
-	)
-	policyResponse[p2, req] = Deny
-	(
-		p2.combiningAlgo = PermitOverrides and
-		(no r2':Rule | r2' in p2.rules and ruleResponse[r2', req] = Permit)
-		and ruleResponse[r2, req] = Deny
-	)
-	or
-	(
-		p2.combiningAlgo = DenyOverrides
-		and ruleResponse[r2, req] = Deny
-	)
-
-}
-
-run InconsistentPolicySet

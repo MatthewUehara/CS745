@@ -93,7 +93,7 @@ public class Main {
 		
 		try {
 			String result;
-			result = convertFile(fileName, "metamodel.als", "predicate.als", false);
+			result = convertFile(fileName, "metamodel.als", "", false);
 			System.out.println(result);
 			Utilities.writeStringToFile(fileName.replaceAll(".csv", ".als"), result);
 		} catch (IOException e) {
@@ -102,8 +102,8 @@ public class Main {
 		}
 	}
 	
-	private static String convertFile(String fileName, String metaModelFileName,
-			String predicateFileName, boolean allowCrossReferencingRules) throws IOException {
+	private static String convertFile(String fileName, String prefixFileName,
+			String postfixFileName, boolean allowCrossReferencingRules) throws IOException {
 
 		ArrayList<String> lines = Utilities.readFileAsStringArray(fileName);
 		
@@ -203,8 +203,12 @@ public class Main {
 
 		String result = getAlsModel(allowCrossReferencingRules);
 		
-		String metamodel = Utilities.getFileContentsAsString(metaModelFileName);
-		String predicate = Utilities.getFileContentsAsString(predicateFileName);
+		String metamodel = Utilities.getFileContentsAsString(prefixFileName);
+		
+		
+		String predicate = "";
+		if (!postfixFileName.isEmpty())
+			predicate = Utilities.getFileContentsAsString(postfixFileName);
 		
 		result = metamodel + result + predicate;
 		
@@ -359,7 +363,7 @@ public class Main {
 //	        	
 //	        }
 	        System.out.println("Filtered Rules:");
-			HashSet<Rule> finalRules = new HashSet<>();
+			HashSet<Rule> finalRules = new HashSet<Rule>();
 	        
 	        for (Rule r: p.rules)
 			{	

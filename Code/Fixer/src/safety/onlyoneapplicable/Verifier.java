@@ -15,6 +15,8 @@ import java.io.IOException;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import alloyrunner.main.Utilities;
+
 
 	public class Verifier {
 
@@ -198,8 +200,31 @@ import org.xml.sax.SAXException;
 				return result;
 			}
 
+			String predicateFileName =  "predicate_safety.als";
+			if (!new File(predicateFileName).exists())
+			{
+				result = new VerificationResult();
+				result.isError = true;
+				result.errorText = "Predicate file was not found.";				
+				return result;
+			}
+			
+			String newFileName = fileName.replace(".als", ".with_predicate.als");
+			
+			try {
+				String fileContentsWithPredicate = Utilities.getFileContentsAsString(fileName) + Utilities.getFileContentsAsString(predicateFileName);
+				Utilities.writeStringToFile(newFileName, fileContentsWithPredicate);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				result = new VerificationResult();
+				result.isError = true;
+				result.errorText = "Error while merging file with its predicate.";				
+				return result;
+			}
+						
 			String command = String.format("java -jar \"%s\" \"%s\" \"%s\"",
-					toolFileName, fileName, libPath);
+					toolFileName, newFileName, libPath);
 			
 //			command = "java -jar %s \"C:/ClaferIE/CS745/Code/Fixer/current_file.als\" \"C:/ClaferIE/CS745/Code/Fixer\"";
 					

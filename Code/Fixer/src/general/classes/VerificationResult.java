@@ -47,4 +47,14 @@ public class VerificationResult {
 	{
 		this.isError = false;
 	}
+
+	public void save(String verFileName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void load(String verFileName) {
+		// TODO Auto-generated method stub
+		
+	}
 }

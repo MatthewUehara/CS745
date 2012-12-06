@@ -1,11 +1,11 @@
 ===Stored Rule HashSet===
+Rule_Professor_ReadModify_Marks_Permit
 Rule_Student_Read_Marks_Permit
-Rule_Professor_Read_Marks_Permit
 ===Stored Rule HashSet===
 Rule_Professor_ReadModify_Marks_Deny
 Rule_Student_Read_Marks_Permit
 ===Stored Rule HashSet===
-Rule_Professor_Read_Marks_Permit
-Rule_Student_Read_Marks_Permit
 Rule_Professor_ReadModify_Marks_Deny
+Rule_Student_Read_Marks_Permit
+Rule_Professor_Read_Marks_Permit
 Rule_Professor_Modify_Marks_Permit

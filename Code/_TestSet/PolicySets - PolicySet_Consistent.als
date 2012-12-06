@@ -237,17 +237,6 @@ rules = Policy2_Rule_Assistant_Modify_Marks_Permit + Policy2_Rule_Student_Read_M
 combiningAlgo = PermitOverrides
 }
 
-one sig Policy2_Rule_Student_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy2_Target_Student_Read_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy2_Target_Student_Read_Marks_Permit extends Target {}{
-subjects = SStudent
-resources = RMarks
-actions = ARead
-}
-
 one sig Policy2_Rule_Assistant_Modify_Marks_Permit extends Rule {}{
 ruleTarget = Policy2_Target_Assistant_Modify_Marks_Permit
 ruleEffect = Permit
@@ -257,6 +246,17 @@ one sig Policy2_Target_Assistant_Modify_Marks_Permit extends Target {}{
 subjects = SAssistant
 resources = RMarks
 actions = AModify
+}
+
+one sig Policy2_Rule_Student_Read_Marks_Permit extends Rule {}{
+ruleTarget = Policy2_Target_Student_Read_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Policy2_Target_Student_Read_Marks_Permit extends Target {}{
+subjects = SStudent
+resources = RMarks
+actions = ARead
 }
 
 one sig Policy3 extends Policy {}{
@@ -287,15 +287,15 @@ resources = RMarks
 actions = ARead + AModify
 }
 
-one sig Policy3_Rule_Assistant_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy3_Target_Assistant_Read_Marks_Permit
+one sig Policy3_Rule_Assistant_Modify_Marks_Permit extends Rule {}{
+ruleTarget = Policy3_Target_Assistant_Modify_Marks_Permit
 ruleEffect = Permit
 }
 
-one sig Policy3_Target_Assistant_Read_Marks_Permit extends Target {}{
+one sig Policy3_Target_Assistant_Modify_Marks_Permit extends Target {}{
 subjects = SAssistant
 resources = RMarks
-actions = ARead
+actions = AModify
 }
 
 one sig Policy3_Rule_Professor_Read_Marks_Permit extends Rule {}{
@@ -309,17 +309,6 @@ resources = RMarks
 actions = ARead
 }
 
-one sig Policy3_Rule_Assistant_Modify_Marks_Permit extends Rule {}{
-ruleTarget = Policy3_Target_Assistant_Modify_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy3_Target_Assistant_Modify_Marks_Permit extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = AModify
-}
-
 one sig Policy3_Rule_Student_Read_Marks_Permit extends Rule {}{
 ruleTarget = Policy3_Target_Student_Read_Marks_Permit
 ruleEffect = Permit
@@ -327,6 +316,17 @@ ruleEffect = Permit
 
 one sig Policy3_Target_Student_Read_Marks_Permit extends Target {}{
 subjects = SStudent
+resources = RMarks
+actions = ARead
+}
+
+one sig Policy3_Rule_Assistant_Read_Marks_Permit extends Rule {}{
+ruleTarget = Policy3_Target_Assistant_Read_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Policy3_Target_Assistant_Read_Marks_Permit extends Target {}{
+subjects = SAssistant
 resources = RMarks
 actions = ARead
 }
@@ -365,42 +365,3 @@ combiningAlgo = P_OnlyOneApplicable
 policies = Policy1 + Policy2 + Policy3 + Policy4
 }
 
-
-//==================================
-// PREDICATES FOR RUNNING
-//==================================
-
-
-pred InconsistentPolicySet [ps : PolicySet, req : Request, p1: Policy, p2: Policy, r1: Rule, r2: Rule]{
-	ps.combiningAlgo = P_OnlyOneApplicable 
-	p1 in ps.policies
-	p2 in ps.policies
-	p1 != p2
-	r1 in p1.rules
-	r2 in p2.rules
-	policyResponse[p1, req] = Permit
-	(
-		p1.combiningAlgo = DenyOverrides and
-		(no r1':Rule | r1' in p1.rules and ruleResponse[r1', req] = Deny)
-		and ruleResponse[r1, req] = Permit
-	)
-	or
-	(
-		p1.combiningAlgo = PermitOverrides
-		and ruleResponse[r1, req] = Permit
-	)
-	policyResponse[p2, req] = Deny
-	(
-		p2.combiningAlgo = PermitOverrides and
-		(no r2':Rule | r2' in p2.rules and ruleResponse[r2', req] = Permit)
-		and ruleResponse[r2, req] = Deny
-	)
-	or
-	(
-		p2.combiningAlgo = DenyOverrides
-		and ruleResponse[r2, req] = Deny
-	)
-
-}
-
-run InconsistentPolicySet
