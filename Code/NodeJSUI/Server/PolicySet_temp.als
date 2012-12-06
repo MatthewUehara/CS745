@@ -300,7 +300,7 @@ actions = ARead
 
 one sig Policy3_Rule_Assistant_Read_Marks_Deny extends Rule {}{
 ruleTarget = Policy3_Target_Assistant_Read_Marks_Deny
-ruleEffect = Permit
+ruleEffect = Deny
 }
 
 one sig Policy3_Target_Assistant_Read_Marks_Deny extends Target {}{
