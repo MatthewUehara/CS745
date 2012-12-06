@@ -101,8 +101,6 @@ public class Main {
     	    }	
 			//System.out.println(line);
     	    
-    	    
-			//writeFile(line);
     	    output.write(line);
     	    output.write(newLine);
 		}
@@ -114,6 +112,7 @@ public class Main {
 
 	
 	public static void main(String[] args) throws Exception {	
+		
 		
 		//String userInput1="Policy2_Rule_Professor_ReadModify_Marks_Deny"; //effect
 		String userInput1="Policy1_Rule_Professor_ReadModify_Marks_Permit";
