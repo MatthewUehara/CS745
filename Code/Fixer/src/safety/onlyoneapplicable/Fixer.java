@@ -3,6 +3,8 @@ package safety.onlyoneapplicable;
 import general.classes.Fix;
 import general.classes.VerificationResult;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 
 
@@ -59,9 +61,13 @@ public class Fixer {
 	}
 
 	
-	public String fix(String inputFileContents, VerificationResult ver, String fixId) {
-
-		return inputFileContents + "OK!";
+	public String fix(String inputFileContents, VerificationResult ver, String fixId) throws Exception {
+		
+		String s = "dawfg" + inputFileContents;
+		
+		s += "OK"; // PROCESS THE FILE HERE
+		
+		return s;
 	}
 	
 	

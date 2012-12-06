@@ -3,6 +3,8 @@ package safety.onlyoneapplicable;
 import general.classes.Fix;
 import general.classes.VerificationResult;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import alloyrunner.main.Utilities;
@@ -89,11 +91,10 @@ public class SafetyOnlyOneApplicable {
 			ver.load(verFileName);
 			String inputFileContents = Utilities.getFileContentsAsString(this.fileName);
 	
+			inputFileContents = URLDecoder.decode(inputFileContents.replace("+", "%2B"), "UTF-8").replace("%2B", "+").replace("<br>", "\n");
 			result = fixer.fix(inputFileContents, ver, fixId);
 			
-			result = "Yes!!!";//
-			
-			result = "{\"value\":\"" + result + "\"}";
+			result = "{\"value\":\"" + URLEncoder.encode(result, "UTF-8").replaceAll("\\+","%20") + "\"}";
 			
 		}
 		catch(Exception e)

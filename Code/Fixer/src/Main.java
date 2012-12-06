@@ -24,28 +24,32 @@ public class Main {
 		
 		String input = "";
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
-		String line;
-		
-		try {
-			while((line = br.readLine()) != null)
-			{
-				input = input + line;
+		if (args.length <= 1)
+		{
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			
+			String line;
+			
+			try {
+				while((line = br.readLine()) != null)
+				{
+					input = input + line;
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				input = "";
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			input = "";
+			
+			try {
+				Utilities.writeStringToFile("current_file.als", input.replaceAll("<br>", "\n"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
-		try {
-			Utilities.writeStringToFile("current_file.als", input.replaceAll("<br>", "\n"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
+
 		SafetyOnlyOneApplicable safetyProperty = new SafetyOnlyOneApplicable("current_file.als", "C:/ClaferIE/CS745/Code/Fixer");
 		
 		if (arg.startsWith("-fix"))

@@ -55,7 +55,10 @@ Table.method("onRendered", function()
             cache: false,
             data: {model: getModelValue(), id: sid},
             success: function(data){
-                alert(data);
+                var result = eval("(" + data + ")");
+                alert("fix complete");
+                var s = decodeURIComponent(result.value);
+                $("#model").val(s);
             }
         });        
         

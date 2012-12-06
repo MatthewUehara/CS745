@@ -387,7 +387,6 @@ combiningAlgo = P_OnlyOneApplicable
 policies = Policy1 + Policy2 + Policy3 + Policy4
 }
 
-
 //==================================
 // PREDICATES FOR RUNNING
 //==================================
