@@ -14,6 +14,7 @@ public class Fixer {
 	
 	private String invertRuleEffect(String originalEffect)
 	{
+		// inverts the effect (Permit -> Deny, Deny -> Permit)
 		if (originalEffect.equals("Permit"))
 			return "Deny";
 		
@@ -21,7 +22,8 @@ public class Fixer {
 	}
 	
 	public ArrayList<Fix> propose(VerificationResult ver) {
-
+		// returns the list of proposed fixes.
+		
 		ArrayList<Fix> result = new ArrayList<Fix>();
 		
 		Fix f;
@@ -64,11 +66,11 @@ public class Fixer {
 
 	
 	public String fix(String inputFileContents, VerificationResult ver, String fixId) throws Exception {
-		
+	// automatic apply fix with certain fixId ["1", "2", "3" and so on]
 		String s = inputFileContents;
 		
-		if (fixId.equals("1"))
-			s = replaceRuleEffect(s, ver.Rule1, ver.Rule1Effect);
+		if (fixId.equals("1")) // for the first fix
+			s = replaceRuleEffect(s, ver.Rule1, ver.Rule1Effect); // we replace the rule effect, to be implemented
 		
 		s += "OK"; // PROCESS THE FILE HERE
 		
@@ -77,7 +79,7 @@ public class Fixer {
 
 	private String replaceRuleEffect(String source, String rule1, String rule1Effect) {
 		// TODO Auto-generated method stub
-		String s = source;
+		String s = source; // replace rule effect
 		
 		return s; /// TMP
 /*
