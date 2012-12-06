@@ -6,6 +6,8 @@ import general.classes.VerificationResult;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Fixer {
@@ -63,11 +65,31 @@ public class Fixer {
 	
 	public String fix(String inputFileContents, VerificationResult ver, String fixId) throws Exception {
 		
-		String s = "dawfg" + inputFileContents;
+		String s = inputFileContents;
+		
+		if (fixId.equals("1"))
+			s = replaceRuleEffect(s, ver.Rule1, ver.Rule1Effect);
 		
 		s += "OK"; // PROCESS THE FILE HERE
 		
 		return s;
+	}
+
+	private String replaceRuleEffect(String source, String rule1, String rule1Effect) {
+		// TODO Auto-generated method stub
+		String s = source;
+		
+		return s; /// TMP
+/*
+		String pattern = String.format("(one sig \\%s extends Rule {}{)(.*)(})", rule1);
+		
+		Pattern patt = Pattern.compile(pattern);
+		Matcher m = patt.matcher(s);
+		String ruleContents = m.group(2);
+		System.out.println(ruleContents);
+		
+		return s;
+*/		
 	}
 	
 	
