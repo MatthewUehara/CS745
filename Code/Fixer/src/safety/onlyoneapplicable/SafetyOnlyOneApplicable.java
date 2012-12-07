@@ -3,6 +3,7 @@ package safety.onlyoneapplicable;
 import general.classes.Fix;
 import general.classes.VerificationResult;
 
+import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class SafetyOnlyOneApplicable {
 	public String verify() {
 		String result = "";
 		
-	 	VerificationResult verificationResult = (new Verifier()).verify(this.fileName, this.jarPath);
+	 	VerificationResult verificationResult = (new Verifier(this.jarPath)).verify(this.fileName);
 		
 	 	if (verificationResult.isError)
 	 	{
@@ -46,7 +47,15 @@ public class SafetyOnlyOneApplicable {
 		 	if (!verificationResult.isConsisent)
 		 	{
 
-		 		ArrayList<Fix> fixes = (new Fixer()).propose(verificationResult);
+		 		String contents = "";
+		 		
+		 		try {
+					contents = Utilities.getFileContentsAsString(this.fileName);
+				} catch (IOException e) {
+					result = String.format("{\"error\":\"%s\"}", "Impossible to propose fixes");	 		
+				}
+		 		
+		 		ArrayList<Fix> fixes = (new Fixer(this.jarPath)).propose(contents, verificationResult);
 		 		
 		 		result += ",\"fixes\" : [";
 		 		
@@ -85,7 +94,7 @@ public class SafetyOnlyOneApplicable {
 		
 		try
 		{
-			Fixer fixer = new Fixer();
+			Fixer fixer = new Fixer(this.jarPath);
 			
 			VerificationResult ver = new VerificationResult();
 			ver.load(verFileName);

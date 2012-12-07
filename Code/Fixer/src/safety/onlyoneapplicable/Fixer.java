@@ -21,6 +21,13 @@ import alloyrunner.main.Utilities;
 
 public class Fixer {
 	
+	private String jarPath;
+	
+	public Fixer(String jarPath)
+	{
+		this.jarPath = jarPath;
+	}
+	
 	private String invert(String originalEffect)
 	{
 		// inverts the effect (Permit -> Deny, Deny -> Permit)
@@ -136,8 +143,56 @@ public class Fixer {
 	}
  
 	
+
+	private int getNumberOfFutureFixesRecursive(String inputFileContents, VerificationResult ver, String fixId, int depth)
+	{
+		
+		try {
+			String fixed = fix(inputFileContents, ver, fixId);			
+			String tmpFileName = "temp_fixed_file.als";
+			Utilities.writeStringToFile(tmpFileName, fixed);
+			Verifier v = new Verifier(this.jarPath);
+			VerificationResult newResult = v.verify(tmpFileName);
+			if (newResult.isConsisent)
+				return 0;
+			
+			int nextDepth = depth - 1;
+			if (nextDepth == 0)
+				return 1;
+			
+			int[] results = new int[4];
+			
+			results[0] = getNumberOfFutureFixesRecursive(fixed, newResult, "1", nextDepth);
+			results[1] = getNumberOfFutureFixesRecursive(fixed, newResult, "2", nextDepth);
+			results[2] = getNumberOfFutureFixesRecursive(fixed, newResult, "3", nextDepth);
+			results[3] = getNumberOfFutureFixesRecursive(fixed, newResult, "4", nextDepth);
+			
+			Arrays.sort(results);
+			
+			return results[0] + 1;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return 10000;
+		}
+				
+	}
 	
-	public ArrayList<Fix> propose(VerificationResult ver) {
+	
+	private String estimateNumberOfFutureFixes(String inputFileContents, VerificationResult ver, String fixId)
+	{		
+		int depth = 2;
+		
+		int recResult = getNumberOfFutureFixesRecursive(inputFileContents, ver, fixId, depth);
+		if (recResult == depth)
+		{
+			return ">=" + recResult;
+		}
+		else
+			return recResult + "";
+	}
+	
+	public ArrayList<Fix> propose(String inputFileContents, VerificationResult ver) {
 		// returns the list of proposed fixes.
 		
 		ArrayList<Fix> result = new ArrayList<Fix>();
@@ -149,7 +204,7 @@ public class Fixer {
 		f.statement = String.format("In policy '%s', rule '%s', change the rule effect to '%s'", 
 				ver.Policy1, ver.Rule1, invert(ver.Rule1Effect)
 				);
-		f.est = "-";
+		f.est = estimateNumberOfFutureFixes(inputFileContents, ver, "1");
 		result.add(f);
 
 		
@@ -158,7 +213,7 @@ public class Fixer {
 		f.statement = String.format("In policy '%s', rule '%s', change the rule effect to '%s'", 
 				ver.Policy2, ver.Rule2, invert(ver.Rule2Effect)
 				);
-		f.est = "-";
+		f.est = estimateNumberOfFutureFixes(inputFileContents, ver, "2");
 		result.add(f);
 		
 		f = new Fix();
@@ -166,7 +221,7 @@ public class Fixer {
 		f.statement = String.format("In policy '%s' change the CombiningAlgo to '%s'", 
 				ver.Policy1, invert(ver.Policy1Algo)
 				);
-		f.est = "-";
+		f.est = estimateNumberOfFutureFixes(inputFileContents, ver, "3");
 		result.add(f);
 		
 		f = new Fix();
@@ -174,7 +229,7 @@ public class Fixer {
 		f.statement = String.format("In policy '%s' change the CombiningAlgo to '%s'", 
 				ver.Policy2, invert(ver.Policy2Algo)
 				);
-		f.est = "-";
+		f.est = estimateNumberOfFutureFixes(inputFileContents, ver, "4");
 		result.add(f);
 		
 		return result;
@@ -182,7 +237,8 @@ public class Fixer {
 
 	
 	public String fix(String inputFileContents, VerificationResult ver, String fixId) throws Exception {
-	// automatic apply fix with certain fixId ["1", "2", "3" and so on]
+	// returns corrected file
+		
 		String s = inputFileContents;
 		
 		if (fixId.equals("1"))
@@ -213,7 +269,7 @@ public class Fixer {
 			e.printStackTrace();
 		}
 		
-		return s; /// TMP
+		return s;
 	}
 	
 	

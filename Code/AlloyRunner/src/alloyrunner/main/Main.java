@@ -236,14 +236,14 @@ public class Main {
 	            pc.execute(contents); // pass Alloy file contents
 	
 	            pc.execute("unsatCoreMinimization"); // set UNSAT core minimization to the best one
-	            pc.execute("0");             
+	            pc.execute("2");             
 	
 	            pc.execute("resolve"); // resolve - solves the model
 	            pc.execute("next"); // Ask to get next instance.
 	            
 	//            System.out.println("Getting UNSAT CORE...");
 	            
-	            pc.execute("unsatCore"); // get UNSAT core
+	//            pc.execute("unsatCore"); // get UNSAT core
 	
 	//            System.out.println("UNSAT CORE HAS BEEN GOT...");                      
 	
@@ -291,7 +291,7 @@ public class Main {
 	            }
 	            else // model is inconsistent, and we have UNSAT cores
 	            {	            
-		            int unsatCoreSize = Integer.parseInt(sl.get(pos++));
+//		            int unsatCoreSize = Integer.parseInt(sl.get(pos++));
 	            }
 	            
 	            System.out.println(sXML); // GETTING INSTANCE XML!!!

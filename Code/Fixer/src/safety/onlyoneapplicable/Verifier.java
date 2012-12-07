@@ -20,9 +20,17 @@ import alloyrunner.main.Utilities;
 
 	public class Verifier {
 
+		private String jarPath;
+		
 		/**
 		 * @param args
 		 */
+		
+		public Verifier(String jarPath)
+		{
+			this.jarPath = jarPath;			
+		}
+		
 		private Document alloyXMLDoc;
 		
 		  public NodeList xpath(String query)
@@ -154,15 +162,21 @@ import alloyrunner.main.Utilities;
 
 	    	VerificationResult result = new VerificationResult(false);
 	    	
-	    	result.Rule1 = filterSkolem(getSkolemValue("InconsistentPolicySet_r1"));
-	    	result.Rule2 = filterSkolem(getSkolemValue("InconsistentPolicySet_r2"));
+	    	result.Rule1 = getSkolemValue("InconsistentPolicySet_r1");
+	    	result.Rule2 = getSkolemValue("InconsistentPolicySet_r2");
 	    	result.PolicySet = filterSkolem(getSkolemValue("InconsistentPolicySet_ps"));
 
-	    	String[] temp;
-	    	temp = result.Rule1.split("_");
-	    	result.Rule1Effect = temp[temp.length - 1];
-	    	temp = result.Rule2.split("_");
-	    	result.Rule2Effect = temp[temp.length - 1];
+	    	result.Rule1Effect = getFieldValue(result.Rule1, "ruleEffect");
+	    	result.Rule2Effect = getFieldValue(result.Rule2, "ruleEffect");	    	
+	
+	    	result.Rule1 = filterSkolem(result.Rule1);
+	    	result.Rule2 = filterSkolem(result.Rule2);
+	    	
+//	    	String[] temp;
+//	    	temp = result.Rule1.split("_");
+//	    	result.Rule1Effect = temp[temp.length - 1];
+//	    	temp = result.Rule2.split("_");
+//	    	result.Rule2Effect = temp[temp.length - 1];
 	    	
 	    	result.Rule1Target = result.Rule1.replace("Rule_", "Target_");
 	    	result.Rule2Target = result.Rule2.replace("Rule_", "Target_");
@@ -185,7 +199,7 @@ import alloyrunner.main.Utilities;
 	    	
 	    }
 
-		public VerificationResult verify(String fileName, String libPath){
+		public VerificationResult verify(String fileName){
 			// TODO Auto-generated method stub
 			
 			VerificationResult result;
@@ -224,7 +238,7 @@ import alloyrunner.main.Utilities;
 			}
 						
 			String command = String.format("java -jar \"%s\" \"%s\" \"%s\"",
-					toolFileName, newFileName, libPath);
+					toolFileName, newFileName, this.jarPath);
 			
 //			command = "java -jar %s \"C:/ClaferIE/CS745/Code/Fixer/current_file.als\" \"C:/ClaferIE/CS745/Code/Fixer\"";
 					

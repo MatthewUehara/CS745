@@ -233,24 +233,13 @@ actions = ARead
 
 one sig Policy2 extends Policy {}{
 policyTarget = T0
-rules = Policy2_Rule_Assistant_Modify_Marks_Permit + Policy2_Rule_Student_Read_Marks_Permit + Policy2_Rule_Assistant_Read_Marks_Permit
-combiningAlgo = PermitOverrides // Change to DenyOverrides -> no effect
-}
-
-one sig Policy2_Rule_Assistant_Modify_Marks_Permit extends Rule {}{
-ruleTarget = Policy2_Target_Assistant_Modify_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy2_Target_Assistant_Modify_Marks_Permit extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = AModify
+rules = Policy2_Rule_Student_Read_Marks_Permit + Policy2_Rule_Assistant_Read_Marks_Permit
+combiningAlgo = PermitOverrides
 }
 
 one sig Policy2_Rule_Assistant_Read_Marks_Permit extends Rule {}{
 ruleTarget = Policy2_Target_Assistant_Read_Marks_Permit
-ruleEffect = Deny// Change to Deny -> more fixes
+ruleEffect = Permit
 }
 
 one sig Policy2_Target_Assistant_Read_Marks_Permit extends Target {}{
@@ -272,8 +261,8 @@ actions = ARead
 
 one sig Policy3 extends Policy {}{
 policyTarget = T0
-rules = Policy3_Rule_Assistant_Modify_Marks_Permit + Policy3_Rule_Professor_Modify_Marks_Permit + Policy3_Rule_Professor_Read_Marks_Permit + Policy3_Rule_Assistant_ReadModify_Marks_Deny + Policy3_Rule_Student_Read_Marks_Permit + Policy3_Rule_Assistant_Read_Marks_Permit
-combiningAlgo = PermitOverrides
+rules = Policy3_Rule_Professor_Modify_Marks_Permit + Policy3_Rule_Professor_Read_Marks_Permit + Policy3_Rule_Student_Read_Marks_Permit + Policy3_Rule_Assistant_Read_Marks_Deny
+combiningAlgo = DenyOverrides
 }
 
 one sig Policy3_Rule_Professor_Modify_Marks_Permit extends Rule {}{
@@ -287,28 +276,6 @@ resources = RMarks
 actions = AModify
 }
 
-one sig Policy3_Rule_Assistant_Modify_Marks_Permit extends Rule {}{
-ruleTarget = Policy3_Target_Assistant_Modify_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy3_Target_Assistant_Modify_Marks_Permit extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = AModify
-}
-
-one sig Policy3_Rule_Assistant_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy3_Target_Assistant_Read_Marks_Permit
-ruleEffect = Deny
-}
-
-one sig Policy3_Target_Assistant_Read_Marks_Permit extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = ARead
-}
-
 one sig Policy3_Rule_Professor_Read_Marks_Permit extends Rule {}{
 ruleTarget = Policy3_Target_Professor_Read_Marks_Permit
 ruleEffect = Permit
@@ -318,17 +285,6 @@ one sig Policy3_Target_Professor_Read_Marks_Permit extends Target {}{
 subjects = SProfessor
 resources = RMarks
 actions = ARead
-}
-
-one sig Policy3_Rule_Assistant_ReadModify_Marks_Deny extends Rule {}{
-ruleTarget = Policy3_Target_Assistant_ReadModify_Marks_Deny
-ruleEffect = Deny
-}
-
-one sig Policy3_Target_Assistant_ReadModify_Marks_Deny extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = ARead + AModify
 }
 
 one sig Policy3_Rule_Student_Read_Marks_Permit extends Rule {}{
@@ -342,10 +298,21 @@ resources = RMarks
 actions = ARead
 }
 
+one sig Policy3_Rule_Assistant_Read_Marks_Deny extends Rule {}{
+ruleTarget = Policy3_Target_Assistant_Read_Marks_Deny
+ruleEffect = Deny
+}
+
+one sig Policy3_Target_Assistant_Read_Marks_Deny extends Target {}{
+subjects = SAssistant
+resources = RMarks
+actions = ARead
+}
+
 one sig Policy4 extends Policy {}{
 policyTarget = T0
-rules = Policy4_Rule_Assistant_Modify_Marks_Permit + Policy4_Rule_Assistant_Read_Marks_Permit + Policy4_Rule_Assistant_Read_Marks_Deny
-combiningAlgo = DenyOverrides // Change to permitOverrides
+rules = Policy4_Rule_Assistant_Modify_Marks_Deny + Policy4_Rule_Assistant_Read_Marks_Permit
+combiningAlgo = PermitOverrides
 }
 
 one sig Policy4_Rule_Assistant_Read_Marks_Permit extends Rule {}{
@@ -359,23 +326,12 @@ resources = RMarks
 actions = ARead
 }
 
-one sig Policy4_Rule_Assistant_Read_Marks_Deny extends Rule {}{
-ruleTarget = Policy4_Target_Assistant_Read_Marks_Deny
-ruleEffect = Deny // Change to Permit
+one sig Policy4_Rule_Assistant_Modify_Marks_Deny extends Rule {}{
+ruleTarget = Policy4_Target_Assistant_Modify_Marks_Deny
+ruleEffect = Deny
 }
 
-one sig Policy4_Target_Assistant_Read_Marks_Deny extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = ARead
-}
-
-one sig Policy4_Rule_Assistant_Modify_Marks_Permit extends Rule {}{
-ruleTarget = Policy4_Target_Assistant_Modify_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy4_Target_Assistant_Modify_Marks_Permit extends Target {}{
+one sig Policy4_Target_Assistant_Modify_Marks_Deny extends Target {}{
 subjects = SAssistant
 resources = RMarks
 actions = AModify
