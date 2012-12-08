@@ -1,50 +1,51 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  2 DEC 2012 20:22
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.9.29)  8 DEC 2012 11:55
 entering extended mode
- \write18 enabled.
- %&-line parsing enabled.
-**sigproc-sp.tex
-(./sigproc-sp.tex
+**C:/Documents*and*Settings/上原/デスクトップ/ReportACMFormat/sigproc-s
+p.tex
+
+("C:/Documents and Settings/上原/デスクトップ/ReportACMFormat/sigproc-s
+p.tex"
 LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
-rman-x-2012-05-30, ngerman-x-2012-05-30, afrikaans, ancientgreek, ibycus, arabi
-c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
-h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
-h, french, friulan, galician, german, ngerman, swissgerman, monogreek, greek, h
-ungarian, icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, ma
-rathi, oriya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, 
-kurmanji, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk,
- polish, portuguese, romanian, romansh, russian, sanskrit, serbian, serbianc, s
-lovak, slovenian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, 
-welsh, loaded.
-(./acm_proc_article-sp.cls
-(c:/texlive/2012/texmf-dist/tex/latex/graphics/epsfig.sty
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+
+("C:\Documents and Settings\上原\デスクトップ\ReportACMFormat\acm_proc_
+article-sp.cls" ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\epsfig.sty"
 Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
 
-(c:/texlive/2012/texmf-dist/tex/latex/graphics/graphicx.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(c:/texlive/2012/texmf-dist/tex/latex/graphics/keyval.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(c:/texlive/2012/texmf-dist/tex/latex/graphics/graphics.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(c:/texlive/2012/texmf-dist/tex/latex/graphics/trig.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(c:/texlive/2012/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
-(c:/texlive/2012/texmf-dist/tex/latex/pdftex-def/pdftex.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-(c:/texlive/2012/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(c:/texlive/2012/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count79
@@ -55,10 +56,10 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \epsfxsize=\dimen104
 \epsfysize=\dimen105
 )
-(c:/texlive/2012/texmf-dist/tex/latex/amsfonts/amssymb.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
 Package: amssymb 2009/06/22 v3.00
 
-(c:/texlive/2012/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
 Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 \@emptytoks=\toks15
 \symAMSa=\mathgroup4
@@ -66,24 +67,24 @@ Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
 ))
-(c:/texlive/2012/texmf-dist/tex/latex/amsmath/amsmath.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsmath.sty"
 Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip41
 
 For additional information on amsmath, use the `?' option.
-(c:/texlive/2012/texmf-dist/tex/latex/amsmath/amstext.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amstext.sty"
 Package: amstext 2000/06/29 v2.01
 
-(c:/texlive/2012/texmf-dist/tex/latex/amsmath/amsgen.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks16
 \ex@=\dimen106
 ))
-(c:/texlive/2012/texmf-dist/tex/latex/amsmath/amsbsy.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsbsy.sty"
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen107
 )
-(c:/texlive/2012/texmf-dist/tex/latex/amsmath/amsopn.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ams\math\amsopn.sty"
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count80
@@ -151,7 +152,7 @@ Excerpts were taken from (Journal Style) 'esub2acm.cls'.
 \titleboxnoteflag=\count100
 Document Class: acm_proc_article-sp 2009/04/22 - V3.2SP - based on esub2acm.sty
  <23 April 96>
-(c:/texlive/2012/texmf-dist/tex/latex/base/latexsym.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\latexsym.sty"
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
@@ -183,22 +184,22 @@ LaTeX Info: Redefining \cite on input line 1236.
 \acmcopyr=\toks33
 \boilerplate=\toks34
 \copyrightetc=\toks35
-(c:/texlive/2012/texmf-dist/tex/latex/base/fontenc.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-(c:/texlive/2012/texmf-dist/tex/latex/base/t1enc.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
 File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
 )
 LaTeX Font Info:    Try loading font information for T1+aer on input line 100.
 
-(c:/texlive/2012/texmf-dist/tex/latex/ae/t1aer.fd
+("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aer.fd"
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))
-(c:/texlive/2012/texmf-dist/tex/latex/mh/mathtools.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\mh\mathtools.sty"
 Package: mathtools 2012/04/24 v1.12 mathematical typesetting tools
 
-(c:/texlive/2012/texmf-dist/tex/latex/tools/calc.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count109
 \calc@Bcount=\count110
@@ -211,7 +212,7 @@ LaTeX Info: Redefining \addtolength on input line 77.
 \calc@Ccount=\count111
 \calc@Cskip=\skip46
 )
-(c:/texlive/2012/texmf-dist/tex/latex/mh/mhsetup.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\mh\mhsetup.sty"
 Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 )
 \g_MT_multlinerow_int=\count112
@@ -224,18 +225,26 @@ Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 \l_MT_above_shortintertext_dim=\dimen130
 \l_MT_below_shortintertext_dim=\dimen131
 )
-(c:/texlive/2012/texmf-dist/tex/latex/base/inputenc.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
 Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks36
 \inpenc@posthook=\toks37
 
-(c:/texlive/2012/texmf-dist/tex/latex/ucs/utf8x.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\utf8x.def"
 File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
 ))
-(c:/texlive/2012/texmf-dist/tex/latex/ucs/ucs.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\ucs.sty"
 Package: ucs 2004/10/17 UCS: Unicode input support
 
-(c:/texlive/2012/texmf-dist/tex/latex/ucs/data/uni-global.def
+("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-global.def"
 File: uni-global.def 2012/08/28 UCS: Unicode global data
 )
 \uc@secondtry=\count113
@@ -243,25 +252,24 @@ File: uni-global.def 2012/08/28 UCS: Unicode global data
 \uc@combtoksb=\toks39
 \uc@temptokena=\toks40
 )
-(c:/texlive/2012/texmf-dist/tex/latex/parskip/parskip.sty
+("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\parskip.sty"
 Package: parskip 2001/04/09 non-zero parskip adjustments
-) (./sigproc-sp.aux)
-\openout1 = `sigproc-sp.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-
-(c:/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
+)
+("C:\Documents and Settings\上原\デスクトップ\ReportACMFormat\sigproc-s
+p.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+ ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count114
 \scratchdimen=\dimen132
@@ -274,68 +282,155 @@ LaTeX Font Info:    ... okay on input line 10.
 \MPnumerator=\count118
 \makeMPintoPDFobject=\count119
 \everyMPtoPDFconversion=\toks42
-) (c:/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(c:/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-(c:/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(c:/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(c:/texlive/2012/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-
-(c:/texlive/2012/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-))
-(c:/texlive/2012/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-(c:/texlive/2012/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-(c:/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
-
-(c:/texlive/2012/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
-(c:/texlive/2012/texmf-dist/tex/latex/ucs/ucsencs.def
+) ("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\ucsencs.def"
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 24.
+LaTeX Font Info:    Try loading font information for U+msa on input line 25.
 
-(c:/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 24.
+LaTeX Font Info:    Try loading font information for U+msb on input line 25.
 
-(c:/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 24.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 25.
 
-(c:/texlive/2012/texmf-dist/tex/latex/base/ulasy.fd
-File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font 
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ulasy.fd"
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+Underfull \hbox (badness 10000) in paragraph at lines 59--62
+
+ []
+
+LaTeX Font Info:    Try loading font information for T1+aett on input line 63.
+("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+) [1{C:/Documents and Settings/All Users.WINDOWS/Application Data/MiKTeX/2.9/pd
+ftex/config/pdftex.map}
+
+
+]
+Overfull \hbox (162.00357pt too wide) in paragraph at lines 100--103
+[]\T1/aer/m/n/9 For Ac-cess con-trol pol-icy ver-i-fi-ca-tion in Al-loy: 1) htt
+p://www.cs.ucsb.edu/ bultan/publications/tech-
+ []
+
+
+Overfull \hbox (100.19081pt too wide) in paragraph at lines 100--103
+\T1/aer/m/n/9 report04.pdf 2 - WE USE IT!! ) http://w3.uqo.ca/notere05/document
+s/logrippo.pdf,
+ []
+
+
+Overfull \hbox (96.41243pt too wide) in paragraph at lines 108--109
+\T1/aer/m/n/9 ing - was de-scribed in the the-sis http://people.csail.mit.edu/a
+solar/papers/thesis.pdf
+ []
+
+
+Overfull \hbox (101.49797pt too wide) in paragraph at lines 110--111
+[]\T1/aer/m/n/9 Need to look at this - prob-a-bly needed - http://people.csail.
+mit.edu/eskang/talks/mit-
+ []
+
+[2] <table.png, id=16, 377.15906pt x 328.22626pt>
+File: table.png Graphic file (type png)
+ <use table.png>
+Package pdftex.def Info: table.png used on input line 135.
+(pdftex.def)             Requested size: 252.0pt x 219.30443pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 135--136
+[][] 
+ []
+
+
+Overfull \hbox (3.84793pt too wide) in paragraph at lines 163--164
+\T1/aer/m/n/9 ac-cess con-trol model re-pair, while sig-nif-i-cantly re-duc-ing
+ user's
+ []
+
+
+Overfull \hbox (11.86888pt too wide) in paragraph at lines 172--173
+[]\T1/aer/m/n/9 The first two points are pretty clear; our ver-i-fi-ca-tion is 
+bounded.
+ []
+
+
+Underfull \vbox (badness 1337) has occurred while \output is active []
+
+ [3 <C:/Documents and Settings/上原/デスクトップ/ReportACMFormat/table.
+png>]
+("C:\Documents and Settings\上原\デスクトップ\ReportACMFormat\sigproc-s
+p.bbl")
+Overfull \hbox (6.93143pt too wide) in paragraph at lines 197--197
+[]\secfnt USER EX-PER-I-MENT TASKS AND QUES-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 207--211
+
+ []
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-32.def"
+File: uni-32.def 2012/08/28 UCS: Unicode data U+2000..U+20FF
+)
+Underfull \hbox (badness 10000) in paragraph at lines 214--218
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--224
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 225--229
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 230--239
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 242--245
+
+ []
+
+[5
+
+]
+("C:\Documents and Settings\上原\デスクトップ\ReportACMFormat\sigproc-s
+p.aux") ) 
+Here is how much of TeX's memory you used:
+ 3543 strings out of 494045
+ 47288 string characters out of 3148297
+ 112713 words of memory out of 3000000
+ 6755 multiletter control sequences out of 15000+200000
+ 50316 words of font info for 69 fonts, out of 3000000 for 9000
+ 715 hyphenation exceptions out of 8191
+ 41i,11n,26p,916b,264s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmsy9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mtt9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/M
+iKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb>
+Output written on sigproc-sp.pdf (5 pages, 175252 bytes).
+PDF statistics:
+ 60 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+

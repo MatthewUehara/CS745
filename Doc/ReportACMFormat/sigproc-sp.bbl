@@ -1,85 +1,63 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{1}
 
-\bibitem{bak:claferfeature}
-Kacper B{\k a}k, Krzysztof Czarnecki, and Andrzej Wasowski.
-\newblock Feature and meta-models in clafer: Mixed, specialized and coupled.
-\newblock In {\em 3rd International Conference on Software Language
-  Engineering}, pages 291--301, October 2010.
+\bibitem{Bravo:2007:RIX:1783534.1783545}
+Loreto Bravo, James Cheney, and Irini Fundulaki.
+\newblock Repairing inconsistent xml write-access control policies.
+\newblock In {\em Proceedings of the 11th international conference on Database
+  programming languages}, DBPL'07, pages 97--111, Berlin, Heidelberg, 2007.
+  Springer-Verlag.
 
-\bibitem{Benavides05automatedreasoning}
-David Benavides, Pablo Trinidad, and Antonio Ruiz-Cort\'{e}s.
-\newblock Automated reasoning on feature models.
-\newblock In {\em Advanced Information Systems Engineering: 17th International
-  Conference}, {LNCS}. Springer, 2005.
+\bibitem{4258517}
+V.~Cridlig, R.~State, and O.~Festor.
+\newblock A model for checking consistency in access control policies for
+  network management.
+\newblock In {\em Integrated Network Management, 2007. IM '07. 10th IFIP/IEEE
+  International Symposium on}, pages 11 --19, 21 2007-yearly 25 2007.
 
-\bibitem{Blasco:2008:NGV:1401271.1401526}
-X.~Blasco, J.~M. Herrero, J.~Sanchis, and M.~Mart\'{\i}nez.
-\newblock A new graphical visualization of n-dimensional pareto front for
-  decision-making in multiobjective optimization.
-\newblock {\em Inf. Sci.}, 178(20):3908--3924, October 2008.
+\bibitem{Fisler:2005:VCA:1062455.1062502}
+Kathi Fisler, Shriram Krishnamurthi, Leo~A. Meyerovich, and Michael~Carl
+  Tschantz.
+\newblock Verification and change-impact analysis of access-control policies.
+\newblock In {\em Proceedings of the 27th international conference on Software
+  engineering}, ICSE '05, pages 196--205, New York, NY, USA, 2005. ACM.
 
-\bibitem{ClementsNorthrop2001}
-Paul~C. Clements and Linda Northrop.
-\newblock {\em Software Product Lines: Practices and Patterns}.
-\newblock SEI Series in Software Engineering. Addison-Wesley, 2001.
+\bibitem{Hughes:2008:AVA:1459278.1459282}
+Graham Hughes and Tevfik Bultan.
+\newblock Automated verification of access control policies using a sat solver.
+\newblock {\em Int. J. Softw. Tools Technol. Transf.}, 10(6):503--520, October
+  2008.
 
-\bibitem{Kang90}
-Kyo~C Kang, Sholom~G. Cohen, James~A. Hess, William~E. Novak, and A.~Spencer
-  Peterson.
-\newblock {Feature-Oriented Domain Analysis (FODA) Feasibility Study}.
-\newblock Technical report, Software Engineering Institute - CMU, 1990.
+\bibitem{Jackson:2000:AFR:357474.355063}
+Daniel Jackson.
+\newblock Automating first-order relational logic.
+\newblock {\em SIGSOFT Softw. Eng. Notes}, 25(6):130--139, November 2000.
 
-\bibitem{springerlink:10.1007/3-540-36970-8_56}
-Shigeru Obayashi and Daisuke Sasaki.
-\newblock Visualization and data mining of pareto solutions using
-  self-organizing map.
-\newblock In Carlos Fonseca, Peter Fleming, Eckart Zitzler, Lothar Thiele, and
-  Kalyanmoy Deb, editors, {\em Evolutionary Multi-Criterion Optimization},
-  volume 2632 of {\em Lecture Notes in Computer Science}, pages 71--71.
-  Springer Berlin / Heidelberg, 2003.
-\newblock 10.1007/3-540-36970-8\_56.
+\bibitem{jackson:alloy}
+Daniel Jackson.
+\newblock {\em Software Abstractions: Logic, Language and Analysis}.
+\newblock The MIT Press, revised edition, 2012.
 
-\bibitem{474}
-Rafael Olaechea, Steven Stewart, Krzysztof Czarnecki, and Derek Rayside.
-\newblock Modeling and multi-objective optimization of quality attributes in
-  variability-rich software.
-\newblock In {\em International Workshop on Non- functional System Properties
-  in Domain Specific Modeling Languages (NFPinDSML{\textquoteright}12)},
-  Innsbruck, Austria, 10/2012 2012.
+\bibitem{Reder:2012:CRT:2351676.2351707}
+Alexander Reder and Alexander Egyed.
+\newblock Computing repair trees for resolving inconsistencies in design
+  models.
+\newblock In {\em Proceedings of the 27th IEEE/ACM International Conference on
+  Automated Software Engineering}, ASE 2012, pages 220--229, New York, NY, USA,
+  2012. ACM.
 
-\bibitem{springerlink:10.1007/978-3-540-70928-2_48}
-Silvia Poles, Paolo Geremia, F.~Campos, S.~Weston, and M.~Islam.
-\newblock Moga-ii for an automotive cooling duct optimization on distributed
-  resources.
-\newblock In Shigeru Obayashi, Kalyanmoy Deb, Carlo Poloni, Tomoyuki Hiroyasu,
-  and Tadahiko Murata, editors, {\em Evolutionary Multi-Criterion
-  Optimization}, volume 4403 of {\em Lecture Notes in Computer Science}, pages
-  633--644. Springer Berlin / Heidelberg, 2007.
-\newblock 10.1007/978-3-540-70928-2\_48.
+\bibitem{Xiong:2009:SAM:1595696.1595757}
+Yingfei Xiong, Zhenjiang Hu, Haiyan Zhao, Hui Song, Masato Takeichi, and Hong
+  Mei.
+\newblock Supporting automatic model inconsistency fixing.
+\newblock In {\em Proceedings of the the 7th joint meeting of the European
+  software engineering conference and the ACM SIGSOFT symposium on The
+  foundations of software engineering}, ESEC/FSE '09, pages 315--324, New York,
+  NY, USA, 2009. ACM.
 
-\bibitem{springerlink:10.1007/978-3-540-70928-2_29}
-Andy Pryke, Sanaz Mostaghim, and Alireza Nazemi.
-\newblock Heatmap visualization of population based multi objective algorithms.
-\newblock In Shigeru Obayashi, Kalyanmoy Deb, Carlo Poloni, Tomoyuki Hiroyasu,
-  and Tadahiko Murata, editors, {\em Evolutionary Multi-Criterion
-  Optimization}, volume 4403 of {\em Lecture Notes in Computer Science}, pages
-  361--375. Springer Berlin / Heidelberg, 2007.
-\newblock 10.1007/978-3-540-70928-2\_29.
-
-\bibitem{Rayside:2009:SUI:1723028.1723037}
-Derek Rayside and H.-Christian Estler.
-\newblock A spreadsheet-like user interface for combinatorial multi-objective
-  optimization.
-\newblock In {\em Proceedings of the 2009 Conference of the Center for Advanced
-  Studies on Collaborative Research}, CASCON '09, pages 58--69, Riverton, NJ,
-  USA, 2009. IBM Corp.
-
-\bibitem{Tusar:2011:VAS:2001576.2001677}
-Tea Tu\v{s}ar and Bogdan Filipi\v{c}.
-\newblock Visualizing 4d approximation sets of multiobjective optimizers with
-  prosections.
-\newblock In {\em Proceedings of the 13th annual conference on Genetic and
-  evolutionary computation}, GECCO '11, pages 737--744, New York, NY, USA,
-  2011. ACM.
+\bibitem{Zhang:2004:SVA:1029133.1029141}
+Nan Zhang, Mark Ryan, and Dimitar~P. Guelev.
+\newblock Synthesising verified access control systems in xacml.
+\newblock In {\em Proceedings of the 2004 ACM workshop on Formal methods in
+  security engineering}, FMSE '04, pages 56--65, New York, NY, USA, 2004. ACM.
 
 \end{thebibliography}
