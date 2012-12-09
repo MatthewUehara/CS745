@@ -1,10 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.9.29)  8 DEC 2012 11:55
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.9.29)  8 DEC 2012 22:50
 entering extended mode
-**C:/Documents*and*Settings/上原/デスクトップ/ReportACMFormat/sigproc-s
-p.tex
-
-("C:/Documents and Settings/上原/デスクトップ/ReportACMFormat/sigproc-s
-p.tex"
+**D:/GitRepository/CS745/Doc/ReportACMFormat/sigproc-sp.tex
+(D:/GitRepository/CS745/Doc/ReportACMFormat/sigproc-sp.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -16,9 +13,8 @@ an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese,
 romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
 sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
 senglishmax, welsh, loaded.
-
-("C:\Documents and Settings\上原\デスクトップ\ReportACMFormat\acm_proc_
-article-sp.cls" ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\epsfig.sty"
+(D:\GitRepository\CS745\Doc\ReportACMFormat\acm_proc_article-sp.cls
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\epsfig.sty"
 Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
@@ -255,8 +251,7 @@ File: uni-global.def 2012/08/28 UCS: Unicode global data
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\parskip.sty"
 Package: parskip 2001/04/09 non-zero parskip adjustments
 )
-("C:\Documents and Settings\上原\デスクトップ\ReportACMFormat\sigproc-s
-p.aux")
+(D:\GitRepository\CS745\Doc\ReportACMFormat\sigproc-sp.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
@@ -269,7 +264,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
- ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+
+("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count114
 \scratchdimen=\dimen132
@@ -300,11 +296,11 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 25.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\ulasy.fd"
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 59--62
+Underfull \hbox (badness 10000) in paragraph at lines 63--66
 
  []
 
-LaTeX Font Info:    Try loading font information for T1+aett on input line 63.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 67.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [1{C:/Documents and Settings/All Users.WINDOWS/Application Data/MiKTeX/2.9/pd
@@ -312,25 +308,25 @@ ftex/config/pdftex.map}
 
 
 ]
-Overfull \hbox (162.00357pt too wide) in paragraph at lines 100--103
+Overfull \hbox (162.00357pt too wide) in paragraph at lines 104--107
 []\T1/aer/m/n/9 For Ac-cess con-trol pol-icy ver-i-fi-ca-tion in Al-loy: 1) htt
 p://www.cs.ucsb.edu/ bultan/publications/tech-
  []
 
 
-Overfull \hbox (100.19081pt too wide) in paragraph at lines 100--103
+Overfull \hbox (100.19081pt too wide) in paragraph at lines 104--107
 \T1/aer/m/n/9 report04.pdf 2 - WE USE IT!! ) http://w3.uqo.ca/notere05/document
 s/logrippo.pdf,
  []
 
 
-Overfull \hbox (96.41243pt too wide) in paragraph at lines 108--109
+Overfull \hbox (96.41243pt too wide) in paragraph at lines 112--113
 \T1/aer/m/n/9 ing - was de-scribed in the the-sis http://people.csail.mit.edu/a
 solar/papers/thesis.pdf
  []
 
 
-Overfull \hbox (101.49797pt too wide) in paragraph at lines 110--111
+Overfull \hbox (101.49797pt too wide) in paragraph at lines 114--115
 []\T1/aer/m/n/9 Need to look at this - prob-a-bly needed - http://people.csail.
 mit.edu/eskang/talks/mit-
  []
@@ -338,97 +334,92 @@ mit.edu/eskang/talks/mit-
 [2] <table.png, id=16, 377.15906pt x 328.22626pt>
 File: table.png Graphic file (type png)
  <use table.png>
-Package pdftex.def Info: table.png used on input line 135.
+Package pdftex.def Info: table.png used on input line 139.
 (pdftex.def)             Requested size: 252.0pt x 219.30443pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 135--136
+Overfull \hbox (12.0pt too wide) in paragraph at lines 139--140
 [][] 
  []
 
 
-Overfull \hbox (3.84793pt too wide) in paragraph at lines 163--164
+Overfull \hbox (3.84793pt too wide) in paragraph at lines 167--168
 \T1/aer/m/n/9 ac-cess con-trol model re-pair, while sig-nif-i-cantly re-duc-ing
  user's
  []
 
 
-Overfull \hbox (11.86888pt too wide) in paragraph at lines 172--173
+Overfull \hbox (11.86888pt too wide) in paragraph at lines 176--177
 []\T1/aer/m/n/9 The first two points are pretty clear; our ver-i-fi-ca-tion is 
 bounded.
  []
 
-
-Underfull \vbox (badness 1337) has occurred while \output is active []
-
- [3 <C:/Documents and Settings/上原/デスクトップ/ReportACMFormat/table.
-png>]
-("C:\Documents and Settings\上原\デスクトップ\ReportACMFormat\sigproc-s
-p.bbl")
-Overfull \hbox (6.93143pt too wide) in paragraph at lines 197--197
+[3 <D:/GitRepository/CS745/Doc/ReportACMFormat/table.png>]
+(D:\GitRepository\CS745\Doc\ReportACMFormat\sigproc-sp.bbl)
+Overfull \hbox (6.93143pt too wide) in paragraph at lines 202--202
 []\secfnt USER EX-PER-I-MENT TASKS AND QUES-
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 207--211
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 212--216
 
  []
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-32.def"
 File: uni-32.def 2012/08/28 UCS: Unicode data U+2000..U+20FF
 )
-Underfull \hbox (badness 10000) in paragraph at lines 214--218
+Underfull \hbox (badness 10000) in paragraph at lines 219--223
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--224
+Underfull \hbox (badness 10000) in paragraph at lines 226--229
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 225--229
-
- []
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 230--239
+Underfull \hbox (badness 10000) in paragraph at lines 230--234
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 240--241
+Underfull \hbox (badness 10000) in paragraph at lines 235--244
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--245
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 245--246
 
  []
 
-[5
 
-]
-("C:\Documents and Settings\上原\デスクトップ\ReportACMFormat\sigproc-s
-p.aux") ) 
+Underfull \hbox (badness 10000) in paragraph at lines 247--250
+
+ []
+
+[5] (D:\GitRepository\CS745\Doc\ReportACMFormat\sigproc-sp.aux) ) 
 Here is how much of TeX's memory you used:
- 3543 strings out of 494045
- 47288 string characters out of 3148297
+ 3544 strings out of 494045
+ 47046 string characters out of 3148297
  112713 words of memory out of 3000000
- 6755 multiletter control sequences out of 15000+200000
+ 6756 multiletter control sequences out of 15000+200000
  50316 words of font info for 69 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 41i,11n,26p,916b,264s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmsy9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmti9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mtt9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/M
-iKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb>
-Output written on sigproc-sp.pdf (5 pages, 175252 bytes).
+ 41i,11n,26p,891b,264s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Fi
+les/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy9.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt9.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/u
+rw/times/utmb8a.pfb>
+Output written on sigproc-sp.pdf (5 pages, 177135 bytes).
 PDF statistics:
  60 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

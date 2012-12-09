@@ -25,6 +25,10 @@
 \maketitle
 
 \begin{abstract}
+
+
+sdadds\cite{Kounga:2010:EXA:1894888.1894907}sdfdfs
+
 Sensitive data are becoming available through the Web and other distributed protocols. This heightens the need to carefully control access to data. Control means not only preventing the leakage of data but also permitting access to necessary information. Access control requires authorization rules and constraints. To express access control policies, several languages,
 such as XACML are used to specify which subjects can  access sets of resources
 or services to perform specific actions. 
@@ -180,15 +184,16 @@ One important future improvements is on the repair recommendation. Currently, we
 \section{Conclusion}
 
 \subsection{Summary}
+In this report, we presented our tool which can automatically determine inconsistencies in XACML access control policy, recommend the fixes to the user and automatically apply the repair on the model. We allow user interaction by an user interface where we display our fixed results, Alloy model and also obtain user input.
 
-sfsfdfd
+We have created the input converter so that user can just specify the policies in our provided format in CSV, table form, and we will automatically generate Alloy model for the access control policy, reducing the manual work and user knowledge on Alloy as a modeling and verification tool. Our tool takes in the Alloy model and run Alloy analyzer in the back-end, and retrieve the information on generated inconsistency instances to propose potential fixes. Among the fixes, we also show the total number of fixes required for the selected fix. From evaluation result, it is proved that our tool can help the user to repair inconsistent access control policy model effectively, requiring only user input for fix selection as a manual part. 
 
 \subsection{Implications}
 
-\begin{itemize}
-\item Four-dimensional Pareto front visualizations can be effectively implemented using bubble charts.
+From our project, we conclude that ``automated'' model repair is possible for access control policy defined by XACML structure. We make implications on the fact that user input is still necessary to reduce the redundant computation and steps taken to fix the model. By allowing user to select from list of recommended fixes, and use the user input as new argument in our automated repair tool, we are able to efficiently repair the model without looping.
 
-\end{itemize}
+One other implication we make is that our tool should be easily extensible so that the model repaired is not limited to access control policy. We see our InteractiveFixer module as a ``head'' which we can change according to the targeted model that needs to be verified. 
+
 
 \bibliography{sigproc-sp}{}
 \bibliographystyle{plain}

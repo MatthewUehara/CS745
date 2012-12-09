@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Bravo:2007:RIX:1783534.1783545}
 Loreto Bravo, James Cheney, and Irini Fundulaki.
@@ -36,6 +36,14 @@ Daniel Jackson.
 Daniel Jackson.
 \newblock {\em Software Abstractions: Logic, Language and Analysis}.
 \newblock The MIT Press, revised edition, 2012.
+
+\bibitem{Kounga:2010:EXA:1894888.1894907}
+Gina Kounga, Marco~Casassa Mont, and Pete Bramhall.
+\newblock Extending xacml access control architecture for allowing
+  preference-based authorisation.
+\newblock In {\em Proceedings of the 7th international conference on Trust,
+  privacy and security in digital business}, TrustBus'10, pages 153--164,
+  Berlin, Heidelberg, 2010. Springer-Verlag.
 
 \bibitem{Reder:2012:CRT:2351676.2351707}
 Alexander Reder and Alexander Egyed.
