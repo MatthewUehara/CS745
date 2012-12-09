@@ -234,7 +234,7 @@ actions = ARead
 one sig Policy2 extends Policy {}{
 policyTarget = T0
 rules = Policy2_Rule_Assistant_Modify_Marks_Permit + Policy2_Rule_Student_Read_Marks_Permit + Policy2_Rule_Assistant_Read_Marks_Permit
-combiningAlgo = PermitOverrides // Change to DenyOverrides -> no effect
+combiningAlgo = PermitOverrides
 }
 
 one sig Policy2_Rule_Assistant_Modify_Marks_Permit extends Rule {}{
@@ -248,17 +248,6 @@ resources = RMarks
 actions = AModify
 }
 
-one sig Policy2_Rule_Assistant_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy2_Target_Assistant_Read_Marks_Permit
-ruleEffect = Deny// Change to Deny -> more fixes
-}
-
-one sig Policy2_Target_Assistant_Read_Marks_Permit extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = ARead
-}
-
 one sig Policy2_Rule_Student_Read_Marks_Permit extends Rule {}{
 ruleTarget = Policy2_Target_Student_Read_Marks_Permit
 ruleEffect = Permit
@@ -266,6 +255,17 @@ ruleEffect = Permit
 
 one sig Policy2_Target_Student_Read_Marks_Permit extends Target {}{
 subjects = SStudent
+resources = RMarks
+actions = ARead
+}
+
+one sig Policy2_Rule_Assistant_Read_Marks_Permit extends Rule {}{
+ruleTarget = Policy2_Target_Assistant_Read_Marks_Permit
+ruleEffect = Permit
+}
+
+one sig Policy2_Target_Assistant_Read_Marks_Permit extends Target {}{
+subjects = SAssistant
 resources = RMarks
 actions = ARead
 }
@@ -345,7 +345,7 @@ actions = ARead
 one sig Policy4 extends Policy {}{
 policyTarget = T0
 rules = Policy4_Rule_Assistant_Modify_Marks_Permit + Policy4_Rule_Assistant_Read_Marks_Permit + Policy4_Rule_Assistant_Read_Marks_Deny
-combiningAlgo = DenyOverrides // Change to permitOverrides
+combiningAlgo = DenyOverrides
 }
 
 one sig Policy4_Rule_Assistant_Read_Marks_Permit extends Rule {}{
@@ -361,7 +361,7 @@ actions = ARead
 
 one sig Policy4_Rule_Assistant_Read_Marks_Deny extends Rule {}{
 ruleTarget = Policy4_Target_Assistant_Read_Marks_Deny
-ruleEffect = Deny // Change to Permit
+ruleEffect = Deny
 }
 
 one sig Policy4_Target_Assistant_Read_Marks_Deny extends Target {}{
@@ -387,53 +387,3 @@ combiningAlgo = P_OnlyOneApplicable
 policies = Policy1 + Policy2 + Policy3 + Policy4
 }
 
-//==================================
-// PREDICATES FOR RUNNING
-//==================================
-
-abstract sig Repair {}
-
-one sig Rep1, Rep2, Rep3, Rep4, NoRep extends Repair{}{}
-
-pred Contradicting[p1: Policy, p2: Policy, r1: Rule, r2: Rule, req:Request]
-{
-	policyResponse[p1, req] = Permit
-	(
-		(p1 -> DenyOverrides) in combiningAlgo and
-		(no r1':Rule | r1' in p1.rules and ruleResponse[r1', req] = Deny)
-		and ruleResponse[r1, req] = Permit
-	)
-	or
-	(
-		p1.combiningAlgo = PermitOverrides
-		and ruleResponse[r1, req] = Permit
-	)
-
-	policyResponse[p2, req] = Deny
-	(
-		(p2 -> PermitOverrides) in combiningAlgo and
-		(no r2':Rule | r2' in p2.rules and ruleResponse[r2', req] = Permit)
-		and ruleResponse[r2, req] = Deny
-	)
-	or
-	(
-		p2.combiningAlgo = DenyOverrides
-		and ruleResponse[r2, req] = Deny
-	)
-}
-
-pred InconsistentPolicySet [ps : PolicySet, req : Request, p1: Policy, p2: Policy, r1: Rule, r2: Rule]{
-	ps.combiningAlgo = P_OnlyOneApplicable 
-	p1 in ps.policies
-	p2 in ps.policies
-	p1 != p2
-	r1 in p1.rules
-	r2 in p2.rules
-
-	Contradicting[p1, p2, r1, r2, req]
-
-
-
-}
-
-run InconsistentPolicySet

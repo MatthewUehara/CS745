@@ -162,7 +162,7 @@ fact{
 // CONCRETE MODEL
 
 
-one sig Student, Professor, Assistant extends Value {}
+one sig Student, Professor extends Value {}
 one sig Marks extends Value {}
 one sig Read, Modify extends Value {}
 fact{ 
@@ -170,7 +170,6 @@ fact{
 (ActionName -> Read)
  +(Role -> Professor)
  +(ActionName -> Modify)
- +(Role -> Assistant)
  +(Role -> Student)
  +(ResourceName -> Marks)}
 
@@ -180,10 +179,6 @@ one sig SStudent extends Subject{}{
 
 one sig SProfessor extends Subject{}{
  attributes = Role -> Professor 
-}
-
-one sig SAssistant extends Subject{}{
- attributes = Role -> Assistant 
 }
 
 one sig RMarks extends Resource{}{
@@ -199,7 +194,7 @@ one sig AModify extends Action{}{
 }
 
 one sig T0 extends Target {}{
- subjects = SStudent + SProfessor + SAssistant 
+ subjects = SStudent + SProfessor 
  resources = RMarks 
  actions = ARead + AModify }
 
@@ -211,7 +206,7 @@ combiningAlgo = DenyOverrides
 
 one sig Policy1_Rule_Professor_ReadModify_Marks_Permit extends Rule {}{
 ruleTarget = Policy1_Target_Professor_ReadModify_Marks_Permit
-ruleEffect = Permit
+ruleEffect = Deny
 }
 
 one sig Policy1_Target_Professor_ReadModify_Marks_Permit extends Target {}{
@@ -231,82 +226,21 @@ resources = RMarks
 actions = ARead
 }
 
-one sig Policy2 extends Policy {}{
-policyTarget = T0
-rules = Policy2_Rule_Assistant_Modify_Marks_Permit + Policy2_Rule_Student_Read_Marks_Permit + Policy2_Rule_Assistant_Read_Marks_Permit
-combiningAlgo = PermitOverrides // Change to DenyOverrides -> no effect
-}
-
-one sig Policy2_Rule_Assistant_Modify_Marks_Permit extends Rule {}{
-ruleTarget = Policy2_Target_Assistant_Modify_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy2_Target_Assistant_Modify_Marks_Permit extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = AModify
-}
-
-one sig Policy2_Rule_Assistant_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy2_Target_Assistant_Read_Marks_Permit
-ruleEffect = Deny// Change to Deny -> more fixes
-}
-
-one sig Policy2_Target_Assistant_Read_Marks_Permit extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = ARead
-}
-
-one sig Policy2_Rule_Student_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy2_Target_Student_Read_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy2_Target_Student_Read_Marks_Permit extends Target {}{
-subjects = SStudent
-resources = RMarks
-actions = ARead
-}
-
 one sig Policy3 extends Policy {}{
 policyTarget = T0
-rules = Policy3_Rule_Assistant_Modify_Marks_Permit + Policy3_Rule_Professor_Modify_Marks_Permit + Policy3_Rule_Professor_Read_Marks_Permit + Policy3_Rule_Assistant_ReadModify_Marks_Deny + Policy3_Rule_Student_Read_Marks_Permit + Policy3_Rule_Assistant_Read_Marks_Permit
-combiningAlgo = PermitOverrides
+rules = Policy3_Rule_Professor_Modify_Marks_Permit + Policy3_Rule_Professor_Read_Marks_Permit + Policy3_Rule_Professor_ReadModify_Marks_Deny + Policy3_Rule_Student_Read_Marks_Permit
+combiningAlgo = DenyOverrides
 }
 
-one sig Policy3_Rule_Professor_Modify_Marks_Permit extends Rule {}{
-ruleTarget = Policy3_Target_Professor_Modify_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy3_Target_Professor_Modify_Marks_Permit extends Target {}{
-subjects = SProfessor
-resources = RMarks
-actions = AModify
-}
-
-one sig Policy3_Rule_Assistant_Modify_Marks_Permit extends Rule {}{
-ruleTarget = Policy3_Target_Assistant_Modify_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy3_Target_Assistant_Modify_Marks_Permit extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = AModify
-}
-
-one sig Policy3_Rule_Assistant_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy3_Target_Assistant_Read_Marks_Permit
+one sig Policy3_Rule_Professor_ReadModify_Marks_Deny extends Rule {}{
+ruleTarget = Policy3_Target_Professor_ReadModify_Marks_Deny
 ruleEffect = Deny
 }
 
-one sig Policy3_Target_Assistant_Read_Marks_Permit extends Target {}{
-subjects = SAssistant
+one sig Policy3_Target_Professor_ReadModify_Marks_Deny extends Target {}{
+subjects = SProfessor
 resources = RMarks
-actions = ARead
+actions = ARead + AModify
 }
 
 one sig Policy3_Rule_Professor_Read_Marks_Permit extends Rule {}{
@@ -320,15 +254,15 @@ resources = RMarks
 actions = ARead
 }
 
-one sig Policy3_Rule_Assistant_ReadModify_Marks_Deny extends Rule {}{
-ruleTarget = Policy3_Target_Assistant_ReadModify_Marks_Deny
-ruleEffect = Deny
+one sig Policy3_Rule_Professor_Modify_Marks_Permit extends Rule {}{
+ruleTarget = Policy3_Target_Professor_Modify_Marks_Permit
+ruleEffect = Permit
 }
 
-one sig Policy3_Target_Assistant_ReadModify_Marks_Deny extends Target {}{
-subjects = SAssistant
+one sig Policy3_Target_Professor_Modify_Marks_Permit extends Target {}{
+subjects = SProfessor
 resources = RMarks
-actions = ARead + AModify
+actions = AModify
 }
 
 one sig Policy3_Rule_Student_Read_Marks_Permit extends Rule {}{
@@ -342,49 +276,10 @@ resources = RMarks
 actions = ARead
 }
 
-one sig Policy4 extends Policy {}{
-policyTarget = T0
-rules = Policy4_Rule_Assistant_Modify_Marks_Permit + Policy4_Rule_Assistant_Read_Marks_Permit + Policy4_Rule_Assistant_Read_Marks_Deny
-combiningAlgo = DenyOverrides // Change to permitOverrides
-}
-
-one sig Policy4_Rule_Assistant_Read_Marks_Permit extends Rule {}{
-ruleTarget = Policy4_Target_Assistant_Read_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy4_Target_Assistant_Read_Marks_Permit extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = ARead
-}
-
-one sig Policy4_Rule_Assistant_Read_Marks_Deny extends Rule {}{
-ruleTarget = Policy4_Target_Assistant_Read_Marks_Deny
-ruleEffect = Deny // Change to Permit
-}
-
-one sig Policy4_Target_Assistant_Read_Marks_Deny extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = ARead
-}
-
-one sig Policy4_Rule_Assistant_Modify_Marks_Permit extends Rule {}{
-ruleTarget = Policy4_Target_Assistant_Modify_Marks_Permit
-ruleEffect = Permit
-}
-
-one sig Policy4_Target_Assistant_Modify_Marks_Permit extends Target {}{
-subjects = SAssistant
-resources = RMarks
-actions = AModify
-}
-
 one sig PS extends PolicySet{}{
 policySetTarget = T0
 combiningAlgo = P_OnlyOneApplicable
-policies = Policy1 + Policy2 + Policy3 + Policy4
+policies = Policy1 + Policy3
 }
 
 

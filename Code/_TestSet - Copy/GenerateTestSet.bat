@@ -1,0 +1,1 @@
+FOR %%f IN (*) DO java -jar CSVConverter.jar "%%f"

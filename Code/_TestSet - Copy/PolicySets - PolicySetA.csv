@@ -1,0 +1,25 @@
+,,,
+,,,
+,,,
+Policies,Policy1,Policy2,Policy3
+Rules,Rule_Student_Read_Marks_Permit,Rule_Student_ReadModify_Marks_Deny,Rule_Professor_ReadModify_Marks_Deny
+,Rule_Professor_ReadModify_Marks_Permit,Rule_Student_Read_Marks_Permit,Rule_Professor_Modify_Marks_Permit
+,,,Rule_Professor_Read_Marks_Permit
+,,,Rule_Student_Read_Marks_Permit
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+,,,
+Rule Combining Algorithm,DenyOverrides,PermitOverrides,DenyOverrides
+,,,
+Policy Combining Algorithm,OnlyOneApplicable,,
+Failing Requests,Professor_Read_Marks,,
+,,,
+Conflicting Rules,Policy1:Rule_Professor_ReadModify_Permit,,
+,Policy3:Rule_Professor_ReadModify_Deny,,
