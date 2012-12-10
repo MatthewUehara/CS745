@@ -129,41 +129,59 @@ The Design overview section brief overview of our mission and solution to the pr
 
 \section{Implementation}
 
-The goal of our tool is to automatically determined inconsistencies within access control policy defined by XACML, and recommend the potential repair to the user, and finally fix the user chosen fixes automatically. Throughout this process, user only have to review the recommended fixes, and choose the fix by clicking a button in UI, and then the model should be fixed automatically by our tool. 
-
+\textcolor{red}{In this section, we present the overview of our implementation, architecture of the tool, alloy model and repair process !!!EDIT}
 
 \subsection{Overview}
+The function of our tool is to automatically determined inconsistencies within access control policy defined by XACML, and recommend the potential repair to the user, and finally apply the user chosen fixes automatically. Throughout this process, user only have to review the recommended fixes, and choose the fix by clicking a button in user interface, and then the model should be fixed automatically by our tool. 
 
-mnnnnnn  
+To increase the usability of our tool, we have an external module, a converter that can automatically generate Alloy model based on a table template (or xml, csv file template) so that the user does not need to have complete literacy in Alloy modeling language. As the content of the such a template, the user is asked to specify the rule, subject, action, resource and effect in predefined format. Our converter will than generate the Alloy model and its predicate to verify inconsistencies, which is a safetyness property. Once Alloy model is generated, we input the model into our inconsistency detection and repair tool. 
 
-\subsection{Pareto Front Table}
+\subsection{Architecture and Data Flow}
+
+Our tool consists of three major parts: user interface, PropertyVerifier\&Fixer and Alloy analyzer. The architecture is shown in the figure below (Fig.\ref{fig:Architecture}) .\\
 
 \begin{figure}[h]
-\includegraphics[width=0.5\textwidth]{table.png}
-\caption{Pareto Front Table. Distinct features are highlighted}    
-  \label{fig:table}
+\includegraphics[width=0.5\textwidth]{DataFlow.JPG}
+\caption{Tool Architecture and Data Flow}    
+  \label{fig:Architecture}
 \end{figure}
 
-Pareto Front Table (Fig.\ref{fig:table}) is a straight-forward way to represent the whole set of product configurations. Row headers represent features and total quality attributes, the hierarchical structure is preserved. Column headers represent product configurations and denoted as $P1, P2, ... PN$, $N$ - the number of generated configurations. Cells at the intersection of column $C$ and row $R$ are defined in the following way:
-\begin{itemize}
-\item If $R$ is a feature, and product $C$ has the feature, then the cell contains "yes" (a green tick), otherwise "no" (a red crossed circle).
-\item If $R$ is a quality attribute, then the cell contains the numeric value of the quality attribute.
-\end{itemize}
+At start, the UI first takes in the Alloy model created, and sends it to PropertyVerifier\&Fixer. Next, the PropertyVerifier part starts Alloy analyzer to process Alloy model and its property predicate;  please note that , we write our predicate in a way that it checks for if two policies return inconsistent results. PropertyFixer, then takes in the results from Alloy analyzer and extract relevant information, such as inconsistent rules, subject, action, resource and effect, and process those information to propose the potential fixes. The fix recommendation from PropertyFixer is passed to the user interface, and the user is shown with a list of fixes. Once the user chooses one particular fix, our tool will automatically update the original Alloy model. This updated model is then passed to PropertyVerifier to check if there are any inconsistencies. This process is repeated until the model is verified to be consistent.
 
+In order to realize the above mentioned architecture, we have created several Java modules which is summarized below.
+
+\textbf{\emph{InteractiveRepairer}}\\
+This is the core of our tool, it contains:
+\begin{itemize}
+\item Main engine
+\item PropertyVerifier
+\item PropertyFixer
+\end{itemize}
+The Main engine, controls the communication between user interface and our Fixer and Verifier; it process input from UI and output the results to UI for user inspection. PropertyVerifier calls Alloy analyzer through our API and obtain XML format of the generated instance that contains information about the policy, rule, request and effect.PropertyVerifier then follows XPATH standard and store those information into nodes for later processing in Java. Once the XPATH nodes are created with relevant information from Alloy analyzer, PropertyFixer takes in those information and proposes potential fixes. Once the user select the preferred fix, this decision is communicated to PropertyFixer again through Main engine, and PropertyFixer will automatically apply the fixes to the original Alloy model.
+
+Note that PropertyFixer and PropertyVerifier function as a pair, and one pair is required for each property to be verified; in our study, we limit the property verification to safetyness property but this is extensible by creating another pair of PropertyFixer and Verifier.
+
+\textbf{\emph{AlloyRunner}}\\
+AlloyRunner is an API that facilitate the communication between our tool with Alloy analyzer. Mainly, it initializes the Alloy analyzer, sends model to Alloy analyzer, and get XML instances from Alloy analyzer. Alloy analyzer serves as verification engine for our input model and will return instances or counter example which we use in later processing.
+
+\textbf{\emph{Presentation Layer}}\\
+Presentation uses dynamic web application technologies, such as Javascripts, Node.js to allow interactive model repair. Node.js executes interactive repair with user inputs and calls back to the Main engine in InteractiveRepairer to apply the repair. For instance, the propose button triggers Main engine to start PropertyVerifier to execute the model verification, and the resolve button will cause the PropertyFixer to apply the repair on the original Alloy model. The return value associate with each function call-back of the button is error description for propose, and new model for resolve button.
+
+
+During design phase, we studied all possible ways of fixing the model, and we have chosen four fixes in total considering the efficiency and relevancy of access control policy fix. From experimental results and observation, we decided to prioritize the fixes that modifies the rule effect as it reduces the number of total fixes greatly. The details are presented in the following subsection. 
+
+\subsection{Model Fix}
+
+ToBeAdded
 
 \section{Evaluation Result}
 
 \subsection{Form and purpose}
 
-The aim of the user evaluation was to determine whether visualization and interaction techniques implemented in the tool are good enough for now, and what is the further direction of development. This evaluation is a pilot study, not the final one: we are planning to conduct further evaluations with our industry partners.
-
-To evaluate our tool, we performed a controlled experiment in which the participants were asked to perform a predefined set of tasks using the tool and answer provided questions. Occasionally, we also asked additional questions as appropriate in the given context.
-
-The experiment included 11 tasks split into 3 groups based on the difficulty level followed by a final questionnaire (Appendix \ref{A}). Difficulty levels made the main part of the experiment well-structured and reduced learning effect. The final questionnaire was used to get an informal feedback upon the tasks completion. Three subjects - two full-time graduate students and one postdoctoral fellow of Generative Software Development Lab, University of Waterloo. All three subjects have background in product lines development and two subjects have expertise in multi-objective optimization, so no background questionnaire was used to determine their background. Prior to the experiment, we gave a short presentation of tool features to the participants, intended ways of using the tool, and completion of some sample tasks.
+ToBeAdded
 
 \subsection{Results}
-asda
-
+ToBeAdded
 
 \section{Future work}
 
