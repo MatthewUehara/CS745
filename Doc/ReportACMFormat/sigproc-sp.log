@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  10 DEC 2012 23:24
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  11 DEC 2012 01:44
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -348,128 +348,93 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 25.
 (c:/texlive/2012/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 59--62
+Underfull \hbox (badness 10000) in paragraph at lines 58--60
 
  []
 
-LaTeX Font Info:    Try loading font information for T1+aett on input line 63.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 61.
 (c:/texlive/2012/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [1{c:/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
-] [2]
-Overfull \hbox (3.87906pt too wide) in paragraph at lines 146--147
+]
+Overfull \hbox (14.66006pt too wide) in paragraph at lines 71--71
+[]      \T1/aett/m/n/9 DataType="...#string">Professor</AttributeValue>[] 
+ []
+
+
+Overfull \hbox (5.86552pt too wide) in paragraph at lines 73--74
+\T1/aer/m/n/9 Sev-eral rules are grouped into poli-cies and poli-cies are group
+ed
+ []
+
+<policyset.png, id=14, 749.80125pt x 306.39468pt>
+File: policyset.png Graphic file (type png)
+ <use policyset.png>
+Package pdftex.def Info: policyset.png used on input line 78.
+(pdftex.def)             Requested size: 252.0pt x 102.97595pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 78--79
+[][] 
+ []
+
+[2 <./policyset.png>]
+Overfull \hbox (3.87906pt too wide) in paragraph at lines 151--152
 \T1/aer/m/n/9 If it was $\OML/cmm/m/it/9 PermitOverrides$\T1/aer/m/n/9 , it be-
 comes $\OML/cmm/m/it/9 DenyOverrides$\T1/aer/m/n/9 ,
  []
 
 
-Overfull \hbox (4.33719pt too wide) in paragraph at lines 163--164
-\T1/aer/m/n/9 rules. For ex-am-ple, if the rule $\OML/cmm/m/it/9 Student\OMS/cm
-sy/m/n/9 ^^@ \OML/cmm/m/it/9 > Read\OMS/cmsy/m/n/9 j\OML/cmm/m/it/9 Modify\OMS/
-cmsy/m/n/9 ^^@ \OML/cmm/m/it/9 >
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2698) has occurred while \output is active []
 
  [3]
-Overfull \hbox (2.9142pt too wide) in paragraph at lines 174--175
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (2.9142pt too wide) in paragraph at lines 179--180
 \T1/aer/m/n/9 con-sis-ten-cies within ac-cess con-trol pol-icy de-fined by XACM
 L,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
 
  []
 
-<DataFlow.JPG, id=21, 578.16pt x 411.03563pt>
+<DataFlow.JPG, id=24, 578.16pt x 411.03563pt>
 File: DataFlow.JPG Graphic file (type jpg)
  <use DataFlow.JPG>
-Package pdftex.def Info: DataFlow.JPG used on input line 183.
+Package pdftex.def Info: DataFlow.JPG used on input line 188.
 (pdftex.def)             Requested size: 252.0pt x 179.15654pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 183--184
+Overfull \hbox (12.0pt too wide) in paragraph at lines 188--189
 [][] 
  []
 
 
-Overfull \hbox (16.08623pt too wide) in paragraph at lines 199--200
-\T1/aer/m/n/9 ma-tion about the pol-icy, rule, re-quest and ef-fect.PropertyVer
-ifier
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4 <./DataFlow.JPG>]
-Overfull \hbox (3.11923pt too wide) in paragraph at lines 206--208
-\T1/aer/m/n/9 Presentation uses dy-namic web ap-pli-ca-tion tech-nolo-gies, suc
-h
- []
-
-
-Overfull \hbox (3.84793pt too wide) in paragraph at lines 227--228
+[4]
+Overfull \hbox (3.84793pt too wide) in paragraph at lines 225--226
 \T1/aer/m/n/9 ac-cess con-trol model re-pair, while sig-nif-i-cantly re-duc-ing
  user's
  []
 
-
-Overfull \hbox (11.86888pt too wide) in paragraph at lines 236--237
-[]\T1/aer/m/n/9 The first two points are pretty clear; our ver-i-fi-ca-tion is 
-bounded.
+[5 <./DataFlow.JPG>] (./sigproc-sp.bbl)
+Overfull \hbox (14.76888pt too wide) in paragraph at lines 260--260
+[]\secfnt VERIFICATION PROP-ERTY PRED-I-CATE,
  []
 
-[5] (./sigproc-sp.bbl)
-Overfull \hbox (6.93143pt too wide) in paragraph at lines 262--262
-[]\secfnt USER EX-PER-I-MENT TASKS AND QUES-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 272--276
-
- []
-
-(c:/texlive/2012/texmf-dist/tex/latex/ucs/data/uni-32.def
-File: uni-32.def 2012/08/28 UCS: Unicode data U+2000..U+20FF
-)
-Underfull \hbox (badness 10000) in paragraph at lines 279--283
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 286--289
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 290--294
-
- []
-
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 295--304
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 307--310
-
- []
-
-[7
+[6] [7
 
 ] (./sigproc-sp.aux) ) 
 Here is how much of TeX's memory you used:
- 3904 strings out of 493488
- 53047 string characters out of 3144748
- 123779 words of memory out of 3000000
- 7097 multiletter control sequences out of 15000+200000
- 50316 words of font info for 69 fonts, out of 3000000 for 9000
+ 3654 strings out of 493488
+ 50207 string characters out of 3144748
+ 123787 words of memory out of 3000000
+ 6847 multiletter control sequences out of 15000+200000
+ 51452 words of font info for 70 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  41i,11n,26p,1158b,264s stack positions out of 5000i,500n,10000p,200000b,50000s
 {c:/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}<
@@ -481,11 +446,12 @@ fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2012/texmf-dist/fonts/type1
 sfonts/cm/cmti9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmtt9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/t
 exlive/2012/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2012/tex
-mf-dist/fonts/type1/urw/times/utmb8a.pfb>
-Output written on sigproc-sp.pdf (7 pages, 207863 bytes).
+mf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2012/texmf-dist/fonts/type
+1/urw/times/utmri8a.pfb>
+Output written on sigproc-sp.pdf (7 pages, 250256 bytes).
 PDF statistics:
- 70 PDF objects out of 1000 (max. 8388607)
- 49 compressed objects within 1 object stream
+ 75 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

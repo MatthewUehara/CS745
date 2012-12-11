@@ -26,13 +26,9 @@
 
 \begin{abstract}
 
-Sensitive data are becoming available through the Web and other distributed protocols. This heightens the need to carefully control access to data. Control means not only preventing the leakage of data but also permitting access to necessary information. Access control requires authorization rules and constraints. To express access control policies, several languages,
-such as XACML are used to specify which subjects can  access sets of resources
-or services to perform specific actions. 
+Important and confidential information can be stored in databases that may be accessible in non-intended way. This heightens the need to carefully control data access: not only preventing the leakage of data but also permitting access to necessary information. Access control requires authorization rules and constraints. To express access control policies, several languages such as XACML are used to specify whether subjects are allowed to access sets of resources or services to perform specific actions. 
 
-We develop a tool based on first order logic modeling to detect and visualize possible conflicts within sets of access control policies expressed in XACML. We first translate the model
-into a relational first order logic language called Alloy, and then analyze interactions
-and conflicts among access control policies using Alloy analyzer. We then proposes potential repairs to the user thorough user interface, and automatically apply the fixes specified by the user. It is proved that with our tool can automatically determine inconsistencies in user specified model, and recommend the user and apply the repair successfully. 
+We develop a tool based on first-order logic modeling to detect and visualize possible conflicts within sets of access control policies expressed in XACML. We first translate the model into a relational first order logic language called Alloy, and then analyze interactions and conflicts among access control policies using Alloy Analyzer. We then proposes potential repairs to the user through user interface, and automatically apply the fixes selected by the user. We have shown that with our tool can automatically determine inconsistencies in user specified model, prioritize possible fixes and successfully apply the selected repairs to the model. 
 
 \end{abstract}
 
@@ -41,56 +37,73 @@ and conflicts among access control policies using Alloy analyzer. We then propos
 
 \terms{Computer Aided Verification, Access Control Policy, User Interface}
 
-\keywords{Alloy, XACML, rule set, policy set, GUI} % NOT required for Proceedings
+\keywords{access control policy, Alloy, XACML, GUI} % NOT required for Proceedings
 
 \section{Introduction}
 
-Important data are increasingly available on-line through the Web and other distributed protocols. This heightens the need to carefully control access to data. Access control means not only preventing the leakage of data but also permitting access to necessary information. The key goal is that the right person can access right resource on the right time.
+
+Access policy are widely used in systems that require authentication. Data is increasingly available on-line through the Web and other distributed protocols. This heightens the need to carefully control access to data. Access control means not only preventing the leakage of data but also permitting access to necessary information. The key goal is that the right person can access right resource.
 
 \subsection{Motivation}
 
 Due to growing variety of access methods, central databases must now provide data in a
-large number of different contexts, each governed by specific access-control policies. Selective access control is an important mechanism in distributed system security. It can be used in order to allow a user to access only certain information, for certain purposes, at certain times, or when he or she plays a certain role. Access control is enforced by mechanisms that need to be programmed by means of policies. An organization may have many such policies, which may have been established at different times, by different people, perhaps without a clear view of all the consequences. Inconsistencies can then exist in such sets of policies. 
+large number of different contexts, each governed by specific access-control policies. Selective access control is an important mechanism in distributed system security. It can be used in order to allow certain users to access only certain information, for certain purposes when he or she plays a certain role. Access control is enforced by mechanisms that need to be programmed by means of policies. An organization may have many such policies, which may have been established at different times, by different people, perhaps without a clear view of all the consequences. Inconsistencies can then exist in such sets of policies. 
 
 While policy mechanisms may be able to solve inconsistencies at a higher level, users and administrators still need to be aware of them, because they may lead to unintended system behavior. For example, a policy may be added to prevent a certain access, however in fact the access is still allowed because of another policy of higher priority, or the new policy may prevent access of someone who should remain authorized. We will show in this paper that such inconsistencies can be detected and fixed by using our tools.
 
 \subsection{Background}
 
-\textbf{\emph{XACML for Access Control}}\\
-XACML is an OASIS standard \cite{oasis:xacml} that defines an architecture, policies and messages within an access control system. XACML generally center around attributes; attributes describe subjects, actions, and resources. For example, faculty is a value for the attribute role, which describes the subject. The names of attributes, such as role are called attribute ID, while the values bound
-to them are called attribute values  (such as Faculty). The fragment of an XACML policy designating Faculty as a role is shown below:\\
+\subsubsection{XACML access control policies}
+
+XACML is OASIS standard and stands for eXtensible Access Control Markup Language \cite{oasis:xacml}. It defines structure, interaction and conventions related to policy sets, policies, rules and request within an access control system. XACML generally centers around attributes: attributes describe subjects, actions, and resources. Subject can be described by the $Role$ attribute, resource by its $ResourceName$, and action by its $ActionName$. Usually XACML access control policies are stored in XML files. The names of attributes, such as role are called $AttributeId$, while the values bound
+to them are called attribute values  (such as $Professor$). The shortened fragment of an XACML policy designating $Professor$ as a role is shown below:\\
 
 \begin{verbatim}
-<SubjectMatch MatchId=''...:string-equal''>
-  <AttributeValue DataType=''...string''>
-     Faculty</AttributeValue>
-   <SubjectAttributeDesignator 
-      AttributeId=''role''
-      DataType=''...string''
-   </SubjectAttributeDesignator>
-</SubjectMatch>
+<Subject>
+  <SubjectMatch MatchId="...:string-equal">
+    <AttributeValue
+      DataType="...#string">Professor</AttributeValue>
+    <SubjectAttributeDesignator
+      AttributeId="role"
+      DataType="...#string"/>
+  </SubjectMatch>
+</Subject>
 \end{verbatim}
 
-A rule in XACML specifies which decision to take as a function of the attributes. The XACML takes in a request, names and values of a set of attributes, and makes an access-control decision on it based on the specified rules. A decision can be permit, deny, or not-applicable which indicates that the requests is not handled. 
+If we consider more coarse-grain structures, access control policies are structured into rules, policies and policy sets. Several rules are grouped into policies and policies are grouped into policy sets. Rules, policies and policy sets define a target which indicates their domain of applicability. A target specifies a set of attributes and their values that should match those given by a request. A rule in XACML specifies which decision to take and it is a function of the attributes. The XACML takes in a request, names and values of a set of attributes, and makes an access-control decision on it based on the specified rules. A decision can be $permit$, $deny$, or $not-applicable$ which indicates that the request is not handled. 
 
-The access control policies are stored as XML files, they are structured into rules, policies and policy sets. Several rules are grouped into policies and policies are grouped into
-policy sets. Rules, policies and policy sets define a target which indicates their domain of applicability. A target specifies a set of attributes and their values that should match those
-given by a request. For example, if there are two policies, the first one is applied when the subject is a student, the resource is the marks file and the action is printing, and the second policy is applied
-when the subject is a professor, the resource is the marks file and the action is modification. If a request from a student to print the marks file comes to the policy enforcement point, the policy decision point will only select the first policy to make a decision.
+XML-files are complex, so for our example we can use tabular form of defining policy sets (it is not commonly used, but it is more compact and straight-forward in out case), see Fig.\ref{fig:policyset}.
+
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{policyset.png}
+\caption{Policy Set PS contains two policies: P1 and P3, each has a set of rules and rule combining algorithm}    
+  \label{fig:policyset}
+\end{figure}
+
+So, in our example a policy set $PS$ contains two policies: $P1$ and $P3$, the first rule of $P1$ is $Student \to Read \to Marks \to Permit $ is applied when the subject has the role $Student$, the resource is the $Marks$ file and the action is $Read$, and this access is granted ($Permit$). In policy $P3$, the first rule denies both reading and modifying marks for professor. The policy has $DenyOverrides$ rule combining algorithm which says that this rule is dominant over others in case that more than one rule is applicable for some relevant request. The policy response is equal to the one rule which is applicable or by the dominant rule if multiple rules are applicable. The same is true for policy set response, but it has $OnlyOneApplicable$ policy combining algorithm as well, which says that the policy set response in indeterministic if more than one policy is applicable in the context of a given request.
 
 \textbf{\emph{Alloy}}\\
-Alloy \cite{jackson:alloy} is a modeling language based on relational first order logic. An Alloy model is a collection of constraints that describes a set of structure. Alloy's tool, the Alloy Analyzer, is a solver that takes the constraints of a model and finds structures that satisfy them. It can be used both to explore the model by generating sample structures, and to check properties of the model by generating counterexamples. 
+Alloy \cite{jackson:alloy} is a modeling language based on relational first order logic. An Alloy model is a collection of constraints that describes a set of structure. Alloy's tool, the Alloy Analyzer, is a solver that takes the constraints of a model and finds variables that satisfy them. It can be used both to explore the model by generating sample structures, and to check properties of the model by generating counterexamples. 
 
-To model structures, Alloy uses the concepts of signature and relation. A signature is a type in Alloy. It can be considered equivalent to a class in the object oriented paradigm since a signature can be instantiated. For example, we can define a abstract general signature Element like this:
+To model structures, Alloy uses the concepts of signature and relation. A signature is a type in Alloy. It can be considered equivalent to a class in the object oriented paradigm since a signature can be instantiated. For example, we can define a policy P1 as follows \cite{acp:alloy}:
  
  \begin{verbatim}
-abstract sig Element {
-         attributes : Attribute -> Value}
-         {attributes in values}
-sig Subject, Resource, Action extends Element{}
+abstract sig Policy {
+  policyTarget : one Target,
+  rules : set Rule,
+  combiningAlgo : one RuleCombiningAlgo
+} 
 \end{verbatim}
 
 A relation is a structure that relates signatures and their instances. Functions are special binary relations; they map each instance from the left signature to only one instance from the right signature (the function effect maps each rule to only one effect). Constraints are represented in Alloy by facts. A fact is a logical formula that always holds. Alloy uses first order logic in an ASCII format. We can also specify predicates that could be evaluated to return true or false and functions that could return signature instances. Alloy is able to automatically instantiate and evaluate predicates.
+
+\section{Problem Statement}
+
+Although XACML has already achieved a considerable degree of industrial acceptance, by itself, it is impossible to determine inconsistencies and apply the fixes to repair the access control model. Inconsistencies exist as an organization may have many such policies, which may have been established at different times, by different people, perhaps without a clear view of all the consequences. 
+
+Determining inconsistencies require verifications and finding counterexamples. This process is time-consuming depending on the choice of verification and modeling language. Once inconsistencies are found, the user has to apply fixes but there is no guarantee that the fixes can indeed repair the model without introducing new inconsistencies. Thus, the entire model construction process, model verification process, finding inconsistencies and repairing process can be overwhelming.
+
+In this paper, we propose a tool that we developed that can automatically determine the inconsistencies, recommend the repair to the users and apply fixes to the access control model.
 
 \subsection{Related work}
 
@@ -99,20 +112,12 @@ Regarding access control policy verification, there are several various related 
 
 None of the paper above solves the problem of access control policy repairing. It does not seem to be published prior related work in this topic. Rather than that, \cite{Zhang:2004:SVA:1029133.1029141} offers access control policies verification in the language called RW and then synthesize verified specifications in XACML. \cite{Bravo:2007:RIX:1783534.1783545} considers another type of access control policies - XML write access control policies - offers repairs in case of that some actions can be simulated by multiple another actions. Regarding repair in general and different domains, \cite{Reder:2012:CRT:2351676.2351707} proposes repair trees for inconsistency solving in design models. We use similar trees in our repairing approaches. There are works on model repairing in temporal logic, but we do not consider the notion of time in our work. Semi-automated repairing of XACML access control policies is the most important contribution of this paper. 
 
-\section{Problem Statement}
-
-Although XACML has already achieved a considerable degree of industrial acceptance, by itself, it is impossible to determine inconsistencies and apply the fixes to repair the access control model. Inconsistencies exists as an organization may have many such policies, which may have been established at different times, by different people, perhaps without a clear view of all the consequences. 
-
-Determining inconsistencies require verifications and finding counter examples. This process is time consuming depending on the choice of verification and modeling language. Once inconsistencies are found, the user has to apply fixes but there is no guarantee that the fixes can indeed repair the model without introducing new inconsistencies. Thus, the entire model construction process, model verification process/ finding inconsistencies and repairing process can be overwhelming.
-
-In this paper, we propose a tool that we developed that can automatically determine the inconsistencies, recommend the repair to the users and apply fixes to the access control model.
-
 \subsection{Paper structure}
-The Design overview section brief overview of our mission and solution to the problem stated; we will introduces the main components of our tool and the implementation approach at different stage. We will then present the implementation details in Implementation section where we articulate our design approach and implementations. Evaluation section contains our experiment results and analysis for the results. In future work section, we discuss about our tool limitations and bring up possible future improvement; expert's comments are also included as a future references. Conclusion section summarizes completed work and the results.
+The Implementation section gives brief overview of our we will introduce verification and model repairing approaches we took for the implementation of our tool. We will present the main components of our tool and the implementation at different stage. Evaluation section contains our toy experiment results. In future work section, we discuss our tool limitations and bring up possible future improvements. Conclusion section summarizes completed work and achieved results.
 
 \section{Implementation}
 
-In this section, we present the verification and repair appoaches, and architecture of the tool.
+In this section, we present the verification and repair approaches, architecture and data flow of the tool in details.
 
 \subsection{Verification approach}
 
@@ -123,7 +128,7 @@ The first step is to define the Alloy input file.
 
 2. Next, a concrete model is defined. It consists of signatures ($Policy1$, $Policy2$, $Rule1$, $Rule2$) and facts ($Policy1$ contains $Rule1$ and $Rule2$) regarding the relations specified in meta-model. Concrete model can vary within the given domain, so one meta-model can be used for many concrete models within the domain.
 
-3. And finally, a property predicate is defined. This predicate is domain-specific as well, and each predicate represents the negation of the property we need to verify. In this paper, we focused on an abstract property. It is stated as follows: within a policy set that has $OnlyOneApplicable$ policy combining algortihm, there is no two policies that for a given request return different decisions. The full body of the predicate is given in the Appendix, and its signature looks as follows:
+3. And finally, a property predicate is defined. This predicate is domain-specific as well, and each predicate represents the negation of the property we need to verify. In this paper, we focused on an abstract property. It is stated as follows: within a policy set that has $OnlyOneApplicable$ policy combining algorithm, there is no two policies that for a given request return different decisions. The full body of the predicate is given in the Appendix, and its signature looks as follows:
 
 \begin{verbatim}
 pred InconsistentPolicySet [ps : PolicySet, 
@@ -135,7 +140,7 @@ The predicate is supposed to find a policy set $ps$ that has $OnlyOneApplicable$
 
 And the second step is to send the Alloy file to Alloy Analyzer and execute the property predicate. We will denote the part of Alloy file without predicate as a model (so, the model consists of two parts: abstract model and concrete model). If the model is consistent, then the predicate is inconsistent with respect to the model, and Alloy Analyzer cannot generate an instance (example). If the predicate is consistent, it means that the model is inconsistent with respect to the property (the property is not satisfied in the model), and a counterexample is returned.
 
-This verification approach gives certain advantages. We can localize the inconsistency, since Alloy Analyzer will show the values of all the arguments of the predicate in the generated instance, including the request $req$, even if there is no definition of request. It is not the case if we make the predicate denote the property itselft, not its negation: in this case, if the property is not satisifed, then $UNSAT$ cores can be shown, but it takes computation time to minimize them, and they still might not be minimal. So, for error localization the taken approch is better.
+This verification approach gives certain advantages. We can localize the inconsistency, since Alloy Analyzer will show the values of all the arguments of the predicate in the generated instance, including the request $req$, even if there is no definition of request. It is not the case if we make the predicate denote the property itself, not its negation: in this case, if the property is not satisfied, then $UNSAT$ cores can be shown, but it takes computation time to minimize them, and they still might not be minimal. So, for error localization the taken approach is better.
 
 \subsection{Repair}
 
@@ -160,24 +165,24 @@ So, for this project, we end up with the first two repair ways and we can apply 
 \item Switch the policy combining algorithm of the policy $p2$.
 \end{enumerate}
 
-However, the application of one repair way might not be enough, in case that the core of inconsistency is not represented by two rules only. First, there might be redundant rules. For example, if the rule $Student->Read|Modify -> Marks$). This case is handled during the optimization during the conversion of the source file to Alloy file. Next, there are cases that a policy set is faulty for more than one request (not only for the request Professor->Read->Marks, but with the request  Professor->Modify->Marks, for instance), and it definitely needs more than one repair procedure in our approach. This is why we propose the displaying of the approximate numbers of next fixes.
+However, the application of one repair way might not be enough, in case that the core of inconsistency is not represented by two rules only. First, there might be redundant rules. For example, if the rule $Student \to Read|Modify \to Marks \to Permit$ is present, then the rule $Student \to Read \to Marks \to Permit$ is redundant, and changing the rule effect of the latter will cause the application of the former rule and this will not solve the problem in one step. This case is handled during the optimization during the conversion of the source file to Alloy file. Next, there are cases that a policy set is faulty for more than one request (not only for the request $Professor \to Read \to Marks$, but with the request  $Professor \to  Modify \to Marks$, for instance), and it definitely needs more than one repair procedure in our approach. This is why we propose the displaying of the approximate numbers of next fixes.
 
-The approximate number of next fixes is calculated as follows. After repairs have been proposed, the system tries to apply each of them gaining partially repaired models. Then, it runs the verification again for each of the partially repaired models. If some partially repaired model is consistent, it means that this model is fully repaired. So in this case, the approximate number of next fixes is zero. If some partially model is still inconsistent, then the system tries to apply fixes to the partially repaired model again, and adds 1 to the number of next fixes. This process can run infinetely and cause state explosion problem, so we limit the depth to certain ammount (in our case we specified 2).
+The approximate number of next fixes is calculated as follows. After repairs have been proposed, the system tries to apply each of them gaining partially repaired models. Then, it runs the verification again for each of the partially repaired models. If some partially repaired model is consistent, it means that this model is fully repaired. So in this case, the approximate number of next fixes is zero. If some partially model is still inconsistent, then the system tries to apply fixes to the partially repaired model again, and adds 1 to the number of next fixes. This process can run infinitely and cause state explosion problem, so we limit the depth to certain amount (in our case we specified 2).
 
-If the number of next fixes for each fix is greater than 0, then user needs to apply fixes multiple times. The user will go down the repair tree until he will get the fully repaired model.
+If the number of next fixes for each fix is greater than zero, then user needs to apply fixes multiple times. The user will go down the repair tree until he will get the fully repaired model.
 
 In this approach, more than one path can produce the repaired model. It does not matter whether this is a minimal one or not: if the user chooses the path with minimal number of next fixes, then eventually he will get the repaired model with minimal number of changes.
 
-However, there is a problem with this approach - cycles. For example, swithing rule combining algorithm may not be helpful. So the system will propose to switch rule combining algorithm and them, at the next step, switch it back. However, our approach helps to solve this problem: if cycles are present, then the way that leads to cycles will be annotated with bigger number of next fixes automatically, so it is less likely that the user will want to choose this way.
+However, there is a problem with this approach - cycles. For example, switching rule combining algorithm may not be helpful. So the system will propose to switch rule combining algorithm and then, at the next step, switch it back. However, our approach helps to solve this problem: if cycles are present, then the way that leads to cycles will be annotated with bigger number of next fixes automatically, so it is less likely that the user will want to choose this way.
 
-\subsection{Overview}
+\subsection{Tool implementation overview}
 The function of our tool is to automatically determined inconsistencies within access control policy defined by XACML, and recommend the potential repair to the user, and finally apply the user chosen fixes automatically. Throughout this process, user only have to review the recommended fixes, and choose the fix by clicking a button in user interface, and then the model should be fixed automatically by our tool. 
 
 To increase the usability of our tool, we have an external module, a converter that can automatically generate Alloy model based on a table template (or xml, csv file template) so that the user does not need to have complete literacy in Alloy modeling language. As the content of the such a template, the user is asked to specify the rule, subject, action, resource and effect in predefined format. Our converter will than generate the Alloy model and its predicate to verify inconsistencies, which is a safetyness property. Once Alloy model is generated, we input the model into our inconsistency detection and repair tool. 
 
-\subsection{Architecture and Data Flow}
+\subsection{Architecture and data flow}
 
-Our tool consists of three major parts: user interface, PropertyVerifier\&Fixer and Alloy analyzer. The architecture is shown in the figure below (Fig.\ref{fig:Architecture}) .\\
+Our tool consists of three major parts: the User Interface (UI), PropertyVerifier\&Fixer and Alloy Analyzer. The architecture is shown in the figure below (Fig.\ref{fig:Architecture}).\\
 
 \begin{figure}[h]
 \includegraphics[width=0.5\textwidth]{DataFlow.JPG}
@@ -185,33 +190,26 @@ Our tool consists of three major parts: user interface, PropertyVerifier\&Fixer 
   \label{fig:Architecture}
 \end{figure}
 
-At start, the UI first takes in the Alloy model created, and sends it to PropertyVerifier\&Fixer. Next, the PropertyVerifier part starts Alloy analyzer to process Alloy model and its property predicate;  please note that , we write our predicate in a way that it checks for if two policies return inconsistent results. PropertyFixer, then takes in the results from Alloy analyzer and extract relevant information, such as inconsistent rules, subject, action, resource and effect, and process those information to propose the potential fixes. The fix recommendation from PropertyFixer is passed to the user interface, and the user is shown with a list of fixes. Once the user chooses one particular fix, our tool will automatically update the original Alloy model. This updated model is then passed to PropertyVerifier to check if there are any inconsistencies. This process is repeated until the model is verified to be consistent.
+At the beginning, the UI first takes in the Alloy model created, and sends it to PropertyVerifier\&Fixer. Next, the PropertyVerifier part starts Alloy analyzer to process Alloy model and its property predicate. It should be noted that we write our predicate in a way that it checks for if two policies return inconsistent results. PropertyFixer then takes in the results from Alloy Analyzer and extracts relevant information, such as inconsistent rules, subject, action, resource and effect, and process those information to propose the potential fixes. The fix recommendation from PropertyFixer is passed to the UI, and the user is shown with a list of fixes. Once the user chooses one particular fix, our tool will automatically update the original Alloy model. This updated model is then passed to PropertyVerifier to check if there are any inconsistencies. This process is repeated until the model is verified to be consistent.
 
-In order to realize the above mentioned architecture, we have created several Java modules which is summarized below.
+In order to realize the above mentioned architecture, we have created several Java modules which are summarized below.
 
-\textbf{\emph{InteractiveRepairer}}\\
+\subsubsection{InteractiveRepairer}
 This is the core of our tool, it contains:
 \begin{itemize}
 \item Main engine
 \item PropertyVerifier
 \item PropertyFixer
 \end{itemize}
-The Main engine, controls the communication between user interface and our Fixer and Verifier; it process input from UI and output the results to UI for user inspection. PropertyVerifier calls Alloy analyzer through our API and obtain XML format of the generated instance that contains information about the policy, rule, request and effect.PropertyVerifier then follows XPATH standard and store those information into nodes for later processing in Java. Once the XPATH nodes are created with relevant information from Alloy analyzer, PropertyFixer takes in those information and proposes potential fixes. Once the user select the preferred fix, this decision is communicated to PropertyFixer again through Main engine, and PropertyFixer will automatically apply the fixes to the original Alloy model.
+The Main engine controls the communication between the user interface and our Fixer and Verifier; it process input from UI and outputs the results to UI for user inspection. PropertyVerifier calls Alloy Analyzer through our API and obtains XML representation of the generated instance that contains information about the policies, rules, request and effects. PropertyVerifier then follows XPATH standard to extract and store that information from XML for later processing. Once the XML nodes are extracted with relevant information from Alloy Analyzer, PropertyFixer takes in those information and proposes potential fixes. Once the user selects the preferred fix, this decision is communicated to PropertyFixer again through Main engine, and PropertyFixer will automatically apply the fixes to the original Alloy model.
 
-Note that PropertyFixer and PropertyVerifier function as a pair, and one pair is required for each property to be verified; in our study, we limit the property verification to safetyness property but this is extensible by creating another pair of PropertyFixer and Verifier.
+Note that PropertyFixer and PropertyVerifier function as a pair, and one pair is required for each property to be verified; in our study, we limit the property verification to the safety property but this is extensible by creating another pair of PropertyFixer and Verifier.
 
-\textbf{\emph{AlloyRunner}}\\
-AlloyRunner is an API that facilitate the communication between our tool with Alloy analyzer. Mainly, it initializes the Alloy analyzer, sends model to Alloy analyzer, and get XML instances from Alloy analyzer. Alloy analyzer serves as verification engine for our input model and will return instances or counter example which we use in later processing.
+\subsubsection{AlloyRunner}
+AlloyRunner is an API that facilitate the communication between our tool with Alloy analyzer. Mainly, it initializes the Alloy Analyzer, sends model to Alloy analyzer, and get XML instances from Alloy Analyzer. Alloy Analyzer serves as verification engine for our input model and will return instances or counter example which we use in later processing.
 
-\textbf{\emph{Presentation Layer}}\\
-Presentation uses dynamic web application technologies, such as Javascripts, Node.js to allow interactive model repair. Node.js executes interactive repair with user inputs and calls back to the Main engine in InteractiveRepairer to apply the repair. For instance, the propose button triggers Main engine to start PropertyVerifier to execute the model verification, and the resolve button will cause the PropertyFixer to apply the repair on the original Alloy model. The return value associate with each function call-back of the button is error description for propose, and new model for resolve button.
-
-
-During design phase, we studied all possible ways of fixing the model, and we have chosen four fixes in total considering the efficiency and relevancy of access control policy fix. From experimental results and observation, we decided to prioritize the fixes that modifies the rule effect as it reduces the number of total fixes greatly. The details are presented in the following subsection. 
-
-\subsection{Model Fix}
-
-ToBeAdded
+\subsubsection{Presentation Layer}
+Presentation uses dynamic web application technologies such as Javascript and Node.js to allow interactive model repair. Node.js executes interactive repair with user inputs and calls back to the Main engine in InteractiveRepairer to apply the repair. For instance, the Propose button triggers Main engine to start PropertyVerifier to execute the model verification, and the Resolve links will cause the PropertyFixer to apply the repair on the original Alloy model. The return values are associated with each function call-back of the button, and represents error location and proposed fixes for Propose command and new model for Resolve command. All proposed fixes are shown and annotated by the approximated number of next fixes.
 
 \section{Evaluation Result}
 
@@ -224,7 +222,7 @@ ToBeAdded
 
 \section{Future work}
 
-Although our tool demonstrate potential value in automated access control model repair, while significantly reducing user's manual work, we see future improvements in our tool. During implementation and testing stages, we noticed the following limitations in our tool:
+Although our tool demonstrate potential value in automated access control model repair, while significantly reducing user's manual work, we see future improvements in our tool. We noticed the following limitations in our tool:
 
 \begin{enumerate}
 \item Verification is bounded
@@ -233,13 +231,13 @@ Although our tool demonstrate potential value in automated access control model 
 \item Repair procedure depends on the property and requires pre-defined prospective repair ways
 \end{enumerate}
 
-The first two points are pretty clear; our verification is bounded. Although this enables us to use Alloy as it is for bounded model checking, we would have significant dependability to Alloy. In this case, software upgrade in Alloy would cause potential mul-functioning of our tool which needs to be addressed in the future. In this project, we mainly interfaced the communication with Alloy API therefore, in the future, we need to communicate with Alloy back-end to prevent this problem.
+The first two points are pretty clear. Since we use Alloy as it is for bounded model checking, we can guarantee that the tool will give correct results within the given scope. Although we significantly dependent on Alloy, we mainly interfaced the communication with Alloy API, so in the future, we need to communicate with Alloy back-end to prevent this problem.
 
 Although we strive to make our tool scalable, the automated Alloy model generation from a user specified table brings limitations in the structure of the model we generate. Although this access control model works well for our present study, it only represents a subset of XACML. In the future, we would like to explore different ways to increase the flexibility of our model. One potential way is to incorporate sketching techniques and having multiple rule tables so that the user can choose the structure of the model our tool generates.
 
-State explosion is not addressed in a smart way due to time constraints. We limit the depth of the potential solution to two. This obviously will become a problem when the examples are large or more complicated. We would like to study more on ways, such as graph theory and multi-object optimization to deal better with this common problem in verification and repair.
+State explosion is not addressed in a smart way due to time constraints. By now, we use repair trees and limit the depth of the potential solution to two. This might still bring problems if the model is large and the number of fixes is big. We would like to study more on ways to deal better with this common problem in verification and repair.
 
-One important future improvements is on the repair recommendation. Currently, we only proposes repair based on rule effect and override effect. We derived these to approach from observation and testing. We will explore other factors such as relation, and derivation in the future to enhance our repair framework.
+One important future improvements is on the repair recommendation. Currently, we only proposes repairs based on rule effect and combining algorithm. We derived these approach from observation and testing. We will explore other factors such as relation, and derivation in the future to enhance our repair framework.
 
 \section{Conclusion}
 
@@ -252,61 +250,55 @@ We have created the input converter so that user can just specify the policies i
 
 From our project, we conclude that ``automated'' model repair is possible for access control policy defined by XACML structure. We make implications on the fact that user input is still necessary to reduce the redundant computation and steps taken to fix the model. By allowing user to select from list of recommended fixes, and use the user input as new argument in our automated repair tool, we are able to efficiently repair the model without looping.
 
-One other implication we make is that our tool should be easily extensible so that the model repaired is not limited to access control policy. We see our InteractiveFixer module as a ``head'' which we can change according to the targeted model that needs to be verified. 
+One other implication we make is that our tool should be easily extensible so that the model repair is not limited to access control policy. We see our InteractiveFixer module as a ``head'' which we can change according to the targeted model that needs to be verified. 
 
 
 \bibliography{sigproc-sp}{}
 \bibliographystyle{plain}
 
 \appendix
-\section{User experiment tasks and questionnaire} \label{A}
+\section{Verification property predicate, Alloy syntax} \label{A}
 
-\underline{ \textbf{I. Introductory presentation}}
+\begin{verbatim}
 
-\underline{ \textbf{II. Tasks}}
+pred InconsistentPolicySet [ps : PolicySet, 
+    req : Request,  p1: Policy, p2: Policy, 
+    r1: Rule, r2: Rule]{
 
-Tasks are split into 3 categories: \textbf{Overview}, \textbf{Graph} and \textbf{Case Studies}. All tasks are to be performed using the think-aloud protocol, that is, the participants should verbally describe what and why they are doing. All tasks are based on the file \textit{AndroidSampleMoo\_4.cfr}.
+  ps.combiningAlgo = P_OnlyOneApplicable 
+  p1 in ps.policies
+  p2 in ps.policies
+  p1 != p2
+  r1 in p1.rules
+  r2 in p2.rules
+  policyResponse[p1, req] = Permit
+  (
+    p1.combiningAlgo = DenyOverrides and
+    (no r1':Rule | r1' in p1.rules 
+      and ruleResponse[r1', req] = Deny)
+    and ruleResponse[r1, req] = Permit
+  )
+  or
+  (
+    p1.combiningAlgo = PermitOverrides
+    and ruleResponse[r1, req] = Permit
+  )
+  policyResponse[p2, req] = Deny
+  (
+    p2.combiningAlgo = PermitOverrides and
+    (no r2':Rule | r2' in p2.rules 
+      and ruleResponse[r2', req] = Permit)
+    and ruleResponse[r2, req] = Deny
+  )
+  or
+  (
+    p2.combiningAlgo = DenyOverrides
+    and ruleResponse[r2, req] = Deny
+  )
 
-\textbf{1. Overview:}
+}
 
-\textbf{T1.} Upload a model file \textit{AndroidSampleMoo\_4.cfr}.\\
-\textbf{T2}. Tell what features and quality attributes are specified in the Android phone model.\\
-\textbf{T3}. Tell what objectives are presented in the Android phone model.\\
-\textbf{T4}. Tell how many Android phone configurations are generated.\\
-
-\textbf{2. Graph:}
-
-\textbf{T5}. Identify 4 phones with the highest total performance (Just say: “P29, P30, P12, P4”, for instance). What is their total mass?\\
-\textbf{T6}. Identify a phone with the lowest energy consumption. What is its total performance?\\
-\textbf{T7}. Identify the phones with very low total mass.\\
-\textbf{T8}. How many phones have perfect (highest) total security? What features contribute to total security?\\
-
-\textbf{3. Cases studies:}
-
-\textbf{T9.} Your boss says that among all the sets of phones you need to issue only one. He says that he needs to choose one among the phones with the best total performance. He is OK with any high energy consumption, since new Android battery is very good. He says he does not need a perfect total security, but it should be more than 0. So he is OK to sacrifice total security to get more total performance.\\
-\textit{Your actions:}\\
-1) Which product(s) will you choose and why?\\
-
-\textbf{T10.} Your boss says that it is interesting that bubbles representing P5, P8, P2, and P22 are located close to each other. And he wants to know why this happened. Because, maybe, the phones are equivalent in some sense and we can consider them separately as an equivalence class.\\
-\textit{Your actions:}\\
-1) What do the products have in common and what are the differences?\\
-2) Why the bubbles are located close to each other?\\
-
-\textbf{T11.} Your boss needs you to analyze the total performance and total mass of all prospective phones that have USB and WiFi features. He knows that P5, P8, P2, P22 and P18 have USB and WiFi. But he wants to consider all the phones that have USB and WiFi features.\\
-\textit{Your actions:}\\
-1) Make the set to be a complete equivalence class by adding other relevant products to it.\\
-2) Among the selected products within the equivalence class, what is the:\\
-	Minimal,\\
-	Mean,\\
-	Maximal\\
-total performance? Are the phones differ in total mass significantly or not?\\
-3) Based on the question above, is it reasonable for the boss sacrifice total mass to gain more total performance?\\
-
-\underline{ \textbf{Questionnaire}}\\
-
-\textbf{Q1.} Do you find the idea of representing the products in a four-dimensional space using bubble chart useful? Any comments on that? Are there limitations? Does the representation of the four dimensions make it easy to find “better” products?\\
-\textbf{Q2.} What do you think about the notion of the complete equivalence class? What is it and how it can be used? Describe it in your own words.\\
-\textbf{Q3.} I noticed that I can group products together based on their features, so each cluster will be denoted by an equivalence class. Let’s call it “clustering by features”. Do you think it is a good idea or not?\\
+\end{verbatim}
 
 
 
