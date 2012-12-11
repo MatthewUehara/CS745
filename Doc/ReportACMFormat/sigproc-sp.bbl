@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Bravo:2007:RIX:1783534.1783545}
 Loreto Bravo, James Cheney, and Irini Fundulaki.
@@ -21,21 +21,36 @@ Kathi Fisler, Shriram Krishnamurthi, Leo~A. Meyerovich, and Michael~Carl
 \newblock In {\em Proceedings of the 27th international conference on Software
   engineering}, ICSE '05, pages 196--205, New York, NY, USA, 2005. ACM.
 
+\bibitem{acp:automated}
+Graham Hughes and Tevfik Bultan.
+\newblock Automated verifcation of access control policies.
+\newblock Technical report, 2008.
+
 \bibitem{Hughes:2008:AVA:1459278.1459282}
 Graham Hughes and Tevfik Bultan.
 \newblock Automated verification of access control policies using a sat solver.
 \newblock {\em Int. J. Softw. Tools Technol. Transf.}, 10(6):503--520, October
   2008.
 
-\bibitem{Jackson:2000:AFR:357474.355063}
-Daniel Jackson.
-\newblock Automating first-order relational logic.
-\newblock {\em SIGSOFT Softw. Eng. Notes}, 25(6):130--139, November 2000.
-
 \bibitem{jackson:alloy}
 Daniel Jackson.
 \newblock {\em Software Abstractions: Logic, Language and Analysis}.
 \newblock The MIT Press, revised edition, 2012.
+
+\bibitem{acp:descriptionlogics}
+Vladimir Kolovski and James Hendler.
+\newblock Xacml policy analysis using description logics.
+\newblock Technical report, 2008.
+
+\bibitem{acp:alloy}
+Mahdi Mankai and Luigi Logrippo.
+\newblock Access control policies: Modeling and validation.
+\newblock Technical report, 2008.
+
+\bibitem{oasis:xacml}
+OASIS Open.
+\newblock {\em eXtensible Access Control Markup Language (XACML)}.
+\newblock The MIT Press, 2.0 edition, 2005.
 
 \bibitem{Reder:2012:CRT:2351676.2351707}
 Alexander Reder and Alexander Egyed.
@@ -44,15 +59,6 @@ Alexander Reder and Alexander Egyed.
 \newblock In {\em Proceedings of the 27th IEEE/ACM International Conference on
   Automated Software Engineering}, ASE 2012, pages 220--229, New York, NY, USA,
   2012. ACM.
-
-\bibitem{Xiong:2009:SAM:1595696.1595757}
-Yingfei Xiong, Zhenjiang Hu, Haiyan Zhao, Hui Song, Masato Takeichi, and Hong
-  Mei.
-\newblock Supporting automatic model inconsistency fixing.
-\newblock In {\em Proceedings of the the 7th joint meeting of the European
-  software engineering conference and the ACM SIGSOFT symposium on The
-  foundations of software engineering}, ESEC/FSE '09, pages 315--324, New York,
-  NY, USA, 2009. ACM.
 
 \bibitem{Zhang:2004:SVA:1029133.1029141}
 Nan Zhang, Mark Ryan, and Dimitar~P. Guelev.

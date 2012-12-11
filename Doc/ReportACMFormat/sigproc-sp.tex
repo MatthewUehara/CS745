@@ -19,15 +19,12 @@
        \affaddr{The David R. Cheriton School of Computer Science}\\
        \affaddr{University of Waterloo}\\
        \affaddr{Waterloo, ON, Canada}\\
-       \email{m22ma, amurashk@uwaterloo.ca}
+       \email{amurashk, m22ma@uwaterloo.ca}
 }
 \date{6 December 2012}
 \maketitle
 
 \begin{abstract}
-
-
-sdadds\cite{Kounga:2010:EXA:1894888.1894907}sdfdfs
 
 Sensitive data are becoming available through the Web and other distributed protocols. This heightens the need to carefully control access to data. Control means not only preventing the leakage of data but also permitting access to necessary information. Access control requires authorization rules and constraints. To express access control policies, several languages,
 such as XACML are used to specify which subjects can  access sets of resources
@@ -59,9 +56,8 @@ While policy mechanisms may be able to solve inconsistencies at a higher level, 
 
 \subsection{Background}
 
-
 \textbf{\emph{XACML for Access Control}}\\
-XACML is an OASIS standard that defines an architecture, policies and messages within an access control system. XACML generally center around attributes; attributes describe subjects, actions, and resources. For example, faculty is a value for the attribute role, which describes the subject. The names of attributes, such as role are called attribute ID, while the values bound
+XACML is an OASIS standard \cite{oasis:xacml} that defines an architecture, policies and messages within an access control system. XACML generally center around attributes; attributes describe subjects, actions, and resources. For example, faculty is a value for the attribute role, which describes the subject. The names of attributes, such as role are called attribute ID, while the values bound
 to them are called attribute values  (such as Faculty). The fragment of an XACML policy designating Faculty as a role is shown below:\\
 
 \begin{verbatim}
@@ -83,7 +79,7 @@ given by a request. For example, if there are two policies, the first one is app
 when the subject is a professor, the resource is the marks file and the action is modification. If a request from a student to print the marks file comes to the policy enforcement point, the policy decision point will only select the first policy to make a decision.
 
 \textbf{\emph{Alloy}}\\
-Alloy is a modeling language based on relational first order logic. An Alloy model is a collection of constraints that describes a set of structure. Alloy's tool, the Alloy Analyzer, is a solver that takes the constraints of a model and finds structures that satisfy them. It can be used both to explore the model by generating sample structures, and to check properties of the model by generating counterexamples. 
+Alloy \cite{jackson:alloy} is a modeling language based on relational first order logic. An Alloy model is a collection of constraints that describes a set of structure. Alloy's tool, the Alloy Analyzer, is a solver that takes the constraints of a model and finds structures that satisfy them. It can be used both to explore the model by generating sample structures, and to check properties of the model by generating counterexamples. 
 
 To model structures, Alloy uses the concepts of signature and relation. A signature is a type in Alloy. It can be considered equivalent to a class in the object oriented paradigm since a signature can be instantiated. For example, we can define a abstract general signature Element like this:
  
@@ -99,22 +95,9 @@ A relation is a structure that relates signatures and their instances. Functions
 \subsection{Related work}
 
 Regarding access control policy verification, there are several various related approaches.
-\cite{Hughes:2008:AVA:1459278.1459282} proposes encoding XACML access control policies  ordering relations and then translation of them into SAT solver for verification. \cite{4258517} describes inconsistency checking in role-based access control policies (RBAC).  \cite{Fisler:2005:VCA:1062455.1062502} proposes Margrave - a great tool for access control policies (XACML and other formats) verification and change-impact analysis. \cite{Jackson:2000:AFR:357474.355063} proposes Alloy Analyzer as first-order logic verification tool (there is a corresponding book \cite{jackson:alloy}).
+\cite{Hughes:2008:AVA:1459278.1459282} proposed encoding XACML access control policies  ordering relations and then translation of them into SAT solver for verification. This paper defined some Alloy notation as well.  The papers \cite{acp:automated} and \cite{acp:alloy} defined XACML access control policies notation in Alloy and deal with verification problem. The latter approach - \cite{acp:alloy} - is used in our paper, it introduces the usage of predicates for access control policy model verification and validation. We found the way the models are defined in this paper straight-forward, so we used this approach and extended it. Other than that, \cite{4258517} describes inconsistency checking in role-based access control policies (RBAC). \cite{Fisler:2005:VCA:1062455.1062502} proposes Margrave - a tool for access control policies (XACML and other formats) verification and change-impact analysis. \cite {acp:descriptionlogics} used description logics to formalize and verify access control policies. The authors also specified semi-automated access control policy repair as their future work.
 
-For Access control policy verification in Alloy: 
-1) http://www.cs.ucsb.edu/~bultan/publications/tech-report04.pdf
-2 - WE USE IT!! ) http://w3.uqo.ca/notere05/documents/logrippo.pdf, need a citation.
-
-Regarding repairing XACML access control policies, it does not seem to be a lot of prior related work. Rather than that, \cite{Zhang:2004:SVA:1029133.1029141} offers access control policies verification in the language called RW and then synthesize verified specifications in XACML. \cite{Bravo:2007:RIX:1783534.1783545} considers another type of access control policies - XML write access control policies - offers repairs in case of that some actions can be simulated by multiple another actions. 
-
-Regarding model repairing in general, \cite{Xiong:2009:SAM:1595696.1595757} proposed .... for i don't know what, need to read :) . \cite{Reder:2012:CRT:2351676.2351707} proposes repair trees for inconsistency solving in design models.
-
-The proposed technique of repairing inconsistencies - sketching - was described in the thesis http://people.csail.mit.edu/asolar/papers/thesis.pdf .
-
-Need to look at this - probably needed - http://people.csail.mit.edu/eskang/talks/mit-security-seminar-nov2012.pdf .
-
-The specification of XACML:
-%http://docs.oasis-open.org/xacml/2.0/access_control-xacml-2.0-core-spec-os.pdf
+None of the paper above solves the problem of access control policy repairing. It does not seem to be published prior related work in this topic. Rather than that, \cite{Zhang:2004:SVA:1029133.1029141} offers access control policies verification in the language called RW and then synthesize verified specifications in XACML. \cite{Bravo:2007:RIX:1783534.1783545} considers another type of access control policies - XML write access control policies - offers repairs in case of that some actions can be simulated by multiple another actions. Regarding repair in general and different domains, \cite{Reder:2012:CRT:2351676.2351707} proposes repair trees for inconsistency solving in design models. We use similar trees in our repairing approaches. There are works on model repairing in temporal logic, but we do not consider the notion of time in our work. Semi-automated repairing of XACML access control policies is the most important contribution of this paper. 
 
 \section{Problem Statement}
 
@@ -129,7 +112,63 @@ The Design overview section brief overview of our mission and solution to the pr
 
 \section{Implementation}
 
-\textcolor{red}{In this section, we present the overview of our implementation, architecture of the tool, alloy model and repair process !!!EDIT}
+In this section, we present the verification and repair appoaches, and architecture of the tool.
+
+\subsection{Verification approach}
+
+The verification procedure is based on the one in the technical report \cite{acp:alloy}. We use the same idea in our paper.
+The first step is to define the Alloy input file.
+
+1. First, a meta-model (or abstract model) is defined at the beginning of the file. This meta-model is domain-specific. It consists of signatures ($Policy$, $PolicySet$, $Rule$, $Effect$, $RuleCombiningAlgorithm$, etc.) and relations ($rules$ relation links a policy and rules it contains).
+
+2. Next, a concrete model is defined. It consists of signatures ($Policy1$, $Policy2$, $Rule1$, $Rule2$) and facts ($Policy1$ contains $Rule1$ and $Rule2$) regarding the relations specified in meta-model. Concrete model can vary within the given domain, so one meta-model can be used for many concrete models within the domain.
+
+3. And finally, a property predicate is defined. This predicate is domain-specific as well, and each predicate represents the negation of the property we need to verify. In this paper, we focused on an abstract property. It is stated as follows: within a policy set that has $OnlyOneApplicable$ policy combining algortihm, there is no two policies that for a given request return different decisions. The full body of the predicate is given in the Appendix, and its signature looks as follows:
+
+\begin{verbatim}
+pred InconsistentPolicySet [ps : PolicySet, 
+    req : Request,  p1: Policy, p2: Policy, 
+    r1: Rule, r2: Rule]
+\end{verbatim}
+
+The predicate is supposed to find a policy set $ps$ that has $OnlyOneApplicable$ policy combining algorithm and contains policies $p1$ and $p2$, such that policy $p1$ contains rule $r1$, policy $p2$ contains rule $r2$. At the same time, $r1$ defines the response of policy $p1$: the rule $ r1$ is either the only applicable rule in context of the given request $req$, or dominates all other rules of the policy $p1$ after apllying the rule combining algorithm. And similarly, $r2$ defines the response of policy $p2$.
+
+And the second step is to send the Alloy file to Alloy Analyzer and execute the property predicate. We will denote the part of Alloy file without predicate as a model (so, the model consists of two parts: abstract model and concrete model). If the model is consistent, then the predicate is inconsistent with respect to the model, and Alloy Analyzer cannot generate an instance (example). If the predicate is consistent, it means that the model is inconsistent with respect to the property (the property is not satisfied in the model), and a counterexample is returned.
+
+This verification approach gives certain advantages. We can localize the inconsistency, since Alloy Analyzer will show the values of all the arguments of the predicate in the generated instance, including the request $req$, even if there is no definition of request. It is not the case if we make the predicate denote the property itselft, not its negation: in this case, if the property is not satisifed, then $UNSAT$ cores can be shown, but it takes computation time to minimize them, and they still might not be minimal. So, for error localization the taken approch is better.
+
+\subsection{Repair}
+
+Once there is an inconsistent policy set, the verification procedure will return the policy set $ps$, policies $p1$, $p2$ and the corresponding rules $r1$ and $r2$. Our repair procedure is applied to policies or rules, and this will affect the consistency of the policy set $ps$. Since our verification procedure returns two rules of two policies, actually we can try to apply the same set of repairs to each of them by simmetry. Therefore, we can consider the following simple repair ways in the context of the returned policy set $ps$, and one policy $p1$ and rule $r1$ within it.
+
+\begin{enumerate}
+\item Switch the effect of the rule $r1$. If it was $Permit$, it is changed to $Deny$, and conversely.
+\item Switch the policy combining algorithm of the policy $p1$. If it was $PermitOverrides$, it becomes $DenyOverrides$, and conversely.
+\item Remove the rule $p1$ from the policy $p1$.
+\item Remove the policy $p1$ from the policy set $ps$.
+\item Switch the policy combining algorithm of the policy set $ps$ from $OnlyOneApplicable$ to either $DenyOverrides$ or $PermitOverrides$.
+\end{enumerate}
+
+The ways 1 and 2 seems to be the best. Just switching the values is definitely less radical. Ways 3 and 4 are dangerous: first, they might affect other requests; next, they can bring us to the empty model which satisfies everything. Way 5 is quite global to apply it, and again, it will hide the conflicts at all, and this can cause more problems in the future. There can be other ways, though: changing the subject, action and resource, but this is risky and can increase the number of states. 
+
+So, for this project, we end up with the first two repair ways and we can apply them to both $p1$ and $p2$, so actually we have 4 repair ways:
+
+\begin{enumerate}
+\item Switch the effect of the rule $r1$.
+\item Switch the policy combining algorithm of the policy $p1$.
+\item Switch the effect of the rule $r2$.
+\item Switch the policy combining algorithm of the policy $p2$.
+\end{enumerate}
+
+However, the application of one repair way might not be enough, in case that the core of inconsistency is not represented by two rules only. First, there might be redundant rules. For example, if the rule $Student->Read|Modify -> Marks$). This case is handled during the optimization during the conversion of the source file to Alloy file. Next, there are cases that a policy set is faulty for more than one request (not only for the request Professor->Read->Marks, but with the request  Professor->Modify->Marks, for instance), and it definitely needs more than one repair procedure in our approach. This is why we propose the displaying of the approximate numbers of next fixes.
+
+The approximate number of next fixes is calculated as follows. After repairs have been proposed, the system tries to apply each of them gaining partially repaired models. Then, it runs the verification again for each of the partially repaired models. If some partially repaired model is consistent, it means that this model is fully repaired. So in this case, the approximate number of next fixes is zero. If some partially model is still inconsistent, then the system tries to apply fixes to the partially repaired model again, and adds 1 to the number of next fixes. This process can run infinetely and cause state explosion problem, so we limit the depth to certain ammount (in our case we specified 2).
+
+If the number of next fixes for each fix is greater than 0, then user needs to apply fixes multiple times. The user will go down the repair tree until he will get the fully repaired model.
+
+In this approach, more than one path can produce the repaired model. It does not matter whether this is a minimal one or not: if the user chooses the path with minimal number of next fixes, then eventually he will get the repaired model with minimal number of changes.
+
+However, there is a problem with this approach - cycles. For example, swithing rule combining algorithm may not be helpful. So the system will propose to switch rule combining algorithm and them, at the next step, switch it back. However, our approach helps to solve this problem: if cycles are present, then the way that leads to cycles will be annotated with bigger number of next fixes automatically, so it is less likely that the user will want to choose this way.
 
 \subsection{Overview}
 The function of our tool is to automatically determined inconsistencies within access control policy defined by XACML, and recommend the potential repair to the user, and finally apply the user chosen fixes automatically. Throughout this process, user only have to review the recommended fixes, and choose the fix by clicking a button in user interface, and then the model should be fixed automatically by our tool. 
