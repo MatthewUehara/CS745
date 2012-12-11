@@ -85,7 +85,7 @@ So, in our example a policy set $PS$ contains two policies: $P1$ and $P3$, the f
 \textbf{\emph{Alloy}}\\
 Alloy \cite{jackson:alloy} is a modeling language based on relational first order logic. An Alloy model is a collection of constraints that describes a set of structure. Alloy's tool, the Alloy Analyzer, is a solver that takes the constraints of a model and finds variables that satisfy them. It can be used both to explore the model by generating sample structures, and to check properties of the model by generating counterexamples. 
 
-To model structures, Alloy uses the concepts of signature and relation. A signature is a type in Alloy. It can be considered equivalent to a class in the object oriented paradigm since a signature can be instantiated. For example, we can define a policy P1 as follows \cite{acp:alloy}:
+To model structures, Alloy uses the concepts of signature and relation. A signature is a type in Alloy. It can be considered equivalent to a class in the object oriented paradigm since a signature can be instantiated. For example, we can define a policy as follows \cite{acp:alloy}:
  
  \begin{verbatim}
 abstract sig Policy {
@@ -94,6 +94,13 @@ abstract sig Policy {
   combiningAlgo : one RuleCombiningAlgo
 } 
 \end{verbatim}
+
+Overall, all entities are represented in the Fig. \ref{fig:model} in Alloy-friendly notation.
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{model.png}
+\caption{Shortened representation of some XACML entities: policy set, policy, rule, and request. Alloy-friendly notation}    
+  \label{fig:tree}
+\end{figure}
 
 A relation is a structure that relates signatures and their instances. Functions are special binary relations; they map each instance from the left signature to only one instance from the right signature (the function effect maps each rule to only one effect). Constraints are represented in Alloy by facts. A fact is a logical formula that always holds. Alloy uses first order logic in an ASCII format. We can also specify predicates that could be evaluated to return true or false and functions that could return signature instances. Alloy is able to automatically instantiate and evaluate predicates.
 
@@ -169,14 +176,26 @@ However, the application of one repair way might not be enough, in case that the
 
 The approximate number of next fixes is calculated as follows. After repairs have been proposed, the system tries to apply each of them gaining partially repaired models. Then, it runs the verification again for each of the partially repaired models. If some partially repaired model is consistent, it means that this model is fully repaired. So in this case, the approximate number of next fixes is zero. If some partially model is still inconsistent, then the system tries to apply fixes to the partially repaired model again, and adds 1 to the number of next fixes. This process can run infinitely and cause state explosion problem, so we limit the depth to certain amount (in our case we specified 2).
 
-If the number of next fixes for each fix is greater than zero, then user needs to apply fixes multiple times. The user will go down the repair tree until he will get the fully repaired model.
+If the number of next fixes for each fix is greater than zero, then user needs to apply fixes multiple times. The user will go down the repair tree until he will get the fully repaired model (Fig.\ref{fig:tree}).
+
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{tree.png}
+\caption{Repair trees. Green nodes are decisions of the user}    
+  \label{fig:tree}
+\end{figure}
 
 In this approach, more than one path can produce the repaired model. It does not matter whether this is a minimal one or not: if the user chooses the path with minimal number of next fixes, then eventually he will get the repaired model with minimal number of changes.
 
 However, there is a problem with this approach - cycles. For example, switching rule combining algorithm may not be helpful. So the system will propose to switch rule combining algorithm and then, at the next step, switch it back. However, our approach helps to solve this problem: if cycles are present, then the way that leads to cycles will be annotated with bigger number of next fixes automatically, so it is less likely that the user will want to choose this way.
 
 \subsection{Tool implementation overview}
-The function of our tool is to automatically determined inconsistencies within access control policy defined by XACML, and recommend the potential repair to the user, and finally apply the user chosen fixes automatically. Throughout this process, user only have to review the recommended fixes, and choose the fix by clicking a button in user interface, and then the model should be fixed automatically by our tool. 
+The function of our tool is to automatically determined inconsistencies within access control policy defined by XACML, and recommend the potential repair to the user, and finally apply the user chosen fixes automatically. Throughout this process, user only have to review the recommended fixes, and choose the fix by clicking a button in user interface, and then the model should be fixed automatically by our tool (Fig. \ref{fig:tool}). 
+
+\begin{figure*}[ht]
+\includegraphics[width=\textwidth]{tool.png}
+\caption{Our tool: the user interface}    
+  \label{fig:tool}
+\end{figure*}
 
 To increase the usability of our tool, we have an external module, a converter that can automatically generate Alloy model based on a table template (or xml, csv file template) so that the user does not need to have complete literacy in Alloy modeling language. As the content of the such a template, the user is asked to specify the rule, subject, action, resource and effect in predefined format. Our converter will than generate the Alloy model and its predicate to verify inconsistencies, which is a safetyness property. Once Alloy model is generated, we input the model into our inconsistency detection and repair tool. 
 
