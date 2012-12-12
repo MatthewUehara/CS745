@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  11 DEC 2012 02:00
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  11 DEC 2012 22:09
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -253,11 +253,7 @@ File: uni-global.def 2012/08/28 UCS: Unicode global data
 )
 (c:/texlive/2012/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2001/04/09 non-zero parskip adjustments
-) (./sigproc-sp.aux
-
-LaTeX Warning: Label `fig:tree' multiply defined.
-
-)
+) (./sigproc-sp.aux)
 \openout1 = `sigproc-sp.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
@@ -272,7 +268,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
- (c:/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
+
+(c:/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count114
 \scratchdimen=\dimen132
@@ -350,144 +347,148 @@ LaTeX Font Info:    Try loading font information for U+lasy on input line 25.
 
 (c:/texlive/2012/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-)
-Underfull \hbox (badness 10000) in paragraph at lines 58--60
-
- []
-
-LaTeX Font Info:    Try loading font information for T1+aett on input line 61.
-(c:/texlive/2012/texmf-dist/tex/latex/ae/t1aett.fd
-File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [1{c:/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-Overfull \hbox (14.66006pt too wide) in paragraph at lines 71--71
-[]      \T1/aett/m/n/9 DataType="...#string">Professor</AttributeValue>[] 
+Overfull \hbox (1.8992pt too wide) in paragraph at lines 77--78
+[]\T1/aer/bx/n/9 Property 1\T1/aer/m/n/9 :\T1/aer/m/it/9 Within a pol-icy set t
+hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
+ []
+
+<model.png, id=12, 697.10437pt x 408.77719pt>
+File: model.png Graphic file (type png)
+ <use model.png>
+Package pdftex.def Info: model.png used on input line 84.
+(pdftex.def)             Requested size: 252.0pt x 147.77094pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 84--85
+[][] 
  []
 
 
-Overfull \hbox (5.86552pt too wide) in paragraph at lines 73--74
-\T1/aer/m/n/9 Sev-eral rules are grouped into poli-cies and poli-cies are group
-ed
+Underfull \hbox (badness 4132) in paragraph at lines 85--85
+[]\T1/aer/bx/n/9 Figure 1: Short-ened rep-re-sen-ta-tion of some
  []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 <policyset.png, id=14, 749.80125pt x 306.39468pt>
 File: policyset.png Graphic file (type png)
  <use policyset.png>
-Package pdftex.def Info: policyset.png used on input line 78.
+Package pdftex.def Info: policyset.png used on input line 94.
 (pdftex.def)             Requested size: 252.0pt x 102.97595pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 78--79
+Overfull \hbox (12.0pt too wide) in paragraph at lines 94--95
 [][] 
  []
 
 
-LaTeX Warning: Reference `fig:model' on page \thepage  undefined on input line 
-98.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
-<model.png, id=15, 697.10437pt x 408.77719pt>
-File: model.png Graphic file (type png)
- <use model.png>
-Package pdftex.def Info: model.png used on input line 100.
-(pdftex.def)             Requested size: 252.0pt x 147.77094pt.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 104.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 100--101
-[][] 
+(c:/texlive/2012/texmf-dist/tex/latex/ae/t1aett.fd
+File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
+) [2 <./model.png> <./policyset.png>]
+Overfull \hbox (5.22821pt too wide) in paragraph at lines 121--121
+[]    \T1/aett/m/n/9 + Policy1_Rule_Professor_ReadModify_Marks_Permit[] 
  []
 
 
-Underfull \hbox (badness 4132) in paragraph at lines 101--101
-[]\T1/aer/bx/n/9 Figure 2: Short-ened rep-re-sen-ta-tion of some
+Overfull \hbox (1.8992pt too wide) in paragraph at lines 152--153
+[]\T1/aer/bx/n/9 Property 1\T1/aer/m/n/9 :\T1/aer/m/it/9 Within a pol-icy set t
+hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
  []
 
-[2 <./policyset.png> <./model.png>] [3]
-Overfull \hbox (3.87906pt too wide) in paragraph at lines 158--159
+[3] <tool.png, id=27, 756.57657pt x 408.02437pt>
+File: tool.png Graphic file (type png)
+ <use tool.png>
+Package pdftex.def Info: tool.png used on input line 169.
+(pdftex.def)             Requested size: 504.0pt x 271.8122pt.
+
+Overfull \hbox (3.87906pt too wide) in paragraph at lines 180--181
 \T1/aer/m/n/9 If it was $\OML/cmm/m/it/9 PermitOverrides$\T1/aer/m/n/9 , it be-
 comes $\OML/cmm/m/it/9 DenyOverrides$\T1/aer/m/n/9 ,
  []
 
-<tree.png, id=27, 722.7pt x 398.23781pt>
+
+Underfull \vbox (badness 2698) has occurred while \output is active []
+
+
+<tree.png, id=28, 722.7pt x 398.23781pt>
 File: tree.png Graphic file (type png)
  <use tree.png>
-Package pdftex.def Info: tree.png used on input line 182.
+Package pdftex.def Info: tree.png used on input line 204.
 (pdftex.def)             Requested size: 252.0pt x 138.86273pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 182--183
+Overfull \hbox (12.0pt too wide) in paragraph at lines 204--205
 [][] 
  []
 
 
-Overfull \hbox (2.9142pt too wide) in paragraph at lines 192--193
-\T1/aer/m/n/9 con-sis-ten-cies within ac-cess con-trol pol-icy de-fined by XACM
-L,
- []
+Underfull \vbox (badness 2790) has occurred while \output is active []
 
-[4 <./tree.png>] <tool.png, id=32, 756.57657pt x 408.02437pt>
-File: tool.png Graphic file (type png)
- <use tool.png>
-Package pdftex.def Info: tool.png used on input line 195.
-(pdftex.def)             Requested size: 504.0pt x 271.8122pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 204--205
+ [4 <./tree.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 220--221
 
  []
 
 <DataFlow.JPG, id=33, 578.16pt x 411.03563pt>
 File: DataFlow.JPG Graphic file (type jpg)
  <use DataFlow.JPG>
-Package pdftex.def Info: DataFlow.JPG used on input line 207.
+Package pdftex.def Info: DataFlow.JPG used on input line 223.
 (pdftex.def)             Requested size: 252.0pt x 179.15654pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 207--208
+Overfull \hbox (12.0pt too wide) in paragraph at lines 223--224
 [][] 
  []
 
-
-Overfull \hbox (3.84793pt too wide) in paragraph at lines 244--245
+[5 <./tool.png> <./DataFlow.JPG>]
+Overfull \hbox (3.84793pt too wide) in paragraph at lines 255--256
 \T1/aer/m/n/9 ac-cess con-trol model re-pair, while sig-nif-i-cantly re-duc-ing
  user's
  []
 
-[5 <./DataFlow.JPG>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6 <./tool.png>] (./sigproc-sp.bbl)
-Overfull \hbox (14.76888pt too wide) in paragraph at lines 279--279
-[]\secfnt VERIFICATION PROP-ERTY PRED-I-CATE,
+[6] (./sigproc-sp.bbl)
+Overfull \hbox (11.76888pt too wide) in paragraph at lines 299--299
+[]\secfnt VERIFICATION PROP-ERTY PRED-I-CATE 
  []
 
-[7] (./sigproc-sp.aux)
 
-LaTeX Warning: There were undefined references.
+Overfull \hbox (1.8992pt too wide) in paragraph at lines 303--304
+[]\T1/aer/bx/n/9 Property 1\T1/aer/m/n/9 :\T1/aer/m/it/9 Within a pol-icy set t
+hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
+ []
 
+[7] [8
 
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+] (./sigproc-sp.aux) ) 
 Here is how much of TeX's memory you used:
- 3672 strings out of 493488
- 50420 string characters out of 3144748
- 122842 words of memory out of 3000000
- 6862 multiletter control sequences out of 15000+200000
- 51452 words of font info for 70 fonts, out of 3000000 for 9000
+ 3673 strings out of 493488
+ 50427 string characters out of 3144748
+ 122821 words of memory out of 3000000
+ 6863 multiletter control sequences out of 15000+200000
+ 51092 words of font info for 70 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 41i,11n,26p,1158b,264s stack positions out of 5000i,500n,10000p,200000b,50000s
-{c:/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2012/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><c:/texlive/2012/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmbxti10.pfb><c:/texlive/2012/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
-<c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb><c:/texliv
-e/2012/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2012/texmf-di
-st/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1/
-urw/times/utmb8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.
-pfb>
-Output written on sigproc-sp.pdf (7 pages, 396718 bytes).
+ 41i,11n,26p,1158b,266s stack positions out of 5000i,500n,10000p,200000b,50000s
+{c:/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}<
+c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><c:/texlive
+/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2012/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2012/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy6.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
+9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb><c:/
+texlive/2012/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2012/te
+xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2012/texmf-dist/fonts/
+type1/urw/times/utmb8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1/urw/times/ut
+mri8a.pfb>
+Output written on sigproc-sp.pdf (8 pages, 406652 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 53 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 58 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
