@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  11 DEC 2012 22:09
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  11 DEC 2012 22:13
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -468,7 +468,7 @@ hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
 Here is how much of TeX's memory you used:
  3673 strings out of 493488
  50427 string characters out of 3144748
- 122821 words of memory out of 3000000
+ 123821 words of memory out of 3000000
  6863 multiletter control sequences out of 15000+200000
  51092 words of font info for 70 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -485,7 +485,7 @@ texlive/2012/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2012/te
 xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2012/texmf-dist/fonts/
 type1/urw/times/utmb8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1/urw/times/ut
 mri8a.pfb>
-Output written on sigproc-sp.pdf (8 pages, 406652 bytes).
+Output written on sigproc-sp.pdf (8 pages, 406876 bytes).
 PDF statistics:
  88 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream
