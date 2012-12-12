@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  11 DEC 2012 22:13
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  12 DEC 2012 11:03
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -351,41 +351,36 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 
 
 ]
-Overfull \hbox (1.8992pt too wide) in paragraph at lines 77--78
-[]\T1/aer/bx/n/9 Property 1\T1/aer/m/n/9 :\T1/aer/m/it/9 Within a pol-icy set t
-hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
- []
-
 <model.png, id=12, 697.10437pt x 408.77719pt>
 File: model.png Graphic file (type png)
  <use model.png>
-Package pdftex.def Info: model.png used on input line 84.
+Package pdftex.def Info: model.png used on input line 78.
 (pdftex.def)             Requested size: 252.0pt x 147.77094pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 84--85
+Overfull \hbox (12.0pt too wide) in paragraph at lines 78--79
 [][] 
  []
 
 
-Underfull \hbox (badness 4132) in paragraph at lines 85--85
+Underfull \hbox (badness 4132) in paragraph at lines 79--79
 []\T1/aer/bx/n/9 Figure 1: Short-ened rep-re-sen-ta-tion of some
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 <policyset.png, id=14, 749.80125pt x 306.39468pt>
 File: policyset.png Graphic file (type png)
  <use policyset.png>
-Package pdftex.def Info: policyset.png used on input line 94.
+Package pdftex.def Info: policyset.png used on input line 88.
 (pdftex.def)             Requested size: 252.0pt x 102.97595pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 94--95
+Overfull \hbox (12.0pt too wide) in paragraph at lines 88--89
 [][] 
  []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Overfull \hbox (1.8992pt too wide) in paragraph at lines 99--100
+[]\T1/aer/bx/n/9 Property 1\T1/aer/m/n/9 :\T1/aer/m/it/9 Within a pol-icy set t
+hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
+ []
 
 LaTeX Font Info:    Try loading font information for T1+aett on input line 104.
 
@@ -402,6 +397,10 @@ Overfull \hbox (1.8992pt too wide) in paragraph at lines 152--153
 hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
  []
 
+
+LaTeX Warning: Reference `appendix:a' on page \thepage  undefined on input line
+ 154.
+
 [3] <tool.png, id=27, 756.57657pt x 408.02437pt>
 File: tool.png Graphic file (type png)
  <use tool.png>
@@ -412,10 +411,6 @@ Overfull \hbox (3.87906pt too wide) in paragraph at lines 180--181
 \T1/aer/m/n/9 If it was $\OML/cmm/m/it/9 PermitOverrides$\T1/aer/m/n/9 , it be-
 comes $\OML/cmm/m/it/9 DenyOverrides$\T1/aer/m/n/9 ,
  []
-
-
-Underfull \vbox (badness 2698) has occurred while \output is active []
-
 
 <tree.png, id=28, 722.7pt x 398.23781pt>
 File: tree.png Graphic file (type png)
@@ -464,28 +459,31 @@ hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
 
 [7] [8
 
-] (./sigproc-sp.aux) ) 
+] (./sigproc-sp.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 3673 strings out of 493488
- 50427 string characters out of 3144748
- 123821 words of memory out of 3000000
- 6863 multiletter control sequences out of 15000+200000
+ 3674 strings out of 493488
+ 50439 string characters out of 3144748
+ 122821 words of memory out of 3000000
+ 6864 multiletter control sequences out of 15000+200000
  51092 words of font info for 70 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 41i,11n,26p,1158b,266s stack positions out of 5000i,500n,10000p,200000b,50000s
-{c:/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}<
-c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><c:/texlive
-/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2012/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2012/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmsy6.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
-9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb><c:/
-texlive/2012/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2012/te
-xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2012/texmf-dist/fonts/
-type1/urw/times/utmb8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1/urw/times/ut
-mri8a.pfb>
-Output written on sigproc-sp.pdf (8 pages, 406876 bytes).
+ 41i,11n,26p,1158b,262s stack positions out of 5000i,500n,10000p,200000b,50000s
+{c:/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2012/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><c:/texlive/2012/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr6.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+6.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/
+texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb><c:/texlive/20
+12/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb><c:/texlive/2012/texmf-d
+ist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1
+/urw/helvetic/uhvr8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1/urw/times/utmb
+8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on sigproc-sp.pdf (8 pages, 407063 bytes).
 PDF statistics:
  88 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream

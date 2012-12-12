@@ -28,7 +28,7 @@
 
 Databases can store important information that may be accessible in non-intended way. Therefore, data access control becomes significant \cite{Fisler:2005:VCA:1062455.1062502}. To express access control policies, several languages such as XACML \cite{oasis:xacml} are used to specify whether subjects are allowed to access sets of resources or services to perform specific actions on them. 
 
-In this paper, we address the problem of access control policy model verification and repairing. We develop a tool based on first-order logic modeling to detect and visualize possible conflicts within sets of access control policies expressed in XACML. We first translate the model into a relational first order logic language called Alloy \cite{jackson:alloy}, and then analyze interactions and conflicts among access control policies using Alloy Analyzer. We then propose potential repairs to the user through the user interface, and automatically apply the fixes selected by the user. We have shown that our tool can automatically determine inconsistencies in user specified model, prioritize possible fixes and successfully apply the selected repairs to the model. 
+In this paper, we address the problem of access control policy model verification and repair. We develop a tool based on first-order logic modeling to detect and visualize possible conflicts within sets of access control policies expressed in XACML. We first translate the model into a relational first order logic language called Alloy \cite{jackson:alloy}, and then analyze interactions and conflicts among access control policies using Alloy Analyzer. We then propose potential repairs to the user through the user interface, and automatically apply the fixes selected by the user. We have shown that our tool can automatically determine inconsistencies in user specified model, prioritize possible fixes and successfully apply the selected repairs to the model. 
 
 \end{abstract}
 
@@ -70,12 +70,6 @@ In the \textit{Implementation} section we will present the components of our too
 
 In this section, we introduce model verification and model repairing, XACML standard for defining access control policies and Alloy language that we used for verification in our work.
 
-\subsection{Model verification and model repairing}
-
-Given a model $M$, some property $\varphi$ and satisfaction relation $\models$, verification is the process of determining whether $M\models\varphi$. If $M\not\models\varphi$, the model repairing is the process of finding some $M'$, such that $M'\models\varphi$ and the derivation of $M'$ from $M'$ is minimal. In this paper, we will try to verify and repair models that represent access control policies. Our approach is not limited to one property, but currently we can successfully repair the models that violate the following abstract property similar to the third property in \cite{acp:alloy}: 
-
-\textbf{Property 1}:\textit{Within a policy set that has $OnlyOneApplicable$ policy combining algorithm, there is no two policies that for a given request return different decisions.}
-
 \subsection{XACML access control policies}
 
 XACML is OASIS standard and stands for eXtensible Access Control Markup Language \cite{oasis:xacml}. It defines structure, interaction and conventions related to policy sets, policies, rules and request within an access control system. In our work we use a simplified subset of XACML used in \cite{acp:alloy}. In our case, policy set is a set of policies composed using policy combining algorithm, which can be \textit{PermitOverrides}, \textit{DenyOverrides} or \textit{OnlyOneApplicable}\footnote[1]{we do not consider \textit{FirstApplicable} since it will make our model more complicated. We also omit dashes and use capitalization for consistency with our model}. Each policy contains the set of rules and rule combining algorithm which can be \textit{PermitOverrides} and \textit{DenyOverrides}. Each request contains one subject, one action and one resource (Fig. \ref{fig:model}), and the system calculates the response of applicable rules, policies, and can make desicions based on that. 
@@ -97,6 +91,12 @@ Usually XACML access control policies are stored in XML files. Those XML-files a
 \end{figure}
 
 So, in our example a policy set $PS$ contains two policies: $P1$ and $P3$, the first rule of $P1$ is $Student \to Read \to Marks \to Permit $ is applied when the subject has the role $Student$, the resource is the $Marks$ file and the action is $Read$, and this access is granted ($Permit$). In policy $P3$, the first rule denies both reading and modifying marks for professor. The policy has $DenyOverrides$ rule combining algorithm which says that this rule is dominant over others in case that more than one rule is applicable for some relevant request. The policy response is equal to the one rule which is applicable or by the dominant rule if multiple rules are applicable. The same is true for policy set response, but it has $OnlyOneApplicable$ policy combining algorithm as well, which says that the policy set response in indeterministic if more than one policy is applicable in the context of a given request.
+
+\subsection{Model verification and model repairing}
+
+Given a model $M$, some property $\varphi$ and satisfaction relation $\models$, verification is the process of determining whether $M\models\varphi$. If $M\not\models\varphi$, the model repairing is the process of finding some $M'$, such that $M'\models\varphi$ and the derivation of $M'$ from $M'$ is minimal. In this paper, we will try to verify and repair models that represent access control policies. Our approach is not limited to one property, but currently we can successfully repair the models that violate the following abstract property similar to the third property in \cite{acp:alloy}: 
+
+\textbf{Property 1}:\textit{Within a policy set that has $OnlyOneApplicable$ policy combining algorithm, there is no two policies that for a given request return different decisions.}
 
 \subsection{Alloy}
 Alloy \cite{jackson:alloy} is a modeling language based on relational first-order logic. We model concepts in Alloy using so called signatures and relations. An abstract signature operates as a type or class definition. For example, we can define a policy as follows (as in \cite{acp:alloy}):
@@ -147,11 +147,11 @@ The first step is to define the Alloy input file.
 
 2. Next, a concrete model is defined. It consists of signatures ($Policy1$, $Policy2$, $Rule1$, $Rule2$) and facts ($Policy1$ contains $Rule1$ and $Rule2$) regarding the relations specified in meta-model. Concrete model can vary within the given domain, so one meta-model can be used for many concrete models within the domain.
 
-3. And finally, a property predicate is defined. This predicate is domain-specific as well, and each predicate represents the negation of the property we need to verify. In this paper, we focused on an abstract property. It is stated as follows: 
+3. And finally, a property predicate is defined. This predicate is domain-specific as well, and each predicate represents the negation of the property we need to verify. In this paper, we focused on an abstract property stated in \textit{Background} section: 
 
 \textbf{Property 1}:\textit{Within a policy set that has $OnlyOneApplicable$ policy combining algorithm, there is no two policies that for a given request return different decisions.}
 
-The full body of the predicate is given in the Appendix, and its signature looks as follows:
+The full body of the predicate is given in the Appendix \ref{appendix:a}, and its signature looks as follows:
 
 \begin{verbatim}
 pred InconsistentPolicySet [ps : PolicySet, 
@@ -225,7 +225,7 @@ Our tool consists of three major parts: the User Interface (UI), PropertyVerifie
   \label{fig:Architecture}
 \end{figure}
 
-At the beginning, the UI first takes in the Alloy model created, and sends it to PropertyVerifier\&Fixer. Next, the PropertyVerifier part starts Alloy analyzer to process Alloy model and its property predicate. It should be noted that we write our predicate in a way that it checks for if two policies return inconsistent results. PropertyFixer then takes in the results from Alloy Analyzer and extracts relevant information, such as inconsistent rules, subject, action, resource and effect, and process those information to propose the potential fixes. The fix recommendation from PropertyFixer is passed to the UI, and the user is shown with a list of fixes. Once the user chooses one particular fix, our tool will automatically update the original Alloy model. This updated model is then passed to PropertyVerifier to check if there are any inconsistencies. This process is repeated until the model is verified to be consistent.
+At the beginning, the UI first takes in the Alloy model created, and sends it to PropertyVerifier\&Fixer. Next, the PropertyVerifier part starts Alloy Analyzer to processes Alloy model and its property predicate. It should be noted that we write our predicate in a way that it checks for if two policies return inconsistent results. PropertyFixer then takes in the results from Alloy Analyzer and extracts relevant information, such as inconsistent rules, subject, action, resource and effect, and process those information to propose the potential fixes. The fix recommendation from PropertyFixer is passed to the UI, and the user is shown with a list of fixes. Once the user chooses one particular fix, our tool will automatically updates the original Alloy model. This updated model is then passed to PropertyVerifier to check if there are any inconsistencies. This process is repeated until the model is verified to be consistent.
 
 In order to realize the above mentioned architecture, we have created several Java modules which are summarized below.
 
@@ -236,15 +236,15 @@ This is the core of our tool, it contains:
 \item PropertyVerifier
 \item PropertyFixer
 \end{itemize}
-The Main engine controls the communication between the user interface and our Fixer and Verifier; it process input from UI and outputs the results to UI for user inspection. PropertyVerifier calls Alloy Analyzer through our API and obtains XML representation of the generated instance that contains information about the policies, rules, request and effects. PropertyVerifier then follows XPATH standard to extract and store that information from XML for later processing. Once the XML nodes are extracted with relevant information from Alloy Analyzer, PropertyFixer takes in those information and proposes potential fixes. Once the user selects the preferred fix, this decision is communicated to PropertyFixer again through Main engine, and PropertyFixer will automatically apply the fixes to the original Alloy model.
+The Main engine controls the communication between the user interface and our Fixer and Verifier; it processes input from UI and outputs the results to UI for user inspection. PropertyVerifier calls Alloy Analyzer through our API and obtains XML representation of the generated instance that contains information about the policies, rules, request and effects. PropertyVerifier then follows XPath standard to extract and store that information from XML for later processing. Once the XML nodes are extracted with relevant information from Alloy Analyzer, PropertyFixer takes in those information and proposes potential fixes. Once the user selects the preferred fix, this decision is communicated to PropertyFixer again through Main engine, and PropertyFixer will automatically apply the fixes to the original Alloy model.
 
-Note that PropertyFixer and PropertyVerifier function as a pair, and one pair is required for each property to be verified; in our study, we limit the property verification to the safety property but this is extensible by creating another pair of PropertyFixer and Verifier.
+Note that PropertyFixer and PropertyVerifier function as a pair, and one pair is required for each property to be verified; in our study, we limit the property verification to the one property but this is extensible by creating another pair of PropertyFixer and Verifier.
 
 \subsubsection{AlloyRunner}
-AlloyRunner is an API that facilitate the communication between our tool with Alloy analyzer. Mainly, it initializes the Alloy Analyzer, sends model to Alloy analyzer, and get XML instances from Alloy Analyzer. Alloy Analyzer serves as verification engine for our input model and will return instances or counter example which we use in later processing.
+AlloyRunner is an API that facilitate the communication between our tool with Alloy Analyzer. Mainly, it initializes the Alloy Analyzer, sends model to Alloy Analyzer, and gets XML instances from it. Alloy Analyzer serves as verification engine for our input model and will return instances or counterexample which we use in later processing.
 
 \subsubsection{Presentation Layer}
-Presentation uses dynamic web application technologies such as Javascript and Node.js to allow interactive model repair. Node.js executes interactive repair with user inputs and calls back to the Main engine in InteractiveRepairer to apply the repair. For instance, the Propose button triggers Main engine to start PropertyVerifier to execute the model verification, and the Resolve links will cause the PropertyFixer to apply the repair on the original Alloy model. The return values are associated with each function call-back of the button, and represents error location and proposed fixes for Propose command and new model for Resolve command. All proposed fixes are shown and annotated by the approximated number of next fixes.
+Presentation layer uses dynamic web application technologies such as Javascript and Node.js to allow interactive model repair. Node.js executes interactive repair with user inputs and calls back to the Main engine in InteractiveRepairer to apply the repair. For instance, the Propose button triggers Main engine to start PropertyVerifier to execute the model verification, and the Resolve links will cause the PropertyFixer to apply the repair on the original Alloy model. The return values are associated with each function call-back of the button, and represents error location and proposed fixes for Propose command and new model for Resolve command. All proposed fixes are shown and annotated by the approximated number of next fixes.
 
 \section{Evaluation}
 
@@ -261,7 +261,7 @@ Although our tool demonstrate potential value in automated access control model 
 \item Repair procedure depends on the property and requires pre-defined prospective repair ways
 \end{enumerate}
 
-The first two points are pretty clear. Since we use Alloy as it is for bounded model checking, we can guarantee that the tool will give correct results within the given scope. Although we significantly dependent on Alloy, we mainly interfaced the communication with Alloy API, so in the future, we need to communicate with Alloy back-end to prevent this problem.
+The first two points are pretty clear. Since we use Alloy as it is for bounded model checking, we can guarantee that the tool will give correct results within the given scope. Although we significantly dependent on Alloy, we mainly interfaced the communication with Alloy API, so in the future, there will not be problems if Alloy back-end changes.
 
 Although we strive to make our tool scalable, the automated Alloy model generation from a user specified table brings limitations in the structure of the model we generate. Although this access control model works well for our present study, it only represents a subset of XACML. In the future, we would like to explore different ways to increase the flexibility of our model. One potential way is to incorporate sketching techniques and having multiple rule tables so that the user can choose the structure of the model our tool generates.
 
