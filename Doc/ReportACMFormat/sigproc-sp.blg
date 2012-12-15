@@ -1,5 +1,50 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: sigproc-sp.aux
+This is BibTeX, Version 0.99d (TeX Live 2012/W32TeX)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: sigproc-sp.aux
 The style file: plain.bst
 Database file #1: sigproc-sp.bib
-Warning--I didn't find a database entry for "Kounga:2010:EXA:1894888.1894907"
-(There was 1 warning)
+Warning--empty institution in acp:automated
+Warning--empty institution in acp:descriptionlogics
+Warning--empty institution in acp:alloy
+You've used 11 entries,
+            2118 wiz_defined-function locations,
+            565 strings with 6107 characters,
+and the built_in function-call counts, 3898 in all, are:
+= -- 406
+> -- 156
+< -- 5
++ -- 62
+- -- 50
+* -- 242
+:= -- 627
+add.period$ -- 37
+call.type$ -- 11
+change.case$ -- 61
+chr.to.int$ -- 0
+cite$ -- 14
+duplicate$ -- 170
+empty$ -- 308
+format.name$ -- 50
+if$ -- 855
+int.to.chr$ -- 0
+int.to.str$ -- 11
+missing$ -- 10
+newline$ -- 58
+num.names$ -- 22
+pop$ -- 65
+preamble$ -- 1
+purify$ -- 47
+quote$ -- 0
+skip$ -- 128
+stack$ -- 0
+substring$ -- 221
+swap$ -- 50
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 40
+warning$ -- 3
+while$ -- 38
+width$ -- 13
+write$ -- 132
+(There were 3 warnings)
