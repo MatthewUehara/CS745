@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  14 DEC 2012 21:32
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  14 DEC 2012 21:37
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -565,7 +565,7 @@ ti9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb><c
 texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2012/texmf-dist/font
 s/type1/urw/times/utmb8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on sigproc-sp.pdf (8 pages, 452927 bytes).
+Output written on sigproc-sp.pdf (8 pages, 452930 bytes).
 PDF statistics:
  91 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream
