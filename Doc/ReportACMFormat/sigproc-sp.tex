@@ -1,4 +1,5 @@
-\documentclass{acm_proc_article-sp}
+\documentclass[letterpaper]{acm_proc_article-sp}
+\usepackage[pass]{geometry}
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{color}
@@ -21,7 +22,7 @@
        \affaddr{Waterloo, ON, Canada}\\
        \email{\{amurashk, m22ma\}@uwaterloo.ca}
 }
-\date{6 December 2012}
+\date{14 December 2012}
 \maketitle
 
 \begin{abstract}
@@ -90,7 +91,7 @@ Usually XACML access control policies are stored in XML files. For ease of discu
   \label{fig:policyset}
 \end{figure}
 
-So, in our example of a consistent policy set (Fig.\ref{fig:policyset}), a policy set $PS$ contains two policies: $P1$ and $P3$, the first rule of $P1$ is $Student \Rightarrow Read \Rightarrow Marks \Rightarrow Permit $ is applied when the subject has the role $Student$, the resource is the $Marks$ file and the action is $Read$, and this access is granted ($Permit$). In policy $P3$, the first rule denies both reading and modifying marks for professor. The policy has $PermitOverrides$ rule combining algorithm which says that this rule is dominated by others in case that more than one rule is applicable for some relevant request. The policy response is equal to the one rule which is applicable or by the dominant rule if multiple rules are applicable. The same is true for policy set response, but it has $OnlyOneApplicable$ policy combining algorithm as well, which says that the policy set response in indeterministic if more than one policy is applicable in the context of a given request.
+So, in our example of a consistent policy set (Fig.\ref{fig:policyset}), a policy set $PS$ contains two policies: $P1$ and $P3$, the first rule of $P1$ is $Student \Rightarrow Read \Rightarrow Marks \Rightarrow Permit $ is applied when the subject has the role $Student$, the resource is the $Marks$ file and the action is $Read$, and this access is granted ($Permit$). In policy $P3$, the first rule denies both reading and modifying marks for professor. The policy has $PermitOverrides$ rule combining algorithm which says that this rule is dominated by others in case that more than one rule is applicable for some relevant request. The policy response is equal to the response of the rule which is the only applicable, or by the response of dominant rule if multiple rules are applicable. The same is true for policy set response, but it has $OnlyOneApplicable$ policy combining algorithm as well, which says that the policy set response in indeterministic if more than one policy is applicable in the context of a given request.
 
 \subsection{Verification and repairing}
 
@@ -100,7 +101,7 @@ So, in our example of a consistent policy set (Fig.\ref{fig:policyset}), a polic
   \label{fig:policysetfaulty}
 \end{figure}
 
-Given a specification $M$, some property $\varphi$ and satisfaction relation $\models$, verification is the process of determining whether $M\models\varphi$. If $M\not\models\varphi$, the repairing is the process of finding some $M'$, such that $M'\models\varphi$ and $M'$ is derived from $M'$. This derivation should be minimal, but we need to define this critera and it depends on the domain we consider.
+Given a specification $M$, some property $\varphi$ and satisfaction relation $\models$, verification is the process of determining whether $M\models\varphi$. If $M\not\models\varphi$, the repairing is the process of finding some $M'$, such that $M'\models\varphi$ and $M'$ is derived from $M'$. This derivation should be minimal, but we need to define this criterion and it depends on the domain we consider.
 
 In this paper, we will try to verify and repair specifications that represent access control policies.
 
@@ -154,7 +155,7 @@ The first step is to define the Alloy input file.
 
 \item Next, a concrete specifcation is defined. It consists of signatures ($Policy1$, $Policy2$, $Rule1$, $Rule2$) and facts ($Policy1$ contains $Rule1$ and $Rule2$) regarding the relations specified in abstract specifcation. Concrete specification can vary within the given domain, so that one abstract specification can be used for many concrete specifcations within the domain.
 
-\item And finally, a property predicate is defined. This predicate is domain-specific as well, and each predicate represents the negation of the property we need to verify. In this paper, we focused on an abstract property stated in \textit{Background} section: 
+\item And finally, a property predicate is defined. This predicate is domain-specific as well, and each predicate represents the negation of the property we need to verify. In this paper, we focused on an abstract property: 
 \end{enumerate}
 
 \textbf{Property 1}:\textit{Within a policy set that has $OnlyOneApplicable$ policy combining algorithm, there is no two policies that for a given request return different decisions.}
@@ -187,7 +188,7 @@ In this paper we consider repairing of access control policy specifications. So,
 
 \textbf{Property 1}:\textit{Within a policy set that has $OnlyOneApplicable$ policy combining algorithm, there is no two policies that for a given request return different decisions.}
 
-From PS2, We need to derive a consistent one (there can be many ways of repairing), for example, PS (Fig.\ref{fig:policyset}) is one such an option. Our minimality criterion is defined as the smallest number of changes to the faulty policy specification. But this criterion should be explored further.
+From PS2, We need to derive a consistent one (there can be many ways of repairing), for example, PS (Fig.\ref{fig:policyset}) is one such an option. Our minimality criterion is defined as the smallest number of changes to the faulty policy specification. But the minimality criterion should be explored in the future work.
 
 Once there is an inconsistent policy set, the verification procedure will return the policy set $ps$, policies $p1$, $p2$ and the corresponding rules $r1$ and $r2$. Our repair procedure is applied to policies or rules, and this will affect the consistency of the policy set $ps$. Since our verification procedure returns two rules of two policies, actually we can try to apply the same set of repairs to each of them by symmetry. Therefore, we can consider the following repair ways in the context of the returned policy set $ps$, and one policy $p1$ and rule $r1$ within it.
 
@@ -285,7 +286,7 @@ Although we strive to make our tool scalable, the automated Alloy file generatio
 
 Even if the state explosion problem has been handled, it is not addressed in the smartest way due to time constraints. By now, we use repair trees and limit the depth of the potential solution to two. This might still bring problems if the specification is large and the number of fixes is big. We would like to study more on ways to deal better with this common problem in verification and repair.
 
-One important future improvement is on the repair recommendation. Currently, we only propose repairs based on rule effect and combining algorithm. We derived these approach from observation and testing. We will explore other repair ways like changing rule subjects, actions and resources, adding new rules and others to enhance our repair framework.
+One important future improvement is on the repair recommendation. Currently, we only propose repairs based on rule effect and combining algorithm. We derived these approach from observation and testing. We will explore other repair ways like changing rule subjects, actions and resources, adding new rules and others to enhance our repair framework. We will also explore possible minimal repair definitions in the domain of access control policies.
 
 And finally, we will conduct more effective evaluation of our tool with industry examples.
 
@@ -312,7 +313,7 @@ Next, we have shown that our tool should be easily extensible so that specificat
 
 
 \bibliography{sigproc-sp}{}
-\bibliographystyle{plain}
+\bibliographystyle{abbrv}
 
 \appendix
 \section{Verification property predicate} \label{appendix:A}

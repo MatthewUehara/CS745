@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  14 DEC 2012 20:16
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  14 DEC 2012 21:32
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -195,34 +195,61 @@ LaTeX Font Info:    Try loading font information for T1+aer on input line 100.
 (c:/texlive/2012/texmf-dist/tex/latex/ae/t1aer.fd
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))
+(c:/texlive/2012/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(c:/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+(c:/texlive/2012/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(c:/texlive/2012/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count109
+\Gm@cntv=\count110
+\c@Gm@tempcnt=\count111
+\Gm@bindingoffset=\dimen123
+\Gm@wd@mp=\dimen124
+\Gm@odd@mp=\dimen125
+\Gm@even@mp=\dimen126
+\Gm@layoutwidth=\dimen127
+\Gm@layoutheight=\dimen128
+\Gm@layouthoffset=\dimen129
+\Gm@layoutvoffset=\dimen130
+\Gm@dimlist=\toks36
+)
 (c:/texlive/2012/texmf-dist/tex/latex/mh/mathtools.sty
 Package: mathtools 2012/04/24 v1.12 mathematical typesetting tools
 
 (c:/texlive/2012/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count109
-\calc@Bcount=\count110
-\calc@Adimen=\dimen123
-\calc@Bdimen=\dimen124
+\calc@Acount=\count112
+\calc@Bcount=\count113
+\calc@Adimen=\dimen131
+\calc@Bdimen=\dimen132
 \calc@Askip=\skip44
 \calc@Bskip=\skip45
 LaTeX Info: Redefining \setlength on input line 76.
 LaTeX Info: Redefining \addtolength on input line 77.
-\calc@Ccount=\count111
+\calc@Ccount=\count114
 \calc@Cskip=\skip46
 )
 (c:/texlive/2012/texmf-dist/tex/latex/mh/mhsetup.sty
 Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 )
-\g_MT_multlinerow_int=\count112
-\l_MT_multwidth_dim=\dimen125
+\g_MT_multlinerow_int=\count115
+\l_MT_multwidth_dim=\dimen133
 \origjot=\skip47
-\l_MT_shortvdotswithinadjustabove_dim=\dimen126
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen127
-\l_MT_above_intertext_dim=\dimen128
-\l_MT_below_intertext_dim=\dimen129
-\l_MT_above_shortintertext_dim=\dimen130
-\l_MT_below_shortintertext_dim=\dimen131
+\l_MT_shortvdotswithinadjustabove_dim=\dimen134
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen135
+\l_MT_above_intertext_dim=\dimen136
+\l_MT_below_intertext_dim=\dimen137
+\l_MT_above_shortintertext_dim=\dimen138
+\l_MT_below_shortintertext_dim=\dimen139
 )
 (c:/texlive/2012/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
@@ -234,8 +261,8 @@ Package color Info: Driver file: pdftex.def on input line 130.
 )
 (c:/texlive/2012/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
-\inpenc@prehook=\toks36
-\inpenc@posthook=\toks37
+\inpenc@prehook=\toks37
+\inpenc@posthook=\toks38
 
 (c:/texlive/2012/texmf-dist/tex/latex/ucs/utf8x.def
 File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
@@ -246,42 +273,46 @@ Package: ucs 2004/10/17 UCS: Unicode input support
 (c:/texlive/2012/texmf-dist/tex/latex/ucs/data/uni-global.def
 File: uni-global.def 2012/08/28 UCS: Unicode global data
 )
-\uc@secondtry=\count113
-\uc@combtoks=\toks38
-\uc@combtoksb=\toks39
-\uc@temptokena=\toks40
+\uc@secondtry=\count116
+\uc@combtoks=\toks39
+\uc@combtoksb=\toks40
+\uc@temptokena=\toks41
 )
 (c:/texlive/2012/texmf-dist/tex/latex/parskip/parskip.sty
 Package: parskip 2001/04/09 non-zero parskip adjustments
-) (./sigproc-sp.aux)
+)
+
+LaTeX Warning: Unused global option(s):
+    [letterpaper].
+
+(./sigproc-sp.aux)
 \openout1 = `sigproc-sp.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-
-(c:/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+ (c:/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count114
-\scratchdimen=\dimen132
+\scratchcounter=\count117
+\scratchdimen=\dimen140
 \scratchbox=\box30
-\nofMPsegments=\count115
-\nofMParguments=\count116
-\everyMPshowfont=\toks41
-\MPscratchCnt=\count117
-\MPscratchDim=\dimen133
-\MPnumerator=\count118
-\makeMPintoPDFobject=\count119
-\everyMPtoPDFconversion=\toks42
+\nofMPsegments=\count118
+\nofMParguments=\count119
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count120
+\MPscratchDim=\dimen141
+\MPnumerator=\count121
+\makeMPintoPDFobject=\count122
+\everyMPtoPDFconversion=\toks43
 ) (c:/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -289,10 +320,6 @@ Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 (c:/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-)
-(c:/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -330,20 +357,48 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* pass: disregarded the geometry package!
+* \paperwidth=0.0pt
+* \paperheight=0.0pt
+* \textwidth=504.0pt
+* \textheight=666.0pt
+* \oddsidemargin=-18.26999pt
+* \evensidemargin=-18.26999pt
+* \topmargin=-55.26999pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=0.0pt
+* \marginparsep=11.0pt
+* \columnsep=24.0pt
+* \skip\footins=8.1pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumntrue
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
 (c:/texlive/2012/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 25.
+LaTeX Font Info:    Try loading font information for U+msa on input line 26.
 
 (c:/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 25.
+LaTeX Font Info:    Try loading font information for U+msb on input line 26.
 
 (c:/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 25.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 26.
 
 (c:/texlive/2012/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
@@ -357,25 +412,25 @@ Underfull \vbox (badness 6396) has occurred while \output is active []
 <model.png, id=13, 697.10437pt x 408.77719pt>
 File: model.png Graphic file (type png)
  <use model.png>
-Package pdftex.def Info: model.png used on input line 78.
+Package pdftex.def Info: model.png used on input line 79.
 (pdftex.def)             Requested size: 252.0pt x 147.77094pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 78--79
+Overfull \hbox (12.0pt too wide) in paragraph at lines 79--80
 [][] 
  []
 
 
-Underfull \hbox (badness 4132) in paragraph at lines 79--79
+Underfull \hbox (badness 4132) in paragraph at lines 80--80
 []\T1/aer/bx/n/9 Figure 1: Short-ened rep-re-sen-ta-tion of some
  []
 
 <policyset.png, id=15, 722.7pt x 339.51843pt>
 File: policyset.png Graphic file (type png)
  <use policyset.png>
-Package pdftex.def Info: policyset.png used on input line 88.
+Package pdftex.def Info: policyset.png used on input line 89.
 (pdftex.def)             Requested size: 252.0pt x 118.3877pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 88--89
+Overfull \hbox (12.0pt too wide) in paragraph at lines 89--90
 [][] 
  []
 
@@ -383,32 +438,32 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 88--89
 File: policyset_faulty.png Graphic file (type png)
 
 <use policyset_faulty.png>
-Package pdftex.def Info: policyset_faulty.png used on input line 98.
+Package pdftex.def Info: policyset_faulty.png used on input line 99.
 (pdftex.def)             Requested size: 252.0pt x 118.65019pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 98--99
+Overfull \hbox (12.0pt too wide) in paragraph at lines 99--100
 [][] 
  []
 
 [2 <./model.png> <./policyset.png> <./policyset_faulty.png>]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 110.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 111.
 
 
 (c:/texlive/2012/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
-Overfull \hbox (5.22821pt too wide) in paragraph at lines 127--127
+Overfull \hbox (5.22821pt too wide) in paragraph at lines 128--128
 []    \T1/aett/m/n/9 + Policy1_Rule_Professor_ReadModify_Marks_Permit[] 
  []
 
 
-Overfull \hbox (12.61147pt too wide) in paragraph at lines 153--154
+Overfull \hbox (12.61147pt too wide) in paragraph at lines 154--155
 \T1/aer/m/n/9 ca-tion is domain-specific. It con-sists of sig-na-tures ($\OML/c
 mm/m/it/9 Policy$\T1/aer/m/n/9 ,
  []
 
 
-Overfull \hbox (1.8992pt too wide) in paragraph at lines 160--161
+Overfull \hbox (1.8992pt too wide) in paragraph at lines 161--162
 []\T1/aer/bx/n/9 Property 1\T1/aer/m/n/9 :\T1/aer/m/it/9 Within a pol-icy set t
 hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
  []
@@ -416,22 +471,25 @@ hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
 [3] <tool.png, id=30, 756.57657pt x 408.02437pt>
 File: tool.png Graphic file (type png)
  <use tool.png>
-Package pdftex.def Info: tool.png used on input line 179.
+Package pdftex.def Info: tool.png used on input line 180.
 (pdftex.def)             Requested size: 504.0pt x 271.8122pt.
 
-Overfull \hbox (1.8992pt too wide) in paragraph at lines 188--189
+Overfull \hbox (1.8992pt too wide) in paragraph at lines 189--190
 []\T1/aer/bx/n/9 Property 1\T1/aer/m/n/9 :\T1/aer/m/it/9 Within a pol-icy set t
 hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
  []
 
 
-Overfull \hbox (3.87906pt too wide) in paragraph at lines 196--197
+Underfull \vbox (badness 2698) has occurred while \output is active []
+
+
+Overfull \hbox (3.87906pt too wide) in paragraph at lines 197--198
 \T1/aer/m/n/9 If it was $\OML/cmm/m/it/9 PermitOverrides$\T1/aer/m/n/9 , it be-
 comes $\OML/cmm/m/it/9 DenyOverrides$\T1/aer/m/n/9 ,
  []
 
 
-Overfull \hbox (1.25388pt too wide) in paragraph at lines 215--216
+Overfull \hbox (1.25388pt too wide) in paragraph at lines 216--217
 \T1/aer/m/n/9 rules. For ex-am-ple, if the rule $\OML/cmm/m/it/9 Student \OMS/c
 msy/m/n/9 ) \OT1/cmr/m/n/9 (\OML/cmm/m/it/9 Read\OMS/cmsy/m/n/9 j\OML/cmm/m/it/
 9 Modify\OT1/cmr/m/n/9 ) \OMS/cmsy/m/n/9 )
@@ -444,10 +502,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <tree.png, id=34, 722.7pt x 392.96812pt>
 File: tree.png Graphic file (type png)
  <use tree.png>
-Package pdftex.def Info: tree.png used on input line 222.
+Package pdftex.def Info: tree.png used on input line 223.
 (pdftex.def)             Requested size: 252.0pt x 137.02522pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 222--223
+Overfull \hbox (12.0pt too wide) in paragraph at lines 223--224
 [][] 
  []
 
@@ -461,41 +519,37 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 6808) has occurred while \output is active []
 
  [5 <./tool.png> <./tree.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
 
  []
 
 <dataflow.png, id=39, 963.6pt x 722.7pt>
 File: dataflow.png Graphic file (type png)
  <use dataflow.png>
-Package pdftex.def Info: dataflow.png used on input line 241.
+Package pdftex.def Info: dataflow.png used on input line 242.
 (pdftex.def)             Requested size: 252.0pt x 189.0003pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 241--242
+Overfull \hbox (12.0pt too wide) in paragraph at lines 242--243
 [][] 
  []
 
-[6 <./dataflow.png (PNG copy)>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-(./sigproc-sp.bbl [7])
-Overfull \hbox (11.76888pt too wide) in paragraph at lines 318--318
+[6 <./dataflow.png (PNG copy)>] (./sigproc-sp.bbl [7])
+Overfull \hbox (11.76888pt too wide) in paragraph at lines 319--319
 []\secfnt VERIFICATION PROP-ERTY PRED-I-CATE 
  []
 
 
-Overfull \hbox (1.8992pt too wide) in paragraph at lines 322--323
+Overfull \hbox (1.8992pt too wide) in paragraph at lines 323--324
 []\T1/aer/bx/n/9 Property 1\T1/aer/m/n/9 :\T1/aer/m/it/9 Within a pol-icy set t
 hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
  []
 
 [8] (./sigproc-sp.aux) ) 
 Here is how much of TeX's memory you used:
- 3678 strings out of 493488
- 50572 string characters out of 3144748
- 123829 words of memory out of 3000000
- 6868 multiletter control sequences out of 15000+200000
+ 4156 strings out of 493488
+ 57569 string characters out of 3144748
+ 138199 words of memory out of 3000000
+ 7336 multiletter control sequences out of 15000+200000
  51092 words of font info for 70 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  41i,11n,26p,1185b,256s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -511,7 +565,7 @@ ti9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb><c
 texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2012/texmf-dist/font
 s/type1/urw/times/utmb8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on sigproc-sp.pdf (8 pages, 452873 bytes).
+Output written on sigproc-sp.pdf (8 pages, 452927 bytes).
 PDF statistics:
  91 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream

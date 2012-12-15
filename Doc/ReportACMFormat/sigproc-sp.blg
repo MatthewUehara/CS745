@@ -1,37 +1,34 @@
 This is BibTeX, Version 0.99d (TeX Live 2012/W32TeX)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: sigproc-sp.aux
-The style file: plain.bst
+The style file: abbrv.bst
 Database file #1: sigproc-sp.bib
-Warning--empty institution in acp:automated
-Warning--empty institution in acp:descriptionlogics
-Warning--empty institution in acp:alloy
 You've used 11 entries,
             2118 wiz_defined-function locations,
-            565 strings with 6107 characters,
-and the built_in function-call counts, 3898 in all, are:
-= -- 406
+            567 strings with 5928 characters,
+and the built_in function-call counts, 3893 in all, are:
+= -- 409
 > -- 156
 < -- 5
 + -- 62
 - -- 50
-* -- 242
-:= -- 627
+* -- 234
+:= -- 630
 add.period$ -- 37
 call.type$ -- 11
 change.case$ -- 61
 chr.to.int$ -- 0
-cite$ -- 14
+cite$ -- 11
 duplicate$ -- 170
 empty$ -- 308
 format.name$ -- 50
-if$ -- 855
+if$ -- 858
 int.to.chr$ -- 0
 int.to.str$ -- 11
 missing$ -- 10
 newline$ -- 58
 num.names$ -- 22
-pop$ -- 65
+pop$ -- 62
 preamble$ -- 1
 purify$ -- 47
 quote$ -- 0
@@ -43,8 +40,7 @@ text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 40
-warning$ -- 3
+warning$ -- 0
 while$ -- 38
 width$ -- 13
-write$ -- 132
-(There were 3 warnings)
+write$ -- 135

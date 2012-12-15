@@ -1,8 +1,8 @@
 \begin{thebibliography}{10}
 
 \bibitem{Bravo:2007:RIX:1783534.1783545}
-Loreto Bravo, James Cheney, and Irini Fundulaki.
-\newblock Repairing inconsistent xml write-access control policies.
+L.~Bravo, J.~Cheney, and I.~Fundulaki.
+\newblock Repairing inconsistent {XML} write-access control policies.
 \newblock In {\em Proceedings of the 11th International Conference on Database
   Programming Languages}, DBPL'07, pages 97--111, Berlin, Heidelberg, 2007.
   Springer-Verlag.
@@ -12,48 +12,49 @@ V.~Cridlig, R.~State, and O.~Festor.
 \newblock A model for checking consistency in access control policies for
   network management.
 \newblock In {\em Integrated Network Management, 2007. IM '07. 10th IFIP/IEEE
-  International Symposium on}, pages 11 --19, 21 2007-yearly 25 2007.
+  International Symposium}, pages 11 --19, 2007.
 
 \bibitem{Fisler:2005:VCA:1062455.1062502}
-Kathi Fisler, Shriram Krishnamurthi, Leo~A. Meyerovich, and Michael~Carl
-  Tschantz.
+K.~Fisler, S.~Krishnamurthi, L.~A. Meyerovich, and M.~C. Tschantz.
 \newblock Verification and change-impact analysis of access-control policies.
 \newblock In {\em Proceedings of the 27th international conference on Software
   engineering}, ICSE '05, pages 196--205, New York, NY, USA, 2005. ACM.
 
 \bibitem{acp:automated}
-Graham Hughes and Tevfik Bultan.
+G.~Hughes and T.~Bultan.
 \newblock Automated verifcation of access control policies.
-\newblock Technical report, 2008.
+\newblock Technical report, University of California, 2008.
 
 \bibitem{Hughes:2008:AVA:1459278.1459282}
-Graham Hughes and Tevfik Bultan.
-\newblock Automated verification of access control policies using a sat solver.
-\newblock {\em Int. J. Softw. Tools Technol. Transf.}, 10(6):503--520, October
+G.~Hughes and T.~Bultan.
+\newblock Automated verification of access control policies using a {SAT}
+  solver.
+\newblock {\em Int. J. Softw. Tools Technol. Transf.}, 10(6):503--520, Oct.
   2008.
 
 \bibitem{jackson:alloy}
-Daniel Jackson.
+D.~Jackson.
 \newblock {\em Software Abstractions: Logic, Language and Analysis}.
 \newblock The MIT Press, revised edition, 2012.
 
 \bibitem{acp:descriptionlogics}
-Vladimir Kolovski and James Hendler.
-\newblock Xacml policy analysis using description logics.
-\newblock Technical report, 2008.
+V.~Kolovski and J.~Hendler.
+\newblock {XACML} policy analysis using description logics.
+\newblock Technical report, University of Maryland-College Park, Rensselaer
+  Polytechnic Institute, 2008.
 
 \bibitem{acp:alloy}
-Mahdi Mankai and Luigi Logrippo.
+M.~Mankai and L.~Logrippo.
 \newblock Access control policies: Modeling and validation.
-\newblock Technical report, 2008.
+\newblock Technical report, University of Ottawa, 2008.
 
 \bibitem{oasis:xacml}
-OASIS Open.
-\newblock {\em eXtensible Access Control Markup Language (XACML)}.
+O.~Open.
+\newblock {\em e{X}tensible Access Control Markup Language ({XACML})}.
 \newblock The MIT Press, 2.0 edition, 2005.
 
 \bibitem{Reder:2012:CRT:2351676.2351707}
-Alexander Reder and Alexander Egyed.
+A.~Reder and A.~Egyed.
 \newblock Computing repair trees for resolving inconsistencies in design
   models.
 \newblock In {\em Proceedings of the 27th IEEE/ACM International Conference on
@@ -61,8 +62,8 @@ Alexander Reder and Alexander Egyed.
   2012. ACM.
 
 \bibitem{Zhang:2004:SVA:1029133.1029141}
-Nan Zhang, Mark Ryan, and Dimitar~P. Guelev.
-\newblock Synthesising verified access control systems in xacml.
+N.~Zhang, M.~Ryan, and D.~P. Guelev.
+\newblock Synthesising verified access control systems in {XACML}.
 \newblock In {\em Proceedings of the 2004 ACM workshop on Formal methods in
   security engineering}, FMSE '04, pages 56--65, New York, NY, USA, 2004. ACM.
 
