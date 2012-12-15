@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  14 DEC 2012 21:49
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  14 DEC 2012 22:25
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -455,36 +455,39 @@ Overfull \hbox (1.8992pt too wide) in paragraph at lines 155--156
 hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
  []
 
-[3] <tool.png, id=28, 756.57657pt x 408.02437pt>
+[3] <policyset_faulty.png, id=28, 722.7pt x 340.27126pt>
+File: policyset_faulty.png Graphic file (type png)
+
+<use policyset_faulty.png>
+Package pdftex.def Info: policyset_faulty.png used on input line 172.
+(pdftex.def)             Requested size: 252.0pt x 118.65019pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 172--173
+[][] 
+ []
+
+<tool.png, id=29, 756.57657pt x 408.02437pt>
 File: tool.png Graphic file (type png)
  <use tool.png>
-Package pdftex.def Info: tool.png used on input line 174.
+Package pdftex.def Info: tool.png used on input line 182.
 (pdftex.def)             Requested size: 504.0pt x 271.8122pt.
 
-Overfull \hbox (1.8992pt too wide) in paragraph at lines 183--184
+Overfull \hbox (1.8992pt too wide) in paragraph at lines 191--192
 []\T1/aer/bx/n/9 Property 1\T1/aer/m/n/9 :\T1/aer/m/it/9 Within a pol-icy set t
 hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
  []
 
-<policyset_faulty.png, id=29, 722.7pt x 340.27126pt>
-File: policyset_faulty.png Graphic file (type png)
 
-<use policyset_faulty.png>
-Package pdftex.def Info: policyset_faulty.png used on input line 186.
-(pdftex.def)             Requested size: 252.0pt x 118.65019pt.
-
-Overfull \hbox (12.0pt too wide) in paragraph at lines 186--187
-[][] 
- []
-
-
-Overfull \hbox (3.87906pt too wide) in paragraph at lines 197--198
+Overfull \hbox (3.87906pt too wide) in paragraph at lines 199--200
 \T1/aer/m/n/9 If it was $\OML/cmm/m/it/9 PermitOverrides$\T1/aer/m/n/9 , it be-
 comes $\OML/cmm/m/it/9 DenyOverrides$\T1/aer/m/n/9 ,
  []
 
 
-Overfull \hbox (1.25388pt too wide) in paragraph at lines 216--217
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4 <./policyset_faulty.png>]
+Overfull \hbox (1.25388pt too wide) in paragraph at lines 218--219
 \T1/aer/m/n/9 rules. For ex-am-ple, if the rule $\OML/cmm/m/it/9 Student \OMS/c
 msy/m/n/9 ) \OT1/cmr/m/n/9 (\OML/cmm/m/it/9 Read\OMS/cmsy/m/n/9 j\OML/cmm/m/it/
 9 Modify\OT1/cmr/m/n/9 ) \OMS/cmsy/m/n/9 )
@@ -493,47 +496,49 @@ msy/m/n/9 ) \OT1/cmr/m/n/9 (\OML/cmm/m/it/9 Read\OMS/cmsy/m/n/9 j\OML/cmm/m/it/
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4 <./policyset_faulty.png>] <tree.png, id=34, 722.7pt x 392.96812pt>
+
+<tree.png, id=34, 722.7pt x 392.96812pt>
 File: tree.png Graphic file (type png)
  <use tree.png>
-Package pdftex.def Info: tree.png used on input line 223.
+Package pdftex.def Info: tree.png used on input line 225.
 (pdftex.def)             Requested size: 252.0pt x 137.02522pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 223--224
+Overfull \hbox (12.0pt too wide) in paragraph at lines 225--226
 [][] 
  []
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Underfull \vbox (badness 6808) has occurred while \output is active []
-
  [5 <./tool.png> <./tree.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 239--240
+Underfull \hbox (badness 10000) in paragraph at lines 241--242
 
  []
 
 <dataflow.png, id=39, 963.6pt x 722.7pt>
 File: dataflow.png Graphic file (type png)
  <use dataflow.png>
-Package pdftex.def Info: dataflow.png used on input line 242.
+Package pdftex.def Info: dataflow.png used on input line 244.
 (pdftex.def)             Requested size: 252.0pt x 189.0003pt.
 
-Overfull \hbox (12.0pt too wide) in paragraph at lines 242--243
+Overfull \hbox (12.0pt too wide) in paragraph at lines 244--245
 [][] 
  []
 
-[6 <./dataflow.png (PNG copy)>] (./sigproc-sp.bbl [7])
-Overfull \hbox (11.76888pt too wide) in paragraph at lines 319--319
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[6 <./dataflow.png (PNG copy)>]
+Underfull \vbox (badness 1231) has occurred while \output is active []
+
+ [7]
+(./sigproc-sp.bbl)
+Overfull \hbox (11.76888pt too wide) in paragraph at lines 321--321
 []\secfnt VERIFICATION PROP-ERTY PRED-I-CATE 
  []
 
 
-Overfull \hbox (1.8992pt too wide) in paragraph at lines 323--324
+Overfull \hbox (1.8992pt too wide) in paragraph at lines 325--326
 []\T1/aer/bx/n/9 Property 1\T1/aer/m/n/9 :\T1/aer/m/it/9 Within a pol-icy set t
 hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
  []
@@ -559,7 +564,7 @@ ti9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb><c
 texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2012/texmf-dist/font
 s/type1/urw/times/utmb8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on sigproc-sp.pdf (8 pages, 452991 bytes).
+Output written on sigproc-sp.pdf (8 pages, 454145 bytes).
 PDF statistics:
  91 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream
