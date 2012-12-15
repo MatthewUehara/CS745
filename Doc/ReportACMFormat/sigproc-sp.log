@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  14 DEC 2012 22:25
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  14 DEC 2012 22:33
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -424,11 +424,11 @@ Underfull \hbox (badness 4132) in paragraph at lines 80--80
 []\T1/aer/bx/n/9 Figure 1: Short-ened rep-re-sen-ta-tion of some
  []
 
-<policyset.png, id=15, 722.7pt x 339.51843pt>
+<policyset.png, id=15, 722.7pt x 342.5297pt>
 File: policyset.png Graphic file (type png)
  <use policyset.png>
 Package pdftex.def Info: policyset.png used on input line 89.
-(pdftex.def)             Requested size: 252.0pt x 118.3877pt.
+(pdftex.def)             Requested size: 252.0pt x 119.4377pt.
 
 Overfull \hbox (12.0pt too wide) in paragraph at lines 89--90
 [][] 
@@ -455,12 +455,12 @@ Overfull \hbox (1.8992pt too wide) in paragraph at lines 155--156
 hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
  []
 
-[3] <policyset_faulty.png, id=28, 722.7pt x 340.27126pt>
+[3] <policyset_faulty.png, id=28, 722.7pt x 341.77687pt>
 File: policyset_faulty.png Graphic file (type png)
 
 <use policyset_faulty.png>
 Package pdftex.def Info: policyset_faulty.png used on input line 172.
-(pdftex.def)             Requested size: 252.0pt x 118.65019pt.
+(pdftex.def)             Requested size: 252.0pt x 119.17519pt.
 
 Overfull \hbox (12.0pt too wide) in paragraph at lines 172--173
 [][] 
@@ -547,7 +547,7 @@ hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
 Here is how much of TeX's memory you used:
  4156 strings out of 493488
  57569 string characters out of 3144748
- 138199 words of memory out of 3000000
+ 137199 words of memory out of 3000000
  7336 multiletter control sequences out of 15000+200000
  51092 words of font info for 70 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -564,7 +564,7 @@ ti9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb><c
 texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2012/texmf-dist/font
 s/type1/urw/times/utmb8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on sigproc-sp.pdf (8 pages, 454145 bytes).
+Output written on sigproc-sp.pdf (8 pages, 462580 bytes).
 PDF statistics:
  91 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream
