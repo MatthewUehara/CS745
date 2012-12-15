@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  14 DEC 2012 21:37
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/W32TeX) (format=pdflatex 2012.9.24)  14 DEC 2012 21:49
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -434,53 +434,48 @@ Overfull \hbox (12.0pt too wide) in paragraph at lines 89--90
 [][] 
  []
 
-<policyset_faulty.png, id=16, 722.7pt x 340.27126pt>
-File: policyset_faulty.png Graphic file (type png)
-
-<use policyset_faulty.png>
-Package pdftex.def Info: policyset_faulty.png used on input line 99.
-(pdftex.def)             Requested size: 252.0pt x 118.65019pt.
-
-Overfull \hbox (12.0pt too wide) in paragraph at lines 99--100
-[][] 
- []
-
-[2 <./model.png> <./policyset.png> <./policyset_faulty.png>]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 111.
-
+LaTeX Font Info:    Try loading font information for T1+aett on input line 105.
 
 (c:/texlive/2012/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)
-Overfull \hbox (5.22821pt too wide) in paragraph at lines 128--128
+) [2 <./model.png> <./policyset.png>]
+Overfull \hbox (5.22821pt too wide) in paragraph at lines 122--122
 []    \T1/aett/m/n/9 + Policy1_Rule_Professor_ReadModify_Marks_Permit[] 
  []
 
 
-Overfull \hbox (12.61147pt too wide) in paragraph at lines 154--155
+Overfull \hbox (12.61147pt too wide) in paragraph at lines 148--149
 \T1/aer/m/n/9 ca-tion is domain-specific. It con-sists of sig-na-tures ($\OML/c
 mm/m/it/9 Policy$\T1/aer/m/n/9 ,
  []
 
 
-Overfull \hbox (1.8992pt too wide) in paragraph at lines 161--162
+Overfull \hbox (1.8992pt too wide) in paragraph at lines 155--156
 []\T1/aer/bx/n/9 Property 1\T1/aer/m/n/9 :\T1/aer/m/it/9 Within a pol-icy set t
 hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
  []
 
-[3] <tool.png, id=30, 756.57657pt x 408.02437pt>
+[3] <tool.png, id=28, 756.57657pt x 408.02437pt>
 File: tool.png Graphic file (type png)
  <use tool.png>
-Package pdftex.def Info: tool.png used on input line 180.
+Package pdftex.def Info: tool.png used on input line 174.
 (pdftex.def)             Requested size: 504.0pt x 271.8122pt.
 
-Overfull \hbox (1.8992pt too wide) in paragraph at lines 189--190
+Overfull \hbox (1.8992pt too wide) in paragraph at lines 183--184
 []\T1/aer/bx/n/9 Property 1\T1/aer/m/n/9 :\T1/aer/m/it/9 Within a pol-icy set t
 hat has $\OML/cmm/m/it/9 OnlyOneApplicable$
  []
 
+<policyset_faulty.png, id=29, 722.7pt x 340.27126pt>
+File: policyset_faulty.png Graphic file (type png)
 
-Underfull \vbox (badness 2698) has occurred while \output is active []
+<use policyset_faulty.png>
+Package pdftex.def Info: policyset_faulty.png used on input line 186.
+(pdftex.def)             Requested size: 252.0pt x 118.65019pt.
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 186--187
+[][] 
+ []
 
 
 Overfull \hbox (3.87906pt too wide) in paragraph at lines 197--198
@@ -498,8 +493,7 @@ msy/m/n/9 ) \OT1/cmr/m/n/9 (\OML/cmm/m/it/9 Read\OMS/cmsy/m/n/9 j\OML/cmm/m/it/
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4]
-<tree.png, id=34, 722.7pt x 392.96812pt>
+ [4 <./policyset_faulty.png>] <tree.png, id=34, 722.7pt x 392.96812pt>
 File: tree.png Graphic file (type png)
  <use tree.png>
 Package pdftex.def Info: tree.png used on input line 223.
@@ -552,7 +546,7 @@ Here is how much of TeX's memory you used:
  7336 multiletter control sequences out of 15000+200000
  51092 words of font info for 70 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 41i,11n,26p,1185b,256s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,11n,26p,1185b,262s stack positions out of 5000i,500n,10000p,200000b,50000s
 {c:/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc
 }<c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><c:/texli
 ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2012/te
@@ -565,7 +559,7 @@ ti9.pfb><c:/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb><c
 texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2012/texmf-dist/font
 s/type1/urw/times/utmb8a.pfb><c:/texlive/2012/texmf-dist/fonts/type1/urw/times/
 utmri8a.pfb>
-Output written on sigproc-sp.pdf (8 pages, 452930 bytes).
+Output written on sigproc-sp.pdf (8 pages, 452991 bytes).
 PDF statistics:
  91 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream

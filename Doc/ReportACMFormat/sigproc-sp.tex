@@ -95,12 +95,6 @@ So, in our example of a consistent policy set (Fig.\ref{fig:policyset}), a polic
 
 \subsection{Verification and repairing}
 
-\begin{figure}[h]
-\includegraphics[width=0.5\textwidth]{policyset_faulty.png}
-\caption{Faulty policy set PS2. In policy P3, the second and third rules are dominated by the first rule, the rule combining algorithm DenyOverrides says "deny is dominant"}    
-  \label{fig:policysetfaulty}
-\end{figure}
-
 Given a specification $M$, some property $\varphi$ and satisfaction relation $\models$, verification is the process of determining whether $M\models\varphi$. If $M\not\models\varphi$, the repairing is the process of finding some $M'$, such that $M'\models\varphi$ and $M'$ is derived from $M'$. This derivation should be minimal, but we need to define this criterion and it depends on the domain we consider.
 
 In this paper, we will try to verify and repair specifications that represent access control policies.
@@ -184,11 +178,17 @@ This verification approach gives certain advantages. We can localize the inconsi
 
 \subsection{Repair approach}
 
-In this paper we consider repairing of access control policy specifications. So, there is a policy set PS2 (Fig.\ref{fig:policysetfaulty}) that is faulty with respect to the same property:
+In this paper we consider repairing of access control policy specifications. We consider a policy set PS2 (Fig.\ref{fig:policysetfaulty}) that is faulty with respect to the same property:
 
 \textbf{Property 1}:\textit{Within a policy set that has $OnlyOneApplicable$ policy combining algorithm, there is no two policies that for a given request return different decisions.}
 
-From PS2, We need to derive a consistent one (there can be many ways of repairing), for example, PS (Fig.\ref{fig:policyset}) is one such an option. Our minimality criterion is defined as the smallest number of changes to the faulty policy specification. But the minimality criterion should be explored in the future work.
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{policyset_faulty.png}
+\caption{Faulty policy set PS2. In policy P3, the second and third rules are dominated by the first rule, the rule combining algorithm DenyOverrides says "deny is dominant"}    
+  \label{fig:policysetfaulty}
+\end{figure}
+
+From PS2, we need to derive a consistent one (there can be many ways of repairing), for example, PS (Fig.\ref{fig:policyset}) is one such an option. Our minimality criterion is defined as the smallest number of changes to the faulty policy specification. But the minimality criterion should be explored in the future work.
 
 Once there is an inconsistent policy set, the verification procedure will return the policy set $ps$, policies $p1$, $p2$ and the corresponding rules $r1$ and $r2$. Our repair procedure is applied to policies or rules, and this will affect the consistency of the policy set $ps$. Since our verification procedure returns two rules of two policies, actually we can try to apply the same set of repairs to each of them by symmetry. Therefore, we can consider the following repair ways in the context of the returned policy set $ps$, and one policy $p1$ and rule $r1$ within it.
 
